@@ -1,0 +1,74 @@
+-- SISTEMA
+PK  ID_Sistema
+FK  Nombre
+CREATE TABLE SISTEMA (
+    ID_SISTEMA INTEGER,
+    NOMBRE TEXT
+    );
+-- SOPORTE
+PK  ID_Soporte
+FK  HorarioDisponible
+CREATE TABLE SOPORTE (
+    ID_SOPORTE INTEGER,
+    HORARIODISPONIBLE TEXT
+    );
+-- RESERVA
+PK  ID_Reserva
+FK  ID_Arrendatario
+    Fecha
+    CantidadMaxima
+    HoraInicio
+    HoraFin
+    TC
+CREATE TABLE RESERVA (
+    ID_RESERVA INTEGER,
+    ID_ARRENDATARIO INTEGER,
+    FECHA TEXT,
+    CANTIDADMAXIMA INTEGER,
+    HORAINICIO TEXT,
+    HORAFIN TEXT,
+    TC TEXT
+    );
+-- ARRENDADOR
+PK  ID_Arrendador
+FK  DNI
+    NroCuentaBancaria
+    Reseña
+CREATE TABLE ARRENDADOR(
+    ID_ARRENDADOR INTEGER,
+    DNI INTEGER,
+    NROCUENTABANCARIA INTEGER,
+    RESENA TEXT
+    );
+-- USUARIO
+PK  DNI
+FK  Nombre
+    Correo
+    Celular
+CREATE TABLE USUARIO (
+    DNI INTEGER,
+    NOMBRE TEXT,
+    CORREO TEXT,
+    CELULAR TEXT
+    );
+-- ARRENDATARIO
+PK  ID_Arrendatario
+FK  DNI
+CREATE TABLE ARRENDATARIO (
+    ID_ARRENDATARIO INTEGER,
+    DNI INTEGER
+    );
+-- CANCHA
+PK  ID_Cancha
+FK  ID_Arrendador
+    Aforo
+    TipoCancha
+    NombreLocal
+    Ubicacion
+CREATE TABLE CANCHA (
+    ID_CANCHA INTEGER,
+    ID_ARRENDADOR INTEGER,
+    AFORO INTEGER,
+    TIPOCANCHA TEXT,
+    NOMBRELOCAL TEXT,
+    UBICACION TEXT);
