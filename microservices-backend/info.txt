@@ -1,1 +1,0 @@
-Favor organizar los microservicios cada uno en carpetas diferentes según su propósito.
