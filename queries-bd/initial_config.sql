@@ -8,7 +8,8 @@ CREATE TABLE USUARIO (
     ID_USUARIO INTEGER PRIMARY KEY,
     NOMBRE TEXT,
     CORREO TEXT,
-    TIPO TEXT,
+    PASSWD TEXT,
+    TIPO_USUARIO TEXT,
     CELULAR TEXT,
     );
 CREATE TABLE CANCHA (
@@ -62,8 +63,3 @@ CREATE TABLE CANCHA (
     NOMBRELOCAL TEXT,
     UBICACION TEXT);
 */
-
-SELECT *
-FROM pg_catalog.pg_tables
-WHERE schemaname != 'pg_catalog' AND 
-    schemaname != 'information_schema';
