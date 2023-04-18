@@ -18,16 +18,16 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id_usuario'
       }
     },
-    email: {
+    aforo: {
+      type: DataTypes.INTEGER
+    },
+    tipo: {
       type: DataTypes.STRING
     },
-    password: {
+    nombre_local: {
       type: DataTypes.STRING
     },
-    nombre: {
-      type: DataTypes.STRING
-    },
-    apellido: {
+    ubicacion: {
       type: DataTypes.STRING
     }
   }, {
