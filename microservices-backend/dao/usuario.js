@@ -9,6 +9,7 @@ const insert_usuario = async (id_usuario, nombre, correo, passwd, documento, cel
         documento : documento,
         celular : celular
     })
+    return nuevo_usuario
 }
 const select_usuario = async (documento) => {
     return await db.Usuario.findOne({
