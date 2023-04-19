@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registrar Cancha</title>
+    <style>
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #form {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type=text],
+        input[type=number] {
+            padding: 5px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+
+        #submit {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #submit:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Registrar Cancha</h1>
+        <form id="form">
+            <div class="column">
+                <label for="type">Tipo:</label>
+                <input type="text" id="type" name="type" required>
+
+                <label for="capacity">Aforo:</label>
+                <input type="number" id="capacity" name="capacity" required>
+            </div>
+
+            <div class="column">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="price">Precio:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+        </form>
+
+        <button id="submit">Enviar</button>
+    </div>
+</body>
+
+</html>
