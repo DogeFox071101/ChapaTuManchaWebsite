@@ -3,20 +3,17 @@ const {
   Model, Usuarios
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Canchas extends Model {}
+  class Canchas extends Model {
+    static associate(models) {
+      Canchas.belongsTo(models.Usuarios, {
+        foreignKey: "id"
+      })
+    }
+  }
 
   Canchas.init({
-    id_cancha: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
     id_usuario: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Usuarios,
-        key: 'id_usuario'
-      }
+      type: DataTypes.INTEGER
     },
     aforo: {
       type: DataTypes.INTEGER

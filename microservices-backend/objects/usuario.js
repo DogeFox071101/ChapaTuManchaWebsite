@@ -55,7 +55,10 @@ class Usuario {
         this.celular = celular;
     }
     async crear_cuenta() {
-        confirm = dao_usuario.insert_usuario()
+        await dao_usuario.insert_usuario(this.id_usuario, this.nombre, this.correo, this.passwd, this.documento, this.celular).then(data => {
+            console.log(data)
+        })
+        
     }
     async iniciar_sesion() {
 
@@ -68,6 +71,17 @@ class Usuario {
     }
     async modificar_datos() {
 
+    }
+
+    toObject() {
+        return usuario_obj = {
+            id_usuario: this.id_usuario,
+            nombre: this.nombre,
+            correo: this.correo,
+            passwd: this.passwd,
+            document: this.documento,
+            celular: this.celular
+        }
     }
 };
 

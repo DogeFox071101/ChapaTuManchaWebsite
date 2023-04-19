@@ -18,23 +18,8 @@ CREATE DATABASE chapatumancha_db
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-drop table if exists cancha;
-drop table if exists usuario;
-
-CREATE TABLE USUARIO (
-    ID_USUARIO SERIAL PRIMARY KEY,
-    NOMBRE TEXT,
-    CORREO TEXT,
-    PASSWD TEXT,
-    DOCUMENTO TEXT,
-    CELULAR TEXT
-    );
-CREATE TABLE CANCHA (
-    ID_CANCHA SERIAL PRIMARY KEY,
-    ID_USUARIO INTEGER,
-    AFORO INTEGER,
-    TIPOCANCHA TEXT,
-    NOMBRELOCAL TEXT,
-    UBICACION TEXT,
-    CONSTRAINT FK_USUARIO FOREIGN KEY (ID_USUARIO) REFERENCES USUARIO(ID_USUARIO)
-    );
+-- Control por Sequelize CLI
+-- Aplicar:
+-- npx sequelize-cli db:migrate
+-- Rollback:
+-- npx sequelize-cli db:migrate:undo:all
