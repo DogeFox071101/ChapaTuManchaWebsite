@@ -17,11 +17,14 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const modelUsuario = require("../models/usuarios")
-const modelCanchas = require("../models/canchas")
+const modelUsuarios = require("../models/usuarios")(sequelize,Sequelize.DataTypes)
+const modelCanchas = require("../models/canchas")(sequelize, Sequelize.DataTypes)
 
-db[modelUsuario(sequelize, Sequelize.DataTypes).name] = modelUsuario(sequelize, Sequelize.DataTypes);
-db[modelCanchas(sequelize, Sequelize.DataTypes).name] = modelCanchas(sequelize, Sequelize.DataTypes);
+console.log(modelUsuarios)
+
+db[modelUsuarios.name] = new modelUsuarios;
+console.log(db.Usuarios)
+db[modelCanchas.name] = new modelCanchas;
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
@@ -31,5 +34,7 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+console.log(db.Usuarios)
 
 module.exports = db;
