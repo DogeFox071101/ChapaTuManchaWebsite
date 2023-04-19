@@ -19,6 +19,9 @@ module.exports = ( sequelize, DataTypes ) => {
     passwd: {
       type: DataTypes.STRING
     },
+    arrendador: {
+      type: DataTypes.BOOLEAN
+    },
     documento: {
       type: DataTypes.STRING
     },

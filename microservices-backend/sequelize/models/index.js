@@ -21,7 +21,6 @@ const modelUsuarios = require("../models/usuarios")
 const modelCanchas = require("../models/canchas")
 
 db[modelUsuarios(sequelize, Sequelize.DataTypes).name] = modelUsuarios(sequelize, Sequelize.DataTypes);
-console.log(db.Usuarios)
 db[modelCanchas(sequelize, Sequelize.DataTypes).name] = modelCanchas(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach(modelName => {

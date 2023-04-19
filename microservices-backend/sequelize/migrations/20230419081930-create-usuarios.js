@@ -17,6 +17,9 @@ module.exports = {
       passwd: {
         type: Sequelize.STRING
       },
+      arrendador: {
+        type: Sequelize.BOOLEAN
+      },
       documento: {
         type: Sequelize.STRING
       },

@@ -1,11 +1,11 @@
 const db = require ('../sequelize/models')
 
-const insert_usuario = async (id_usuario, nombre, correo, passwd, documento, celular) => {
+const insert_usuario = async (nombre, correo, passwd, arrendador, documento, celular) => {
     const nuevo_usuario = await db.Usuarios.create({
-        id_usuario : id_usuario,
         nombre : nombre,
         correo : correo,
         passwd : passwd,
+        arrendador : arrendador,
         documento : documento,
         celular : celular
     })
@@ -30,6 +30,7 @@ const update_usuario = async (usuario) => {
     actualizar_dato.nombre = usuario.nombre;
     actualizar_dato.correo = usuario.correo;
     actualizar_dato.passwd = usuario.passwd;
+    actualizar_dato.tipo = usuario.tipo;
     actualizar_dato.documento = usuario.documento;
     actualizar_dato.celular = usuario.celular;
     await actualizar_dato.save()
