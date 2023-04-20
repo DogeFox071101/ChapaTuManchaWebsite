@@ -9,6 +9,7 @@ class Usuario {
     arrendador
     documento
     celular
+    usuario
 
     constructor (id_usuario, nombre, correo, passwd, arrendador, documento, celular) {
         this.id_usuario = id_usuario
@@ -18,6 +19,15 @@ class Usuario {
         this.arrendador = arrendador
         this.documento = documento
         this.celular = celular
+        this.usuario = {
+            id_usuario : this.id_usuario,
+            nombre : this.nombre,
+            correo : this.correo,
+            passwd : this.passwd,
+            arrendador : this.arrendador,
+            documento : this.documento,
+            celular : this.celular
+        }
     }
 
     get id_usuario() { return this.id_usuario }
@@ -41,16 +51,39 @@ class Usuario {
     get celular() { return this.celular }
     set celular(celular) { this.celular = celular }
 
+    refresh_object() {
+        this.usuario = {
+            id_usuario : this.id_usuario,
+            nombre : this.nombre,
+            correo : this.correo,
+            passwd : this.passwd,
+            arrendador : this.arrendador,
+            documento : this.documento,
+            celular : this.celular
+        }
+    }
+
     async crear_cuenta() {
-        const data = await dao_usuario.insert_usuario(this.nombre, this.correo, this.passwd, this.arrendador, this.documento, this.celular)
+        const data = await dao_usuario.insert_usuario(this.usuario)
         this.id_usuario = data.dataValues.id
         const response = {
             id_usuario : this.id_usuario
         }
+        this.refresh_object()
         return response
     }
     async iniciar_sesion() {
-
+        const data = await dao_usuario.login_usuario(this.correo, this.passwd)
+        if(data != null) {
+            const response = {
+                id_usuario : data.id
+            }
+            this.refresh_object()
+            return response
+        }
+        else {
+            return -1
+        }
     }
     async recuperar_cuenta() {
 
@@ -60,17 +93,6 @@ class Usuario {
     }
     async modificar_datos() {
 
-    }
-
-    toObject() {
-        return usuario_obj = {
-            id_usuario: this.id_usuario,
-            nombre: this.nombre,
-            correo: this.correo,
-            passwd: this.passwd,
-            document: this.documento,
-            celular: this.celular
-        }
     }
 };
 
