@@ -12,14 +12,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 85vh;
         }
 
         #form {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: center;
+            justify-content: left;
+            padding-left: 100px;
+            gap: 250px;
+            margin-bottom: 25px;
         }
 
         label {
@@ -30,15 +32,28 @@
         input[type=text],
         input[type=number] {
             padding: 5px;
-            margin-bottom: 10px;
-            width: 100%;
+            margin-bottom: 30px;
+            width: 125%;
             box-sizing: border-box;
         }
 
-        .column {
+        select{
+            padding: 5px;
+            margin-bottom: 30px;
+            width: 125%;
+            box-sizing: border-box;
+        }
+
+        #column1 {
             display: flex;
             flex-direction: column;
-            margin-right: 20px;
+        }
+
+        #column2 {
+            display: flex;
+            flex-direction: column;
+            margin-left: 0px;
+            padding-left: 0px;
         }
 
         #submit {
@@ -66,7 +81,37 @@
         #titulo {
             text-align: cente;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 250%
+            font-size: 250%;
+            padding-left: 30px;
+            margin-bottom: 40px;
+        }
+
+        #subtitulo {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 120%
+        }
+
+        #boxBottons{
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            padding-left: 100px;
+            gap: 30px
+        }
+
+        #botones {
+            display: flex;
+            padding: 10px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #boton {
+            display: flex;
+            padding
         }
     </style>
 </head>
@@ -76,24 +121,36 @@
         <div id="square">
             <h1 id="titulo">Registrar Cancha</h1>
             <form id="form">
-                <div class="column">
-                    <label for="type">Tipo:</label>
-                    <input type="text" id="type" name="type" required>
+                <div id ="column1">
+                    <label for="type" id="subtitulo">Tipos de deporte:</label>
+                    <select name="" id="" >
+                        <option disabled selected="">Seleccionar una opción</option>
+                        <option value="">Fútbol</option>
+                        <option value="">Voleibol</option>
+                        <option value="">Basketball</option>
+                        <option value="">Tennis</option>
+                        <option value="">Futbol y Basketball</option>
+                    </select>
 
-                    <label for="capacity">Aforo:</label>
+                    <label for="capacity" id="subtitulo">Aforo:</label>
                     <input type="number" id="capacity" name="capacity" required>
                 </div>
-
-                <div class="column">
-                    <label for="address">Dirección:</label>
+                <div id="column2">
+                    <label for="address" id="subtitulo">Dirección:</label>
                     <input type="text" id="address" name="address" required>
 
-                    <label for="price">Precio:</label>
+                    <label for="price" id="subtitulo">Precio:</label>
                     <input type="number" id="price" name="price" required>
                 </div>
             </form>
-
-            <button id="submit">Enviar</button>
+            <div id="boxBottons">
+                <div id="boton">
+                    <button id="botones">Enviar</button>
+                </div>
+                <div id="boton">
+                    <button id="botones">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
 </body>
