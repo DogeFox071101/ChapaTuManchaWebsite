@@ -1,5 +1,6 @@
 'use strict';
-var dao_usuario = require ('../dao/usuario')
+const dao_usuario = require ('../dao/usuario');
+const Cancha = require('./cancha');
 
 class Usuario {
     id_usuario
@@ -9,7 +10,6 @@ class Usuario {
     arrendador
     documento
     celular
-    usuario
 
     constructor (id_usuario, nombre, correo, passwd, arrendador, documento, celular) {
         this.id_usuario = id_usuario
@@ -19,15 +19,6 @@ class Usuario {
         this.arrendador = arrendador
         this.documento = documento
         this.celular = celular
-        this.usuario = {
-            id_usuario : this.id_usuario,
-            nombre : this.nombre,
-            correo : this.correo,
-            passwd : this.passwd,
-            arrendador : this.arrendador,
-            documento : this.documento,
-            celular : this.celular
-        }
     }
 
     get id_usuario() { return this.id_usuario }
@@ -51,8 +42,8 @@ class Usuario {
     get celular() { return this.celular }
     set celular(celular) { this.celular = celular }
 
-    refresh_object() {
-        this.usuario = {
+    async crear_cuenta() {
+        const usuario = {
             id_usuario : this.id_usuario,
             nombre : this.nombre,
             correo : this.correo,
@@ -61,38 +52,42 @@ class Usuario {
             documento : this.documento,
             celular : this.celular
         }
-    }
-
-    async crear_cuenta() {
-        const data = await dao_usuario.insert_usuario(this.usuario)
+        const data = await dao_usuario.insert_usuario(usuario)
         this.id_usuario = data.dataValues.id
-        const response = {
-            id_usuario : this.id_usuario
-        }
-        this.refresh_object()
-        return response
+        return { id_usuario : this.id_usuario }
     }
     async iniciar_sesion() {
         const data = await dao_usuario.login_usuario(this.correo, this.passwd)
         if(data != null) {
-            const response = {
-                id_usuario : data.id
-            }
-            this.refresh_object()
-            return response
+            return { id_usuario : data.id }
         }
         else {
             return -1
         }
     }
     async recuperar_cuenta() {
-
+        const data = await dao_usuario.select_usuario_correo(this.correo)
+        if(data != null) {
+            // enviar un correo de recuperación con un código
+            return 1
+        }
+        else {
+            return -1
+        }
     }
-    async cambiar_contraseña() {
-
+    async cambiar_contraseña(n_passwd) {
+        const data = await dao_usuario.select_usuario(this.id_usuario)
+        if (data.passwd == this.passwd) {
+            data.passwd = n_passwd
+            dao_usuario.update_usuario(data)
+            return 0
+        }
+        return -1
     }
-    async modificar_datos() {
-
+    async registrar_cancha(datos_cancha) {
+        const cancha = new Cancha(null, datos_cancha.id_usuario, datos_cancha, datos.tipo, datos.nombre_local, datos.ubicacion)
+        const salida = cancha.crear_cancha()
+        return salida
     }
 };
 

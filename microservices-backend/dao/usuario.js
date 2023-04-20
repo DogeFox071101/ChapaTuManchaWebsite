@@ -9,7 +9,6 @@ const insert_usuario = async (usuario) => {
         documento : usuario.documento,
         celular : usuario.celular
     })
-    console.log(usuario.passwd)
     return nuevo_usuario
 }
 const login_usuario = async (correo, passwd) => {
@@ -17,6 +16,13 @@ const login_usuario = async (correo, passwd) => {
         where : {
             correo : correo,
             passwd : passwd
+        }
+    })
+}
+const select_usuario = async (id) => {
+    return await db.Usuarios.findOne({
+        where : {
+            id : id
         }
     })
 }
@@ -64,13 +70,14 @@ const update_usuario = async (usuario) => {
     actualizar_dato.documento = usuario.documento;
     actualizar_dato.celular = usuario.celular;
     await actualizar_dato.save()
+    return 1
 }
-const delete_usuario = async (documento) => {
+const delete_usuario = async (id) => {
     await db.Usuarios.destroy({
         where : {
-            documento : documento
+            id : id
         }
     })
 }
 
-module.exports = { insert_usuario, login_usuario, select_usuario_nombre, select_usuario_correo, select_usuario_documento, select_usuario_celular, select_usuarios, update_usuario, delete_usuario }
+module.exports = { insert_usuario, login_usuario, select_usuario, select_usuario_nombre, select_usuario_correo, select_usuario_documento, select_usuario_celular, select_usuarios, update_usuario, delete_usuario }
