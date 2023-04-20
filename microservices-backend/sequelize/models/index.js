@@ -17,10 +17,10 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const modelUsuario = require("../models/usuarios")
+const modelUsuarios = require("../models/usuarios")
 const modelCanchas = require("../models/canchas")
 
-db[modelUsuario(sequelize, Sequelize.DataTypes).name] = modelUsuario(sequelize, Sequelize.DataTypes);
+db[modelUsuarios(sequelize, Sequelize.DataTypes).name] = modelUsuarios(sequelize, Sequelize.DataTypes);
 db[modelCanchas(sequelize, Sequelize.DataTypes).name] = modelCanchas(sequelize, Sequelize.DataTypes);
 
 Object.keys(db).forEach(modelName => {

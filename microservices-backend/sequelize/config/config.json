@@ -1,7 +1,7 @@
 {
     "development": {
       "username": "user_ctm_backend",
-      "password": "ctmctmctm",
+      "password": "ctmctmctm2023",
       "database": "chapatumancha_db",
       "host": "127.0.0.1",
       "dialect": "postgres"
