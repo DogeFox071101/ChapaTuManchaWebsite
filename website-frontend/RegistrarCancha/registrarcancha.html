@@ -5,9 +5,45 @@
     <title>Registrar Cancha</title>
     <style>
         body {
-            background-color: #f0f0f0;
+            background-color: #F2F2F2;
         }
 
+        .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #4CAF50;
+        color: black;
+        padding: 10px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 24px;
+      }
+      .logo img {
+        width: 100px;
+        margin-right: 10px;
+    }
+      .logo span {
+        font-size: 60px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , sans-serif;
+      }
+      .subheader {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      
+      .subheader a {
+        color: black;
+        margin-left: 40px;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 20px;
+      }
         #container {
             display: flex;
             justify-content: center;
@@ -15,7 +51,7 @@
             height: 85vh;
         }
 
-        #form {
+        #formulario {
             display: flex;
             flex-direction: row;
             justify-content: left;
@@ -111,48 +147,72 @@
 
         #boton {
             display: flex;
-            padding
         }
+
     </style>
 </head>
 
 <body>
+    <div class="header">
+        <div class="logo">
+            <img src="logo.png" alt="logo">
+            <span>CHAPA TU MANCHA</span>
+        </div>
+        <div class="subheader">
+            <a href="#">PERFIL</a>
+            <a href="#">COMUNIDAD</a>
+            <a href="#">RESERVAS</a>
+            <a href="#">SOPORTE</a>
+        </div>
+    </div>
     <div id="container">
         <div id="square">
             <h1 id="titulo">Registrar Cancha</h1>
-            <form id="form">
+            <form action="#" class="formulario" id="formulario">
                 <div id ="column1">
-                    <label for="type" id="subtitulo">Tipos de deporte:</label>
-                    <select name="" id="" >
+                    <label for="tipoCancha" id="subtitulo">Tipos de deporte:</label>
+                    <select name="" id="tipoCancha" >
                         <option disabled selected="">Seleccionar una opción</option>
-                        <option value="">Fútbol</option>
-                        <option value="">Voleibol</option>
-                        <option value="">Basketball</option>
-                        <option value="">Tennis</option>
-                        <option value="">Futbol y Basketball</option>
+                        <option value="Fútbol" >Fútbol</option>
+                        <option value="Voleibol" >Voleibol</option>
+                        <option value="Basketball" >Basketball</option>
+                        <option value="Tennis" >Tennis</option>
+                        <option value="Futbol y Basketball" >Futbol y Basketball</option>
                     </select>
 
-                    <label for="capacity" id="subtitulo">Aforo:</label>
-                    <input type="number" id="capacity" name="capacity" required>
+                    <label for="capacidad" id="subtitulo">Aforo:</label>
+                    <input type="number" id="capacidad" name="capacity"  required>
                 </div>
                 <div id="column2">
                     <label for="address" id="subtitulo">Dirección:</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address"  required>
 
                     <label for="price" id="subtitulo">Precio:</label>
-                    <input type="number" id="price" name="price" required>
+                    <input type="number" id="price" name="price"   required>
                 </div>
             </form>
             <div id="boxBottons">
                 <div id="boton">
-                    <button id="botones">Enviar</button>
+                    <button id="botones" type="submit">Enviar</button>
                 </div>
                 <div id="boton">
-                    <button id="botones">Cancelar</button>
+                    <button id="botones" type="cancel">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
+<script src="registrarCancha.js">
+    form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const tipo = document.getElementById("tipoCancha").value;
+            const aforo= document.getElementById("capacidad").value;
+            const direccion = document.getElementById("address").value;
+            const precio = document.getElementById("price").value;
+            // Confirmar cambio de contraseña 
+            message.textContent = "Registro exitoso!!!";
+    });
+</script>
 
 </html>
