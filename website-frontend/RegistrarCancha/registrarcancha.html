@@ -149,6 +149,11 @@
             display: flex;
         }
 
+        #message {
+        text-align: center;
+        color: #4CAF50;
+        font-size: 18px;
+      }
     </style>
 </head>
 
@@ -201,18 +206,18 @@
             </div>
         </div>
     </div>
-</body>
-
-<script src="registrarCancha.js">
-    form.addEventListener("submit", (event) => {
+    <p id="message"></p>
+    <script>
+        form.addEventListener("submit", (event) => {
             event.preventDefault();
             const tipo = document.getElementById("tipoCancha").value;
-            const aforo= document.getElementById("capacidad").value;
+            const aforo = document.getElementById("capacidad").value;
             const direccion = document.getElementById("address").value;
             const precio = document.getElementById("price").value;
-            // Confirmar cambio de contraseña 
+
             message.textContent = "Registro exitoso!!!";
-    });
-</script>
+        });
+    </script>
+</body>
 
 </html>
