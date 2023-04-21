@@ -62,7 +62,7 @@
         font-size: 18px;
         color: #4CAF50;
       }
-      input[type="email"],
+     
       input[type="password"] {
         width: 100%;
         padding: 12px 20px;
@@ -106,10 +106,7 @@
     <div class="container">
       <form id="password-form">
         <h2>Cambiar Contraseña</h2>
-        <label>
-            Correo Electrónico:
-            <input type="email" id="email-input" required />
-          </label>
+        
           <br /><br />
           <label>
             Contraseña Actual:
@@ -133,7 +130,7 @@
   
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const email = document.getElementById("email-input").value;
+      
       const currentPassword = document.getElementById("current-password-input")
         .value;
       const newPassword = document.getElementById("new-password-input")
