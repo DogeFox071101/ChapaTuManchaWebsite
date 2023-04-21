@@ -62,7 +62,7 @@ const select_usuarios = async () => {
     })
 }
 const update_usuario = async (usuario) => {
-    const actualizar_dato = await select_usuario(usuario.id_usuario);
+    const actualizar_dato = await select_usuario(usuario.id);
     actualizar_dato.nombre = usuario.nombre;
     actualizar_dato.correo = usuario.correo;
     actualizar_dato.passwd = usuario.passwd;
@@ -70,7 +70,7 @@ const update_usuario = async (usuario) => {
     actualizar_dato.documento = usuario.documento;
     actualizar_dato.celular = usuario.celular;
     await actualizar_dato.save()
-    return 1
+    return 0
 }
 const delete_usuario = async (id) => {
     await db.Usuarios.destroy({

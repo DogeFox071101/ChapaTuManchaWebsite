@@ -40,12 +40,12 @@ app.get('/api/restore_password', async (req, res) => {
     const data = req.body
     const usuario = new Usuario(null, null, data.correo, null, null, null, null)
     const salida = await usuario.recuperar_cuenta()
-    res.json(salida)
+    res.json({ result : salida })
 })
-app.get('api/change_password', async (req, res) => {
+app.get('/api/change_password', async (req, res) => {
     const data = req.body
-    const usuario = new Usuario(data.id, null, null, null, null, null, null)
-    const salida = await usuario.cambiar_contraseña(data.n_passwd)
+    const usuario = new Usuario(data.id, null, null, data.msg, null, null, null)
+    const salida = await usuario.cambiar_contraseña(data.add)
     res.json(salida)
 })
 app.get('/api/logout', (req, res) => {

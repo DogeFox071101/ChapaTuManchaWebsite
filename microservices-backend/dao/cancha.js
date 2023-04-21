@@ -1,7 +1,7 @@
 const db = require ('../sequelize/models')
 
 const insert_cancha = async (cancha) => {
-    const nuevo_cancha = await db.cancha.create({
+    const nuevo_cancha = await db.Canchas.create({
         id_usuario : cancha.id_usuario,
         aforo : cancha.aforo,
         tipo : cancha.tipo,
@@ -11,21 +11,21 @@ const insert_cancha = async (cancha) => {
     return nuevo_cancha
 }
 const select_cancha = async (id) => {
-    return await db.cancha.findOne({
+    return await db.Canchas.findOne({
         where : {
             id : id
         }
     })
 }
 const select_cancha_nombre = async (nombre_local) => {
-    return await db.cancha.findOne({
+    return await db.Canchas.findOne({
         where : {
             nombre_local : nombre_local
         }
     })
 }
 const select_canchas = async () => {
-    return await db.cancha.findAll({
+    return await db.Canchas.findAll({
         order : [
             [ 'nombre_local', 'DESC' ]
         ]
@@ -41,11 +41,11 @@ const update_cancha = async (cancha) => {
     return 1
 }
 const delete_cancha = async (id) => {
-    await db.cancha.destroy({
+    await db.Canchas.destroy({
         where : {
             id : id
         }
     })
 }
 
-export { insert_cancha, select_cancha, select_cancha_nombre, select_canchas, update_cancha, delete_cancha }
+module.exports = { insert_cancha, select_cancha, select_cancha_nombre, select_canchas, update_cancha, delete_cancha }

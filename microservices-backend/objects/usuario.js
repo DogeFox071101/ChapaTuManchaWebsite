@@ -69,25 +69,31 @@ class Usuario {
         const data = await dao_usuario.select_usuario_correo(this.correo)
         if(data != null) {
             // enviar un correo de recuperación con un código
-            return 1
+            return 0
         }
         else {
             return -1
         }
     }
     async cambiar_contraseña(n_passwd) {
-        const data = await dao_usuario.select_usuario(this.id_usuario)
+        const arrived = await dao_usuario.select_usuario(this.id_usuario)
+        const data = arrived.dataValues
         if (data.passwd == this.passwd) {
             data.passwd = n_passwd
-            dao_usuario.update_usuario(data)
-            return 0
+            const salida = await dao_usuario.update_usuario(data)
+            return salida
         }
-        return -1
+        else {
+            return -1
+        }
     }
     async registrar_cancha(datos_cancha) {
-        const cancha = new Cancha(null, datos_cancha.id_usuario, datos_cancha, datos.tipo, datos.nombre_local, datos.ubicacion)
+        const cancha = new Cancha(null, this.id_usuario, datos_cancha.aforo, datos_cancha.tipo, datos_cancha.nombre_local, datos_cancha.ubicacion)
         const salida = cancha.crear_cancha()
         return salida
+    }
+    cerrar_sesion() {
+        return { result : 0 }
     }
 };
 
