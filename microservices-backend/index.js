@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
-app.get ('/api/hash', async (req, res) => {
+app.post ('/api/hash', async (req, res) => {
     const data = req.body.msg
     const pw = await hash(data)
     res.json({ msg : pw })
@@ -30,7 +30,7 @@ app.get('/api/register_cancha', async (req, res) => {
         res.json({ result : -1 })
     }
 })
-app.get('/api/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
     const data = req.body
     const usuario = new Usuario(null, null, data.id, data.msg, null, null, null)
     const salida = await usuario.iniciar_sesion()
