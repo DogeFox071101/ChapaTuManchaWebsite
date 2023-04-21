@@ -25,3 +25,8 @@ const iniciar_sesion = async () => {
         location.href = "./inicio.html"
     }
 }
+
+const goToLogin = () => {
+    localStorage.removeItem("lastDataLogin")
+    location.href = "./"
+}
