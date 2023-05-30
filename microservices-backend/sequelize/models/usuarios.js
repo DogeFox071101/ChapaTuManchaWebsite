@@ -1,7 +1,7 @@
 'use strict';
-import Model from 'sequelize';
+// import Model from 'sequelize';
 
-export default ( sequelize, DataTypes ) => {
+export default ( sequelize, DataTypes, Model ) => {
   class Usuarios extends Model {
     static associate(models){
       Usuarios.hasMany(models.Usuarios, {

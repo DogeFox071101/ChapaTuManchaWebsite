@@ -1,7 +1,7 @@
 'use strict'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import Sequelize from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname (__filename);
@@ -25,8 +25,8 @@ else {
 import modelUsuarios from '../models/usuarios.js'
 import modelCanchas from '../models/canchas.js'
 
-db[modelUsuarios(sequelize, Sequelize.DataTypes).name] = modelUsuarios(sequelize, Sequelize.DataTypes);
-db[modelCanchas(sequelize, Sequelize.DataTypes).name] = modelCanchas(sequelize, Sequelize.DataTypes);
+db[modelUsuarios(sequelize, Sequelize.DataTypes, Model).name] = modelUsuarios(sequelize, Sequelize.DataTypes, Model);
+db[modelCanchas(sequelize, Sequelize.DataTypes, Model).name] = modelCanchas(sequelize, Sequelize.DataTypes, Model);
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

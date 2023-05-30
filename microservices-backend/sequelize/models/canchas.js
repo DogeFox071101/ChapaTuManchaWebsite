@@ -1,11 +1,9 @@
 'use strict';
-//import {Model, Usuarios} from 'sequelize'
-import Model from 'sequelize';
-import Usuarios from './usuarios.js'
+// import {Model, Usuarios} from 'sequelize'
+// import Model from 'sequelize';
+// import Usuarios from './usuarios.js'
 
-
-
-export default (sequelize, DataTypes) => {
+export default (sequelize, DataTypes, Model) => {
   class Canchas extends Model {
     static associate(models) {
       Canchas.belongsTo(models.Usuarios, {

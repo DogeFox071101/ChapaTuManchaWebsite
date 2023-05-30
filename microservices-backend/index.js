@@ -1,7 +1,7 @@
-import * as express from 'express';
-import * as Usuario from './objects/usuario.js'
-import * as hash from './helpers/hash.js'
-import * as cors from 'cors';
+import express from 'express';
+import Usuario from './objects/usuario.js'
+import hash from './helpers/hash.js'
+import cors from 'cors';
 
 const app = express()
 
