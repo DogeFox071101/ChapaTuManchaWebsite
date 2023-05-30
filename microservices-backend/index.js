@@ -1,6 +1,6 @@
 import express from 'express';
 import Usuario from './objects/usuario.js'
-import hash from './helpers/hash.js'
+import Seguridad from './classes/Seguridad.js'
 import cors from 'cors';
 
 const app = express()
@@ -10,7 +10,7 @@ app.use(cors());
 
 app.post ('/api/hash', async (req, res) => {
     const data = req.body.msg
-    const pw = await hash(data)
+    const pw = await Seguridad.hash(data)
     res.json({ msg : pw })
 })
 app.post('/api/signin', async (req, res) => {
