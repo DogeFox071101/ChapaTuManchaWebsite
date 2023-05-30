@@ -13,14 +13,13 @@ app.post ('/api/hash', async (req, res) => {
     const pw = await hash(data)
     res.json({ msg : pw })
 })
-
-app.get('/api/signin', async (req, res) => {
+app.post('/api/signin', async (req, res) => {
     const data = req.body
     const usuario_nuevo = new Usuario(null, data.nombre, data.correo, data.passwd, data.arrendador, data.documento, data.celular)
     const salida = await usuario_nuevo.crear_cuenta()
     res.json(salida)
 })
-app.get('/api/register_cancha', async (req, res) => {
+app.post('/api/register_cancha', async (req, res) => {
     const data = req.body
     const usuario = new Usuario(data.id, null, null, null, null, null, null)
     const salida = await usuario.registrar_cancha(data.cancha)
@@ -37,19 +36,19 @@ app.post('/api/login', async (req, res) => {
     const salida = await usuario.iniciar_sesion()
     res.json(salida)
 })
-app.get('/api/restore_password', async (req, res) => {
+app.post('/api/restore_password', async (req, res) => {
     const data = req.body
     const usuario = new Usuario(null, null, data.correo, null, null, null, null)
     const salida = await usuario.recuperar_cuenta()
     res.json({ result : salida })
 })
-app.get('/api/change_password', async (req, res) => {
+app.post('/api/change_password', async (req, res) => {
     const data = req.body
     const usuario = new Usuario(data.id, null, null, data.msg, null, null, null)
     const salida = await usuario.cambiar_contraseña(data.add)
     res.json(salida)
 })
-app.get('/api/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
     const data = req.body
     const usuario = new Usuario(data.id, null, null, null, null, null, null)
     const salida = usuario.cerrar_sesion()
