@@ -1,4 +1,4 @@
-const db = require ('../sequelize/models')
+import db from '../sequelize/models/index.js'
 
 const insert_usuario = async (usuario) => {
     const nuevo_usuario = await db.Usuarios.create({
@@ -80,4 +80,4 @@ const delete_usuario = async (id) => {
     })
 }
 
-module.exports = { insert_usuario, login_usuario, select_usuario, select_usuario_nombre, select_usuario_correo, select_usuario_documento, select_usuario_celular, select_usuarios, update_usuario, delete_usuario }
+export default { insert_usuario, login_usuario, select_usuario, select_usuario_nombre, select_usuario_correo, select_usuario_documento, select_usuario_celular, select_usuarios, update_usuario, delete_usuario }

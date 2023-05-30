@@ -1,24 +1,29 @@
-'use strict';
+'use strict'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import Sequelize from 'sequelize';
 
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname (__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
 
+import config_file from '../config/config.js'
+const config = config_file[env]
+//const config = require(__dirname + '/../config/config.json')[env];
+
+const db = {};
 const models = process.cwd() + '/sequelize/models/' || __dirname;
 
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
+}
+else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-const modelUsuarios = require("../models/usuarios")
-const modelCanchas = require("../models/canchas")
+import modelUsuarios from '../models/usuarios.js'
+import modelCanchas from '../models/canchas.js'
 
 db[modelUsuarios(sequelize, Sequelize.DataTypes).name] = modelUsuarios(sequelize, Sequelize.DataTypes);
 db[modelCanchas(sequelize, Sequelize.DataTypes).name] = modelCanchas(sequelize, Sequelize.DataTypes);
@@ -32,4 +37,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+export default db;

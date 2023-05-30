@@ -1,4 +1,4 @@
-{
+export default {
     "development": {
       "username": "user_ctm_backend",
       "password": "ctmctmctm2023",

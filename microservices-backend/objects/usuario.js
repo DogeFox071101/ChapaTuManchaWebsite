@@ -1,6 +1,6 @@
 'use strict';
-const dao_usuario = require ('../dao/usuario');
-const Cancha = require('./cancha');
+import dao_usuario from '../dao/usuario.js';
+import Cancha from './cancha.js';
 
 class Usuario {
     id_usuario
@@ -97,4 +97,4 @@ class Usuario {
     }
 };
 
-module.exports = Usuario;
+export default Usuario;

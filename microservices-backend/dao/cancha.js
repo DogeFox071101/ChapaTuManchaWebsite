@@ -1,4 +1,4 @@
-const db = require ('../sequelize/models')
+import db from '../sequelize/models/index.js'
 
 const insert_cancha = async (cancha) => {
     const nuevo_cancha = await db.Canchas.create({
@@ -48,4 +48,4 @@ const delete_cancha = async (id) => {
     })
 }
 
-module.exports = { insert_cancha, select_cancha, select_cancha_nombre, select_canchas, update_cancha, delete_cancha }
+export default { insert_cancha, select_cancha, select_cancha_nombre, select_canchas, update_cancha, delete_cancha }

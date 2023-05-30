@@ -1,15 +1,18 @@
 'use strict';
-const {
-  Model, Usuarios
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+//import {Model, Usuarios} from 'sequelize'
+import Model from 'sequelize';
+import Usuarios from './usuarios.js'
+
+
+
+export default (sequelize, DataTypes) => {
   class Canchas extends Model {
     static associate(models) {
       Canchas.belongsTo(models.Usuarios, {
         foreignKey: "id"
       })
     }
-  }
+  };
 
   Canchas.init({
     id_usuario: {

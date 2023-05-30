@@ -1,7 +1,8 @@
-const express = require('express');
-const Usuario = require("./objects/usuario");
-const hash = require('./helpers/hash');
-const cors = require('cors');
+import * as express from 'express';
+import * as Usuario from './objects/usuario.js'
+import * as hash from './helpers/hash.js'
+import * as cors from 'cors';
+
 const app = express()
 
 app.use(express.json());

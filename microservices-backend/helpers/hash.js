@@ -9,4 +9,4 @@ const hash = async (text) => {
     return hashHex;
 }
 
-module.exports =  hash 
+export default hash 
