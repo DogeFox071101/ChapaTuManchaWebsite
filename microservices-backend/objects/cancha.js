@@ -1,5 +1,5 @@
 'use strict';
-var dao_cancha = require ('../dao/cancha')
+import dao_cancha from '../dao/cancha.js';
 
 class Cancha {
     id_cancha
@@ -56,4 +56,4 @@ class Cancha {
         return { id_cancha : this.id_cancha }
     }
 }
-module.exports = Cancha
+export default Cancha
