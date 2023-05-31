@@ -1,152 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
-    <title>Cambiar Contraseña</title>
-    <style>
-      body {
-        background-color: #c2e6d8;
-      }
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #4CAF50;
-        color: black;
-        padding: 10px;
-        font-size: 24px;
-      }
-      .logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 24px;
-      }
-      .logo img {
-  width: 100px;
-  margin-right: 10px;
-}
-      .logo span {
-        font-size: 60px;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , sans-serif;
-      }
-
-      .subheader {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      }
-      .subheader a {
-        color: black;
-        margin-left: 40px;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 20px;
-      }
-      .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-      form {
-        background-color: white;
-        padding: 40px;
-        border-radius: 10px;
-        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-      }
-      h2 {
-        text-align: center;
-        color: #4CAF50;
-        font-size: 34px;
-        padding: 5px;
-      }
-      label {
-        font-size: 18px;
-        color: #4CAF50;
-      }
-     
-      input[type="password"] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #4CAF50;
-        border-radius: 4px;
-      }
-
-      input {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        box-sizing: border-box;
-        border: 2px solid #4CAF50;
-        border-radius: 4px;
-      }
-
-      button[type="submit"] {
-        background-color: #4CAF50;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        width: 100%;
-      }
-
-      #message {
-        text-align: center;
-        color: #4CAF50;
-        font-size: 18px;
-      }
-      .form-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="header">
-      <div class="logo">
-        <img src="../website-frontend/media/logo.png" alt="logo">
-        <span>CHAPA TU MANCHA</span>
+<head>
+  <title>Modificar Datos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body {
+            background-color: #c2e6d8;
+        }
+        .navbar {
+            background-color: #4CAF50;
+        }
+        .navbar-brand {
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            width: 100px;
+            margin-right: 10px;
+        }
+        .navbar-brand span {
+            font-size: 60px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+        }
+        .subheader {
+            display: flex;
+        }
+        .subheader a {
+            color: white;
+            margin-left: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
+        }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+          <a class="navbar-brand" href="#">
+              <img src="../website-frontend/media/logo.png" alt="logo">
+              <span>CHAPA TU MANCHA</span>
+          </a>
+          <div class="subheader">
+              <a href="#">PERFIL</a>
+              <a href="#">COMUNIDAD</a>
+              <a href="#">RESERVAS</a>
+              <a href="#">SOPORTE</a>
+          </div>
       </div>
-      <div class="subheader">
-        <a href="#">PERFIL</a>
-        <a href="#">COMUNIDAD</a>
-        <a href="#">RESERVAS</a>
-        <a href="#">SOPORTE</a>
+  </nav>
+  </header>
+
+  <div class="container mt-5">
+    <form action="procesar_formulario.php" method="POST">
+      <h2 class="text-success mb-4">Cambiar Contraseña</h2>
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
       </div>
-    </div>
-    <div id="register-form-container" class="form-container">
-        <form action="procesar_formulario.php" method="POST">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-    
-            <label for="apellido">Apellido:</label>
-            <input type="text" id="apellido" name="apellido" required><br><br>
-    
-            <label for="correo">Correo electrónico:</label>
-            <input type="email" id="correo" name="correo" required><br><br>
-    
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required><br><br>
-    
-            <button type="submit">Guardar cambios</button>
-        </form>
+
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" class="form-control" required>
       </div>
-  
-    </body>
-  </html>
+
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo electrónico:</label>
+        <input type="email" id="correo" name="correo" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="contrasena" class="form-label">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">Guardar cambios</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>

@@ -6,142 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launcher</title>
     <script src="./scripts/login.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
-          background-color: #c2e6d8;
+            background-color: #c2e6d8;
         }
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background-color: #4CAF50;
-          color: black;
-          padding: 10px;
-          font-size: 24px;
+        .navbar {
+            background-color: #4CAF50;
         }
-        .logo {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: bold;
-          font-size: 24px;
+        .navbar-brand {
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
         }
-        .logo img {
-    width: 100px;
-    margin-right: 10px;
-  }
-        .logo span {
-          font-size: 60px;
-          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif , sans-serif;
+        .navbar-brand img {
+            width: 100px;
+            margin-right: 10px;
         }
-  
+        .navbar-brand span {
+            font-size: 60px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
+        }
+    
         .subheader {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
         }
         .subheader a {
-          color: black;
-          margin-left: 40px;
-          font-weight: bold;
-          text-decoration: none;
-          font-size: 20px;
+            color: white;
+            margin-left: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 20px;
         }
-        .container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
+        
+        .full-width {
+            width: 100%;
         }
-        form {
-          background-color: white;
-          padding: 40px;
-          border-radius: 10px;
-          box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-        }
-        h2 {
-          text-align: center;
-          color: #4CAF50;
-          font-size: 34px;
-          padding: 5px;
-        }
-        label {
-          font-size: 18px;
-          color: #4CAF50;
-        }
-       
-        input[type="password"] {
-          width: 100%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          box-sizing: border-box;
-          border: 2px solid #4CAF50;
-          border-radius: 4px;
-        }
-  
-        input {
-          width: 100%;
-          padding: 12px 20px;
-          margin: 8px 0;
-          box-sizing: border-box;
-          border: 2px solid #4CAF50;
-          border-radius: 4px;
-        }
-  
-        a {
-          background-color: #4CAF50;
-          color: white;
-          padding: 12px 20px;
-          border: none;
-          border-radius: 4px;
-          width: 100%;
-          text-align: center;
-          margin-bottom: 15px;
-
-        }
-  
-        #message {
-          text-align: center;
-          color: #4CAF50;
-          font-size: 18px;
-        }
-        .form-container {
-          position: absolute;
-          top: 20%;
-          left: 20%;
-          transform: translate(-20%, -20%);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-        }
-        form {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-      </style>
+    </style>
 </head>
 
 <body>
-    <div class="header">
-        <div class="logo">
-          <img src="../website-frontend/media/logo.png" alt="logo">
-          <span>CHAPA TU MANCHA</span>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../website-frontend/media/logo.png" alt="logo">
+                <span>CHAPA TU MANCHA</span>
+            </a>
+            <div class="subheader">
+                <a href="#">PERFIL</a>
+                <a href="#">COMUNIDAD</a>
+                <a href="#">RESERVAS</a>
+                <a href="#">SOPORTE</a>
+            </div>
         </div>
-        <div class="subheader">
-          <a href="#">PERFIL</a>
-          <a href="#">COMUNIDAD</a>
-          <a href="#">RESERVAS</a>
-          <a href="#">SOPORTE</a>
+    </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between full-height">
+            <div class="mb-3">
+                <a href="./cambiar_contrasena.html" class="btn btn-success btn-lg mb-3">Cambiar Contraseña</a>
+            </div>
+            <div class="mb-3">
+                <a href="./registrar_cancha.html" class="btn btn-success btn-lg mb-3">Registrar Cancha</a>
+            </div>
+            <div class="mb-3">
+                <a href="#" onclick="goToLogin()" class="btn btn-success btn-lg mb-3">Cerrar Sesión</a>
+            </div>
         </div>
-      </div>
+    </div>
 
-    <form>
-        <a href="./cambiar_contrasena.html">Cambiar Contraseña</a>
-        <a href="./registrar_cancha.html">Registrar Cancha</a>
-        <a href="#" onclick="goToLogin()">Cerrar Sesión</a>
-      </form>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
