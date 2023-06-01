@@ -1,6 +1,9 @@
 'use strict'
 class Seguridad {
-    static async hash(text) {
+    /**
+     * Produce una clave hash empleando el algoritmo SHA-256
+     */
+    public static async hash(text: string) {
         const utf8 = new TextEncoder().encode(text)
         const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -9,7 +12,7 @@ class Seguridad {
             ).join('');
         return hashHex;
     }
-    static tokenGenerator() {
+    public static tokenGenerator() {
 
     }
 }
