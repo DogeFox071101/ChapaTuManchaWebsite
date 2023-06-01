@@ -3,7 +3,7 @@ import Consulta from "./Consulta";
 
 class PgConsulta extends Consulta {
     protected client : Client
-    protected query : string
+    protected query : string = ""
     constructor(client : Client) {
         super()
         this.client = client

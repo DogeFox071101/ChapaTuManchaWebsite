@@ -11,12 +11,12 @@ app.use(express.json());
 app.use(cors());
 dotenv.config();
 
-app.post('/api/hash', async (req, res) => {
+app.post('/api/hash', async (req: Request, res: Response) => {
     // const data = req.body.msg
     // const pw = await Seguridad.hash(data)
     // res.json({ msg : pw })
 })
-app.post('/api/signin', async (req, res) => {
+app.post('/api/signin', async (req: Request, res: Response) => {
     /*
     Ingresa un valor {}
     */
@@ -26,7 +26,7 @@ app.post('/api/signin', async (req, res) => {
     // const salida = await usuario_nuevo.crear_cuenta()
     // res.json(salida)
 })
-app.post('/api/register_cancha', async (req, res) => {
+app.post('/api/register_cancha', async (req: Request, res: Response) => {
     // const data = req.body
     // const usuario = new Usuario(data.id, null, null, null, null, null, null)
     // const salida = await usuario.registrar_cancha(data.cancha)
@@ -37,25 +37,25 @@ app.post('/api/register_cancha', async (req, res) => {
     //     res.json({ result : -1 })
     // }
 })
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', async (req: Request, res: Response) => {
     // const data = req.body
     // const usuario = new Usuario(null, null, data.id, data.msg, null, null, null)
     // const salida = await usuario.iniciar_sesion()
     // res.json(salida)
 })
-app.post('/api/restore_password', async (req, res) => {
+app.post('/api/restore_password', async (req: Request, res: Response) => {
     // const data = req.body
     // const usuario = new Usuario(null, null, data.correo, null, null, null, null)
     // const salida = await usuario.recuperar_cuenta()
     // res.json({ result : salida })
 })
-app.post('/api/change_password', async (req, res) => {
+app.post('/api/change_password', async (req: Request, res: Response) => {
     // const data = req.body
     // const usuario = new Usuario(data.id, null, null, data.msg, null, null, null)
     // const salida = await usuario.cambiar_contraseña(data.add)
     // res.json(salida)
 })
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', (req: Request, res: Response) => {
     // const data = req.body
     // const usuario = new Usuario(data.id, null, null, null, null, null, null)
     // const salida = usuario.cerrar_sesion()
