@@ -1,4 +1,4 @@
-import DAOUsuario from "../dao/DAOUsuario"
+// import DAOUsuario from "../dao/DAOUsuario"
 
 class Usuario {
     protected idUsuario: number

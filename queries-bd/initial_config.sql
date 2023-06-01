@@ -17,9 +17,3 @@ CREATE DATABASE chapatumancha_db
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
-
--- Control por Sequelize CLI
--- Aplicar:
--- npx sequelize-cli db:migrate
--- Rollback:
--- npx sequelize-cli db:migrate:undo:all

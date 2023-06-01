@@ -1,5 +1,5 @@
 abstract class Consulta {
-    public set(text : string) {}
+    public set(_text : string) {}
     public execute() {}
 }
 
