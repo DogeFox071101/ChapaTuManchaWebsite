@@ -1,0 +1,72 @@
+/------------- Proyecto Chapa tu Mancha ------------/
+
+Formato de APIs para comunicación Frontend-Backend
+Los JSON se envían en el campo body
+OUT: WEB --> BACKEND
+IN:  WEB <-- BACKEND
+
+/-------------------- Sprint 1 ---------------------/ 
+
+OUT - Creación de Cliente:
+{
+    "nombres" : [NOMBRES],                  // string
+    "apPaterno" : [APPATERNO],              // string
+    "apMaterno" : [APMATERNO],              // string
+    "password" : [PASSWORD],                // string
+    "email" : [EMAIL],                      // string
+    "celular" : [CELULAR],                  // string
+    "fNacimiento" : [FNACIMIENTO],          // string
+    "tipoDocumento" : [TIPODOCUMENTO],      // string
+    "documento" : [DOCUMENTO]               // string
+}
+
+OUT - Inicio de Sesión:
+{
+    "email" : [EMAIL],                      // string
+    "password" : [PASSWORD]                 // string
+}
+
+IN - Datos para Persistencia:
+{
+    "isAllowed" : [ISALLOWED],              // boolean
+    "idUsuario" : [IDCLIENTE],              // number
+    "tokenSesion" : [TOKENSESION]           // string
+}
+
+OUT - Cambio de Contraseña:
+{
+    "idUsuario" : [IDUSUARIO],              // number
+    "password" : [PASSWORD],                // string
+    "newPassword" : [PASSWORD]              // string
+}
+
+OUT - Restablecer Contraseña:
+{
+    "email" : [EMAIL]                       // string
+}
+
+OUT - Cerrar Sesión:
+{
+    "idCliente" : [IDCLIENTE]               // number
+}
+
+OUT - Registro de Arrendador:
+{
+    "idCliente" : [IDCLIENTE]               // number
+}
+
+OUT - Registro de Cancha:
+{
+    "idArrendador" : [IDARRENDADOR],        // number
+    "nombreLocal" : [NOMBRELOCAL],          // string
+    "departamento" : [DEPARTAMENTO],        // string
+    "provincia" : [PROVINCIA],              // string
+    "distrito" : [DISTRITO]                 // string
+}
+
+IN - Informe de Ejecución por cada OUT:
+{
+    "result" : [RESULT]                     // boolean
+}
+
+/-------------------- Sprint 2 ---------------------/ 

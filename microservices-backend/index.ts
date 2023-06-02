@@ -1,7 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
-// import Usuario from './classes/Usuario'
 import Seguridad from './classes/Seguridad'
 
 
@@ -16,19 +15,24 @@ app.post('/api/hash', async (req: Request, res: Response) => {
     const pw = await Seguridad.hash(data)
     res.json({ msg : pw })
 })
-app.post('/api/signin', async (req: Request, res: Response) => {
+app.get('/api/token', (_req: Request, res: Response) => {
+    const token = Seguridad.tokenGenerator()
+    res.json({ msg : token })
+})
+app.post('/api/register/user', async (req: Request, res: Response) => {
+    
     res.json(req.body.msg)
 })
-app.post('/api/register_cancha', async (req: Request, res: Response) => {
+app.post('/api/register/cancha', async (req: Request, res: Response) => {
     res.json(req.body.msg)
 })
 app.post('/api/login', async (req: Request, res: Response) => {
     res.json(req.body.msg)
 })
-app.post('/api/restore_password', async (req: Request, res: Response) => {
+app.post('/api/pw/restore', async (req: Request, res: Response) => {
     res.json(req.body.msg)
 })
-app.post('/api/change_password', async (req: Request, res: Response) => {
+app.post('/api/pw/change', async (req: Request, res: Response) => {
     res.json(req.body.msg)
 })
 app.post('/api/logout', (req: Request, res: Response) => {
@@ -38,4 +42,5 @@ app.post('/api/logout', (req: Request, res: Response) => {
 const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
+
 })
