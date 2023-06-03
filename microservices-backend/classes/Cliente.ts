@@ -1,3 +1,4 @@
+import DataNuevoCliente from "../interfaces/DataNuevoCliente";
 import Usuario from "./Usuario";
 
 class Cliente extends Usuario {
@@ -14,6 +15,17 @@ class Cliente extends Usuario {
         this.tipoDocumento = tipoDocumento
         this.documento = documento
     }
+    public static crearCuenta(dataCliente: DataNuevoCliente) {
+        const nuevoCliente = new Cliente(dataCliente.nombres, dataCliente.apPaterno, dataCliente.apMaterno,dataCliente.password, dataCliente.email,  dataCliente.celular, dataCliente.fNacimiento, dataCliente.tipoDocumento, dataCliente.documento)
+        return nuevoCliente
+    }
+    public modificarCuenta(): boolean {
+        return true
+    }
+    public verInfo(): string {
+        return ""
+    }
+
 }
 
 export default Cliente

@@ -1,6 +1,4 @@
-// import DAOUsuario from "../dao/DAOUsuario"
-
-class Usuario {
+abstract class Usuario {
     protected idUsuario?: number
     protected nombres: string
     protected apPaterno: string
@@ -8,33 +6,26 @@ class Usuario {
     protected password: string
     protected pwVersion?: number
     protected email: string
-    protected tknAcc?: string
+    protected tokenSesion?: string
 
-    constructor(nombres: string, apPaterno: string, apMaterno: string, password: string, email: string) {
+    public constructor(nombres: string, apPaterno: string, apMaterno: string, password: string, email: string) {
         this.nombres = nombres
         this.apPaterno = apPaterno
         this.apMaterno = apMaterno
         this.password = password
         this.email = email
     }
-    
-    public static async crearCuenta() {
-        
-    }
-    public static async iniciarSesion() {
+
+    public abstract verInfo(): string
+    public abstract modificarCuenta(): boolean
+    public async cerrarSesion() {
 
     }
-    public verInfo() {
+    public async iniciarSesion() {
 
     }
-    public cambiarPwd() {
+    public async cambiarPassword() {
 
-    }
-    public modificarUsuario() {
-
-    }
-    public cerrarSesion() {
-        
     }
 }
 

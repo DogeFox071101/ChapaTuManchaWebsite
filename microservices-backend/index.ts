@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import Seguridad from './classes/Seguridad'
+import Cliente from './classes/Cliente';
+import DataNuevoCliente from './interfaces/DataNuevoCliente';
 
 
 const app: Express = express()
@@ -20,7 +22,8 @@ app.get('/api/token', (_req: Request, res: Response) => {
     res.json({ msg : token })
 })
 app.post('/api/register/user', async (req: Request, res: Response) => {
-    
+    const dataUsuario: DataNuevoCliente = req.body.dataUsuario
+    const nuevoUsuario = await Cliente.crearCuenta(dataUsuario)
     res.json(req.body.msg)
 })
 app.post('/api/register/cancha', async (req: Request, res: Response) => {
