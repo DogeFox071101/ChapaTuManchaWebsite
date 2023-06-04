@@ -7,7 +7,7 @@ abstract class Usuario {
     protected pwVersion?: number
     protected email: string
     protected tokenSesion?: string
-
+    // Constructor
     public constructor(nombres: string, apPaterno: string, apMaterno: string, password: string, email: string) {
         this.nombres = nombres
         this.apPaterno = apPaterno
@@ -15,6 +15,8 @@ abstract class Usuario {
         this.password = password
         this.email = email
     }
+
+    
 
     public abstract verInfo(): string
     public abstract modificarCuenta(): boolean

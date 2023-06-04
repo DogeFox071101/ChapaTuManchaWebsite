@@ -15,6 +15,11 @@ class Cliente extends Usuario {
         this.tipoDocumento = tipoDocumento
         this.documento = documento
     }
+    
+    public get getCelular() : string {
+        return this.celular
+    }
+    
     public static crearCuenta(dataCliente: DataNuevoCliente) {
         const nuevoCliente = new Cliente(dataCliente.nombres, dataCliente.apPaterno, dataCliente.apMaterno,dataCliente.password, dataCliente.email,  dataCliente.celular, dataCliente.fNacimiento, dataCliente.tipoDocumento, dataCliente.documento)
         return nuevoCliente

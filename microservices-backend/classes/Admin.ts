@@ -8,6 +8,12 @@ class Admin extends Usuario {
         this.lastLogin = lastLogin
         this.accessLevel = accessLevel
     }
+    public modificarCuenta(): boolean {
+        return true
+    }
+    public verInfo(): string {
+        return ""
+    }
 }
 
 export default Admin
