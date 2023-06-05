@@ -6,35 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar Cancha</title>
-    <script src="./scripts/login.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
             background-color: #c2e6d8;
         }
+
         .navbar {
             background-color: #4CAF50;
         }
+
         .navbar-brand {
             color: white;
             font-size: 24px;
             display: flex;
             align-items: center;
         }
+
         .navbar-brand img {
             width: 100px;
             margin-right: 10px;
         }
+
         .navbar-brand span {
             font-size: 60px;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, sans-serif;
         }
-    
-        .subheader {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
+
         .subheader a {
             color: white;
             margin-left: 10px;
@@ -42,27 +40,51 @@
             text-decoration: none;
             font-size: 20px;
         }
-        
-        .full-width {
-            width: 100%;
-        }
-        form {
+
+        .square {
             background-color: white;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
         }
-        h2 {
+
+        .img-fluid {
+            max-width: 80%;
+            max-height: 450px;
+            height: auto;
+        }
+
+        .caja-img {
+            display: flex;
+            justify-content: center;
+        }
+        .caja-info {
+            padding-left: 50px;
+
+        }
+
+
+        h1 {
             text-align: center;
             color: #4CAF50;
-            font-size: 34px;
+            font-size: 50px;
             padding: 5px;
         }
+
+        h2 {
+            text-align: left;
+            color: #4CAF50;
+            font-size: 27px;
+            padding-bottom: 10px;
+        }
+
         label {
             font-size: 18px;
             color: #4CAF50;
         }
-        input {
+
+        input,
+        select {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -70,6 +92,7 @@
             border: 2px solid #4CAF50;
             border-radius: 4px;
         }
+
         button {
             background-color: #4CAF50;
             color: white;
@@ -80,24 +103,15 @@
             width: 100%;
             margin-top: 15px;
         }
+
         button:hover {
             background-color: #2E8B57;
         }
+
         #message {
             text-align: center;
             color: #4CAF50;
             font-size: 18px;
-        }
-        label{
-          width: 100%;
-        }
-        select {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 2px solid #4CAF50;
-            border-radius: 4px;
         }
     </style>
 </head>
@@ -122,37 +136,27 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div id="square">
-                <form action="#" class="formulario" id="formulario">
-                    <div id="column2">
-                        <h2 id="titulo">Registrar Cancha</h2>
-                        <label for="capacidad" id="subtitulo">Aforo:</label>
-                        <input type="number" id="capacidad" name="capacity"  required>
-                        <label for="address" id="subtitulo">Dirección:</label>
-                        <input type="text" id="address" name="address"  required>
-    
-                        <label for="price" id="subtitulo">Precio:</label>
-                        <input type="number" id="price" name="price"   required>
+            <div class="square">
+                <h1>DEPORZETA</h1>
+                <div class="row mt-5 caja-img">
+                    <img src="../website-frontend/media/deporz.jpg" alt="Foto de la Cancha" class="img-fluid">
+                </div>
+                <div class="row mt-5 caja-info">
+                    <div class="col-md-6">
+                        <h2>Información de la Cancha</h2>
+                        <p><strong>Nombre de la Cancha:</strong> Deporzeta</p>
+                        <p><strong>Aforo:</strong> 35</p>
+                        <p><strong>Dirección:</strong> Av. Javier Prado Este, Ate 15026</p>
+                        <p><strong>Precio por Hora:</strong> 30 soles</p>
                     </div>
-                    <label for="tipoCancha" id="subtitulo">Tipos de deporte:</label>
-                        <select name="" id="tipoCancha" >
-                            <option disabled selected="">Seleccionar una opción</option>
-                            <option value="Fútbol" >Fútbol</option>
-                            <option value="Voleibol" >Voleibol</option>
-                            <option value="Basketball" >Basketball</option>
-                            <option value="Tennis" >Tennis</option>
-                            <option value="Futbol y Basketball" >Futbol y Basketball</option>
-                        </select>
-                    <div class="mb-3">
-                        <label for="image" class="form-label" id="subtitulo">Subir foto:</label>
-                        <input type="file" class="form-control" id="image" name="image" required>
+
+                    <div class="col-md-6">
+                        <h2>Datos del Dueño</h2>
+                        <p><strong>Nombre:</strong> Nombre del Dueño</p>
+                        <p><strong>Email:</strong> dueño@example.com</p>
+                        <p><strong>Teléfono:</strong> 1234567890</p>
                     </div>
-                    <div id="boxBottons">
-                        <div id="boton">
-                            <button id="botones" type="submit">Enviar</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -160,15 +164,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
-        form.addEventListener("submit", (event) => {
-            event.preventDefault();
-            const tipo = document.getElementById("tipoCancha").value;
-            const aforo = document.getElementById("capacidad").value;
-            const direccion = document.getElementById("address").value;
-            const precio = document.getElementById("price").value;
-
-            message.textContent = "Registro exitoso!!!";
-        });
+        // JavaScript code can be added here
     </script>
 
 </body>
