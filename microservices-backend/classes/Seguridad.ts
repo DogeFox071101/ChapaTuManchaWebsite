@@ -8,7 +8,7 @@ class Seguridad {
     /**
      * Produce una clave hash empleando el algoritmo SHA-256
      */
-    public static async hash(text: string) {
+    public static async generarHash (text: string) {
         const utf8 = new TextEncoder().encode(text)
         const hashBuffer = await crypto.subtle.digest('SHA-512', utf8);
         const hashArray = Array.from(new Uint8Array(hashBuffer));
@@ -21,10 +21,12 @@ class Seguridad {
     /**
      * Genera un token aleatorio y lo devuelve en una cadena de texto
      */
-    public static tokenGenerator() {
+    public static async generarToken() {
         const value = Math.random().toString(36).substring(2)
-        console.log("Token generado correctamente")
-        return value + value + value
+        return await this.generarHash(value)
+    }
+    public static generarUUID(): string {
+        return crypto.randomUUID()
     }
     /**
      * Devuelve la instancia única de la clase Seguridad

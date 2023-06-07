@@ -1,36 +1,53 @@
-import DataNuevoCliente from "../interfaces/DataNuevoCliente";
-import Usuario from "./Usuario";
+import Direccion from "./Direccion";
+import Persona from "./Persona";
 
-class Cliente extends Usuario {
-    protected celular: string
-    protected fNacimiento: string
+class Cliente extends Persona {
+    protected idCliente: string
+    protected fechaNacimiento: Date
     protected tipoDocumento: string
-    protected documento: string
-    protected isAllowed?: boolean
-    protected favorites?: string
-    constructor(nombres: string, apPaterno: string, apMaterno: string, password: string, email: string, celular: string, fNacimiento: string, tipoDocumento: string, documento: string) {
-        super(nombres, apPaterno, apMaterno, password, email)
-        this.celular = celular
-        this.fNacimiento = fNacimiento
-        this.tipoDocumento = tipoDocumento
-        this.documento = documento
-    }
-    
-    public get getCelular() : string {
-        return this.celular
-    }
-    
-    public static crearCuenta(dataCliente: DataNuevoCliente) {
-        const nuevoCliente = new Cliente(dataCliente.nombres, dataCliente.apPaterno, dataCliente.apMaterno,dataCliente.password, dataCliente.email,  dataCliente.celular, dataCliente.fNacimiento, dataCliente.tipoDocumento, dataCliente.documento)
-        return nuevoCliente
-    }
-    public modificarCuenta(): boolean {
-        return true
-    }
-    public verInfo(): string {
-        return ""
-    }
+    protected numDocumento: string
+    protected celular: string
+    protected direccion: Direccion
+    protected isAllowed: boolean
+    public constructor(
+        idPersona: string,
+        nombres: string,
+        apellidos: string,
+        password: string,
+        email: string,
+        tokenSesion: string,
+        idCliente: string,
+        fechaNacimiento: Date,
+        tipoDocumento: string,
+        numDocumento: string,
+        celular: string,
+        direccion: Direccion,
+        isAllowed: boolean
+        ) {
+            super(idPersona, nombres, apellidos, password, email, tokenSesion)
+            this.idCliente = idCliente
+            this.fechaNacimiento = fechaNacimiento
+            this.tipoDocumento = tipoDocumento
+            this.numDocumento = numDocumento
+            this.celular = celular
+            this.direccion = direccion
+            this.isAllowed = isAllowed
+        }
+    public static crearCliente() {
 
+    }
+    public verInfo() {
+        
+    }
+    public actualizarDatos(): void {
+        
+    }
+    public reservarCancha() {
+
+    }
+    public upgradeToArrendatario() {
+
+    }
 }
 
 export default Cliente

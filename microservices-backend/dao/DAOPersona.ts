@@ -1,20 +1,19 @@
-class DAOUsuario {
-    public insertarUsuario() {
+class DAOPersona {
+    public insertarPersona() {
         // INSERT INTO Usuarios VALUES()
-        
     }
-    public seleccionarUsuario() {
+    public seleccionarPersona() {
         // SELECT * FROM Usuarios WHERE ##
     }
-    public seleccionarListaUsuarios() {
+    public seleccionarListaPersonas() {
         // SELECT * FROM Usuarios WHERE ##
     }
-    public actualizarUsuario() {
+    public actualizarPersona() {
         // UPDATE Usuarios SET ## WHERE ##
     }
-    public eliminarUsuario() {
+    public eliminarPersona() {
         // DELETE Usuarios WHERE ##
     }
 }
 
-export default DAOUsuario
+export default DAOPersona

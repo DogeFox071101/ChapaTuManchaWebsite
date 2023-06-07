@@ -1,18 +1,34 @@
+import Deportes from "../enum/Deportes"
 import Arrendador from "./Arrendador"
+import Direccion from "./Direccion"
 
 class Cancha {
-    protected idCancha?: number
+    protected idCancha: string
+    protected nombreLocal: string
     protected arrendador: Arrendador
-    protected nLocal: string
-    protected departamento: string
-    protected provincia: string
-    protected distrito: string
-    constructor(arrendador: Arrendador, nLocal: string, depatramento: string, provincia: string, distrito: string) {
+    protected aforo: number
+    protected direccion: Direccion
+    protected deportesDisponibles: Deportes[]
+    public constructor(
+        idCancha: string,
+        nombreLocal: string,
+        arrendador: Arrendador,
+        aforo: number,
+        direccion: Direccion,
+        deportesDisponibles: Deportes[]
+    ) {
+        this.idCancha = idCancha
+        this.nombreLocal = nombreLocal
         this.arrendador = arrendador
-        this.nLocal = nLocal
-        this.departamento = depatramento
-        this.provincia = provincia
-        this.distrito = distrito
+        this.aforo = aforo
+        this.direccion = direccion
+        this.deportesDisponibles = deportesDisponibles
+    }
+    public static crearCancha() {
+
+    }
+    public verInfo() {
+        
     }
 }
 
