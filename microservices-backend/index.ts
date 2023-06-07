@@ -12,10 +12,12 @@ dotenv.config();
 app.post('/api/hash', async (req: Request, res: Response) => {
     const data = req.body.msg
     const pw = await Seguridad.generarHash(data)
+    console.log("Hash generado correctamente")
     res.json({ msg : pw })
 })
 app.get('/api/token', async (_req: Request, res: Response) => {
     const token = await Seguridad.generarToken()
+    console.log("Token generado correctamente")
     res.json({ msg : token })
 })
 // app.post('/api/register/user', async (req: Request, res: Response) => {

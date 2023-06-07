@@ -1,8 +1,8 @@
 import Cliente from "../classes/Cliente";
 
 class DAOCliente{
-    public insertarCliente(cliente: Cliente) {
-        cliente.getCelular
+    public insertarCliente(_cliente: Cliente) {
+        
     }
     public seleccionarCliente() {
 

@@ -15,7 +15,6 @@ class Seguridad {
         const hashHex = hashArray.map(
             (bytes => bytes.toString(16).padStart(2, '0'))
             ).join('')
-        console.log("Hash generado correctamente")
         return hashHex;
     }
     /**

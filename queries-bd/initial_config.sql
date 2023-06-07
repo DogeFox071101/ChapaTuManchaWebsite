@@ -19,8 +19,7 @@ CREATE ROLE user_ctm_backend WITH
 	PASSWORD 'ctmctmctm2023';
 
 -- Creación de Base de Datos AS postgres
-CREATE DATABASE chapatumancha_db
-    WITH
+CREATE DATABASE chapatumancha_db WITH
     OWNER = user_ctm_backend
     ENCODING = 'UTF8'
     CONNECTION LIMIT = -1
@@ -95,12 +94,76 @@ CREATE TABLE IF NOT EXISTS booking (
 	id_sportfield UUID NOT NULL,
 	id_customer UUID NOT NULL,
 	booking_date DATE NOT NULL,
-	start_time VARCHAR (8) NOT NULL,
-	end_time VARCHAR (8) NOT NULL,
+	start_time TIME NOT NULL,
+	end_time TIME NOT NULL,
 	PRIMARY KEY (id_booking),
 	CONSTRAINT fk_sportfield FOREIGN KEY (id_sportfield) REFERENCES sportfield (id_sportfield),
 	CONSTRAINT fk_customer FOREIGN KEY (id_customer) REFERENCES customer (id_customer)
 );
 
--- Datos de Prueba en tablas
+-- Datos de Validación en tablas
+INSERT INTO person VALUES (
+	'54fbfe52-e4ab-4d4a-862a-d6b77ca81047',
+	'Paco',
+	'Paco Paco',
+	'paco@paco.pa',
+	'xd',
+	'token'
+);
+INSERT INTO admins VALUES (
+	'd5a9007a-062e-4c00-ae03-418050ec2bdf',
+	'54fbfe52-e4ab-4d4a-862a-d6b77ca81047',
+	'2023-06-07',
+	1
+);
+INSERT INTO addresses VALUES (
+	'9ce2f3e2-4377-4797-92fc-2c86d5d18f9e',
+	'La casa de Paco',
+	'Paco City',
+	'Provincia de Paco',
+	'Departamento de Paco',
+	'República de Paco'
+);
+INSERT INTO customer VALUES (
+	'f5cdd8a8-45d8-4171-b8af-dd88c28f4b14',
+	'54fbfe52-e4ab-4d4a-862a-d6b77ca81047',
+	'9ce2f3e2-4377-4797-92fc-2c86d5d18f9e',
+	'999999999',
+	'2023-06-25',
+	'DNI',
+	'11111111',
+	true
+);
+INSERT INTO lessor VALUES (
+	'acc5923e-01bd-4359-aa95-3bfab0a664f7',
+	'f5cdd8a8-45d8-4171-b8af-dd88c28f4b14',
+	'2023-04-30'
+);
+INSERT INTO sportfield VALUES (
+	'2d037678-ec65-41f1-a261-7d8085908607',
+	'9ce2f3e2-4377-4797-92fc-2c86d5d18f9e',
+	'Cancha de Paco',
+	20
+);
+INSERT INTO booking VALUES (
+	'6e387d88-1fd6-4309-8490-c87cf7efb81a',
+	'2d037678-ec65-41f1-a261-7d8085908607',
+	'f5cdd8a8-45d8-4171-b8af-dd88c28f4b14',
+	'2023-11-20',
+	'09:00',
+	'12:00'
+);
 
+-- Querys de obtención de datos
+
+-- Iniciar Sesión:
+select email, passwd from person
+	where email = 'paco@paco.pa' and passwd = 'xd';
+-- Retornar Información de Cliente
+select person.id_person, person.first_name, person.last_name, person.email, person.passwd,
+	person.token_session, customer.id_customer, customer.phone, customer.date_birth, customer.document_type,
+	customer.document_num, customer.is_allowed, addresses.id_address, addresses.address_name, addresses.city,
+	addresses.county, addresses.state_name, addresses.country from customer
+	join person on customer.id_person = person.id_person
+	join addresses on customer.id_address = addresses.id_address
+	where email = 'paco@paco.pa' and passwd = 'xd';
