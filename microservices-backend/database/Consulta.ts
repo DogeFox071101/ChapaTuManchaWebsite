@@ -1,6 +1,6 @@
 abstract class Consulta {
-    public set(_text : string) {}
-    public execute() {}
+    public abstract set(_text : string): void
+    public abstract execute(): any
 }
 
 export default Consulta

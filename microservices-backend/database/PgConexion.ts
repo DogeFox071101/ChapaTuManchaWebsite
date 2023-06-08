@@ -1,18 +1,17 @@
-import { Client } from "ts-postgres";
+import { Client } from "pg";
 import Conexion from "./Conexion";
 
 class PgConexion extends Conexion {
     protected client : Client
-    
-    constructor(client : Client) {
+    public constructor(client : Client) {
         super()
         this.client = client
     }
-    public open() {
-        return this.client.connect()
+    public async open(): Promise<void> {
+        return await this.client.connect()
     }
-    public close() {
-        return this.client.end()
+    public async close(): Promise<void> {
+        return await this.client.end()
     }
 }
 

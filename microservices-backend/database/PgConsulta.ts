@@ -1,18 +1,18 @@
-import { Client } from "ts-postgres";
+import { Client } from "pg";
 import Consulta from "./Consulta";
 
 class PgConsulta extends Consulta {
     protected client : Client
     protected query : string = ""
-    constructor(client : Client) {
+    public constructor(client : Client) {
         super()
         this.client = client
     }
     public set(text : string) {
         this.query = text
     }
-    public execute() {
-        this.client.query(this.query)
+    public async execute() {
+        return await this.client.query(this.query)
     }
 }
 

@@ -1,17 +1,67 @@
+import DB from "../database/DB"
+import PgDB from "../database/PgDB"
+import Consulta from "../enum/Consultas"
+
 class DAOPersona {
-    public insertarPersona() {
+    database: DB = new PgDB()
+    connection = this.database.getConexion()
+    consulta = this.database.getConsulta()
+    
+    public async pruebaDeLectura() {
+        try {
+            await this.connection.open()
+            this.consulta.set("select id_person from person;")
+            const result = await this.consulta.execute()
+            await this.connection.close()
+            console.log(result.rows[0]);
+            console.log("Query ejecutado correctamente");
+            return true
+        }
+        catch (error) {
+            console.error(error);
+            await this.connection.close()
+            return false
+        }
+    }
+    public async insertarPersona() {
         // INSERT INTO Usuarios VALUES()
     }
-    public seleccionarPersona() {
-        // SELECT * FROM Usuarios WHERE ##
+    public async seleccionarPersona(campoConsulta: string, tipoConsulta: Consulta) {
+        
+        
+        const query = `SELECT * FROM person WHERE id_person = '${campoConsulta}';`
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            const solicitud = await this.consulta.execute()
+            await this.connection.close()
+            return solicitud.rows[0]
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+            return {}
+        }
     }
-    public seleccionarListaPersonas() {
-        // SELECT * FROM Usuarios WHERE ##
+    public async seleccionarListaPersonas() {
+        const query = "SELECT * FROM persona;"
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            const solicitud = await this.consulta.execute()
+            await this.connection.close()
+            return solicitud.rows
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+            return new Array<any>()
+        }
     }
-    public actualizarPersona() {
+    public async actualizarPersona() {
         // UPDATE Usuarios SET ## WHERE ##
     }
-    public eliminarPersona() {
+    public async eliminarPersona() {
         // DELETE Usuarios WHERE ##
     }
 }

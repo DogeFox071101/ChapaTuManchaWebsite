@@ -1,6 +1,6 @@
 abstract class Conexion {
-    public open() {}
-    public close() {}
+    public open(): any {}
+    public close(): any {}
 }
 
 export default Conexion

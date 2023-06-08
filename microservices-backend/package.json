@@ -12,10 +12,11 @@
   "author": "DogeFox071101",
   "license": "ISC",
   "dependencies": {
+    "@types/pg": "^8.10.2",
     "cors": "^2.8.5",
     "dotenv": "^16.1.3",
     "express": "^4.18.2",
-    "ts-postgres": "^1.3.0"
+    "pg": "^8.11.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

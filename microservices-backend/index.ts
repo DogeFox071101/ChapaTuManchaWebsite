@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import Seguridad from './classes/Seguridad'
+import DAOPersona from './dao/DAOPersona';
 
 const app: Express = express()
 
@@ -19,6 +20,23 @@ app.get('/api/token', async (_req: Request, res: Response) => {
     const token = await Seguridad.generarToken()
     console.log("Token generado correctamente")
     res.json({ msg : token })
+})
+app.get('/test/select/person', async (_req: Request, res: Response) => {
+    const algo = new DAOPersona()
+    const result = await algo.pruebaDeLectura().then((result) => {
+        return result
+    })
+    res.json({ msg : result })
+})
+app.post('/test/select/person/parameter', async (req: Request, res: Response) => {
+    const id_person = req.body.id_person
+    const algo = new DAOPersona()
+    const result = await algo.seleccionarPersona(id_person).then((result) => {
+        console.log(result)
+        return result
+    })
+    res.json(result)
+
 })
 // app.post('/api/register/user', async (req: Request, res: Response) => {
 //     const dataUsuario = {
