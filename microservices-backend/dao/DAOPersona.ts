@@ -1,6 +1,6 @@
 import DB from "../database/DB"
 import PgDB from "../database/PgDB"
-import Consulta from "../enum/Consultas"
+import CampoBusqueda from "../enum/Consultas"
 
 class DAOPersona {
     database: DB = new PgDB()
@@ -26,10 +26,12 @@ class DAOPersona {
     public async insertarPersona() {
         // INSERT INTO Usuarios VALUES()
     }
-    public async seleccionarPersona(campoConsulta: string, tipoConsulta: Consulta) {
+    public async seleccionarPersona(campoConsulta: string, campoBusqueda: CampoBusqueda) {
+        if (campoBusqueda == CampoBusqueda.ID_PERSONA) {
+            
+        }
         
-        
-        const query = `SELECT * FROM person WHERE id_person = '${campoConsulta}';`
+        const query = `SELECT * FROM person WHERE ${campoConsulta} = '${campoConsulta}';`
         try {
             await this.connection.open()
             this.consulta.set(query)

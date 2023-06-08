@@ -1,6 +1,7 @@
-enum Consulta {
-    ID_PERSONA,
-    EMAIL
+enum CampoBusqueda {
+    ID_PERSONA = "id_person",
+    EMAIL = "email",
+    
 }
 
-export default Consulta
+export default CampoBusqueda
