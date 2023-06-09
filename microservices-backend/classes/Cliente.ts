@@ -1,4 +1,4 @@
-import Direccion from "./Direccion";
+import Direccion from "../interfaces/Direccion";
 import Persona from "./Persona";
 
 class Cliente extends Persona {

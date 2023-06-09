@@ -1,21 +1,26 @@
-import Cliente from "../classes/Cliente";
+import CampoBusqueda from "../enums/CampoBusqueda";
+import DAO from "./DAO";
 
-class DAOCliente{
-    public insertarCliente(_cliente: Cliente) {
-        
+class DAOCliente extends DAO{
+    public insertar() {
+        throw new Error("Method not implemented.");
     }
-    public seleccionarCliente() {
-
+    public seleccionarUno(_criterio: string, _campoBusqueda: CampoBusqueda) {
+        throw new Error("Method not implemented.");
     }
-    public seleccionarListaClientes() {
-
+    public seleccionarLista(_criterio: string, _campoBusqueda: CampoBusqueda) {
+        throw new Error("Method not implemented.");
     }
-    public actualizarCliente() {
-
+    public seleccionarTodos() {
+        throw new Error("Method not implemented.");
     }
-    public eliminarCliente() {
-        
+    public actualizar() {
+        throw new Error("Method not implemented.");
     }
+    public eliminar() {
+        throw new Error("Method not implemented.");
+    }
+    
 }
 
 export default DAOCliente

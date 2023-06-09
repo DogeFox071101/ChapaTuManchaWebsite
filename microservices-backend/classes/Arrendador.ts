@@ -1,5 +1,5 @@
 import Cliente from "./Cliente";
-import Direccion from "./Direccion";
+import Direccion from "../interfaces/Direccion";
 
 class Arrendador extends Cliente {
     protected idArrendatario: string

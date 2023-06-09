@@ -1,6 +1,6 @@
-import Deportes from "../enum/Deportes"
+import Deportes from "../enums/Deportes"
 import Arrendador from "./Arrendador"
-import Direccion from "./Direccion"
+import Direccion from "../interfaces/Direccion"
 
 class Cancha {
     protected idCancha: string

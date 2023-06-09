@@ -1,37 +1,18 @@
 import DB from "../database/DB"
 import PgDB from "../database/PgDB"
-import CampoBusqueda from "../enum/Consultas"
+import CampoBusqueda from "../enums/CampoBusqueda"
+import DAO from "./DAO"
 
-class DAOPersona {
+class DAOPersona extends DAO {
     database: DB = new PgDB()
     connection = this.database.getConexion()
     consulta = this.database.getConsulta()
-    
-    public async pruebaDeLectura() {
-        try {
-            await this.connection.open()
-            this.consulta.set("select id_person from person;")
-            const result = await this.consulta.execute()
-            await this.connection.close()
-            console.log(result.rows[0]);
-            console.log("Query ejecutado correctamente");
-            return true
-        }
-        catch (error) {
-            console.error(error);
-            await this.connection.close()
-            return false
-        }
+
+    public async insertar() {
+        throw new Error("Method not implemented.");
     }
-    public async insertarPersona() {
-        // INSERT INTO Usuarios VALUES()
-    }
-    public async seleccionarPersona(campoConsulta: string, campoBusqueda: CampoBusqueda) {
-        if (campoBusqueda == CampoBusqueda.ID_PERSONA) {
-            
-        }
-        
-        const query = `SELECT * FROM person WHERE ${campoConsulta} = '${campoConsulta}';`
+    public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
+        const query = `SELECT * FROM person WHERE ${campoBusqueda} = '${criterio}';`
         try {
             await this.connection.open()
             this.consulta.set(query)
@@ -45,7 +26,10 @@ class DAOPersona {
             return {}
         }
     }
-    public async seleccionarListaPersonas() {
+    public async seleccionarLista() {
+        throw new Error("Method not implemented.");
+    }
+    public async seleccionarTodos() {
         const query = "SELECT * FROM persona;"
         try {
             await this.connection.open()
@@ -60,11 +44,11 @@ class DAOPersona {
             return new Array<any>()
         }
     }
-    public async actualizarPersona() {
-        // UPDATE Usuarios SET ## WHERE ##
+    public async actualizar() {
+        throw new Error("Method not implemented.");
     }
-    public async eliminarPersona() {
-        // DELETE Usuarios WHERE ##
+    public async eliminar() {
+        throw new Error("Method not implemented.");
     }
 }
 
