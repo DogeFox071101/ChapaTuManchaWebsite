@@ -22,38 +22,10 @@ app.get('/api/token', async (_req: Request, res: Response) => {
 })
 app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const data = req.body
+    
     console.log(data)
     res.json(data)
 })
-// app.post('/api/register/user', async (req: Request, res: Response) => {
-//     const dataUsuario = {
-//         nombres         : req.body.nombres,
-//         apellidos       : req.body.apellidos,
-//         email           : req.body.email,
-//         password        : req.body.password,
-//         celular         : req.body.celular,
-//         fechaNacimiento : req.body.fechaNacimiento,
-//         tipoDocumento   : req.body.tipoDocumento,
-//         numDocumento    : req.body.numDocumento
-//     }
-//     const nuevoUsuario = await Cliente.crearCuenta(dataUsuario)
-//     res.json(req.body.msg)
-// })
-// app.post('/api/register/cancha', async (req: Request, res: Response) => {
-//     res.json(req.body.msg)
-// })
-// app.post('/api/login', async (req: Request, res: Response) => {
-//     res.json(req.body.msg)
-// })
-// app.post('/api/pw/restore', async (req: Request, res: Response) => {
-//     res.json(req.body.msg)
-// })
-// app.post('/api/pw/change', async (req: Request, res: Response) => {
-//     res.json(req.body.msg)
-// })
-// app.post('/api/logout', (req: Request, res: Response) => {
-//     res.json(req.body.msg)
-// })
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
