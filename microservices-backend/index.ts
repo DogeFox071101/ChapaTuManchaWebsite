@@ -41,7 +41,10 @@ app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     console.log(respuesta)
     res.json(respuesta)
 })
-
+app.post('/api/login', async (req: Request, res: Response) => {
+    const data = req.body
+    const 
+})
 const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
