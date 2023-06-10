@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import Seguridad from './classes/Seguridad'
+import Cliente from './classes/Cliente';
+import Direccion from './interfaces/Direccion';
 
 const app: Express = express()
 
@@ -22,9 +24,22 @@ app.get('/api/token', async (_req: Request, res: Response) => {
 })
 app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const data = req.body
-    
-    console.log(data)
-    res.json(data)
+    const fechaNac = new Date(data.fechaNacimiento)
+    const direccion: Direccion = {
+        direccion : data.direccion,
+        codigoPostal : data.codigoPostal,
+        ciudad : data.ciudad,
+        provincia : data.provincia,
+        departamento : data.departamento,
+        pais : data.pais
+    }
+    const cliente = await Cliente.crearCliente(data.apellidos, data.nombres, data.password, data.email, data.celular, fechaNac, data.tipoDocumento, data.numDocumento, direccion)
+    const respuesta = {
+        id : cliente.getIdCliente(),
+        tokenSession : cliente.getTokenSession(),
+    }
+    console.log(respuesta)
+    res.json(respuesta)
 })
 
 const PORT = process.env.PORT

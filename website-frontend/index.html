@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>Launcher</title>
     <script src="./scripts/login.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
@@ -46,93 +45,42 @@
         .full-width {
             width: 100%;
         }
-        form {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
-        }
-        h2 {
-            text-align: center;
-            color: #4CAF50;
-            font-size: 34px;
-            padding: 5px;
-        }
-        label {
-            font-size: 18px;
-            color: #4CAF50;
-        }
-        input {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 2px solid #4CAF50;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #2E8B57;
-        }
-        #message {
-            text-align: center;
-            color: #4CAF50;
-            font-size: 18px;
-        }
-        label{
-          width: 100%;
-        }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../website-frontend/images/logo.png" alt="logo">
-                    <span>CHAPA TU MANCHA</span>
-                </a>
-                <div class="subheader">
-                    <a href="#">PERFIL</a>
-                    <a href="#">COMUNIDAD</a>
-                    <a href="#">RESERVAS</a>
-                    <a href="#">SOPORTE</a>
-                </div>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../website-frontend/images/logo.png" alt="logo">
+                <span>CHAPA TU MANCHA</span>
+            </a>
+            <div class="subheader">
+                <a href="#">PERFIL</a>
+                <a href="#">COMUNIDAD</a>
+                <a href="#">RESERVAS</a>
+                <a href="#">SOPORTE</a>
             </div>
-        </nav>
+        </div>
+    </nav>
     </header>
 
     <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <form>
-                    <h2>Iniciar sesión</h2>
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="password" required>
-                    
-                    <a class="recuperar_contasena" href="./recuperar_contasena.html">Olvidé mi Contraseña</a>
-
-                    <button id="submit" onclick="iniciar_sesion()">Iniciar sesión</button>
-                </form>
+        <div class="d-flex justify-content-between full-height">
+            <div class="mb-3">
+                <a href="./cambiar_contrasena.html" class="btn btn-success btn-lg mb-3">Cambiar Contraseña</a>
+            </div>
+            <div class="mb-3">
+                <a href="./registrar_cancha.html" class="btn btn-success btn-lg mb-3">Registrar Cancha</a>
+            </div>
+            <div class="mb-3">
+                <a href="#" onclick="goToLogin()" class="btn btn-success btn-lg mb-3">Cerrar Sesión</a>
             </div>
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>

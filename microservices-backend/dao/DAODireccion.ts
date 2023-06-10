@@ -3,16 +3,16 @@ import Consulta from "../database/Consulta";
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
 import CampoBusqueda from "../enums/CampoBusqueda";
-import CriteriosCliente from "../interfaces/CriteriosCliente";
+import CriteriosDireccion from "../interfaces/CriteriosDireccion";
 import DAO from "./DAO";
 
-class DAOCliente extends DAO{
+class DAODireccion extends DAO {
     private database: DB = new PgDB
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
-
-    public async insertar(criterios: CriteriosCliente) {
-        const query = `INSERT INTO customer VALUES ('${criterios.id_customer}', '${criterios.id_person}', '${criterios.id_address}', '${criterios.phone}', '${criterios.date_birth}', '${criterios.document_type}', '${criterios.document_num}', '${criterios.is_allowed}')`
+    
+    public async insertar(criterios: CriteriosDireccion) {
+        const query = `INSERT INTO addresses VALUES ('${criterios.id_address}', '${criterios.address_name}', '${criterios.zip_code}', '${criterios.city}', '${criterios.county}', '${criterios.state_name}', '${criterios.country}');`
         try {
             await this.connection.open()
             this.consulta.set(query)
@@ -39,7 +39,7 @@ class DAOCliente extends DAO{
     public eliminar() {
         throw new Error("Method not implemented.");
     }
-    
+
 }
 
-export default DAOCliente
+export default DAODireccion

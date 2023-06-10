@@ -35,4 +35,7 @@ form.addEventListener("submit", async (event) => {
     })
     const respuesta = await upload.json()
     console.log(respuesta)
+    localStorage.setItem("id", respuesta.id, "a")
+    localStorage.setItem("tokenSession", respuesta.tokenSession)
+    location.href = "./"
 });

@@ -1,7 +1,7 @@
 import CampoBusqueda from "../enums/CampoBusqueda";
 
 abstract class DAO {
-    public abstract insertar(): any
+    public abstract insertar(criterios: any): any
     public abstract seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda): any
     public abstract seleccionarLista(criterio: string, campoBusqueda: CampoBusqueda): any
     public abstract seleccionarTodos(): any

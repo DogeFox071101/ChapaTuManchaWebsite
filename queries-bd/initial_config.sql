@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS admins (
 CREATE TABLE IF NOT EXISTS addresses (
 	id_address UUID NOT NULL,
 	address_name VARCHAR (64) NOT NULL,
+	zip_code VARCHAR (8) NOT NULL,
 	city VARCHAR (32) NOT NULL,
 	county VARCHAR (32) NOT NULL,
 	state_name VARCHAR (32) NOT NULL,

@@ -2,24 +2,24 @@
  * Clase Persona
  */
 abstract class Persona {
-    protected idPersona: string
     protected nombres: string
     protected apellidos: string
     protected password: string
     protected email: string
+    protected idPersona: string
     protected tokenSesion: string
-    public constructor(idPersona: string, nombres: string, apellidos: string, password: string, email: string, tokenSesion: string) {
-        this.idPersona = idPersona
-        this.nombres = nombres
+    public constructor(apellidos: string, nombres: string, password: string, email: string, idPersona: string, tokenSesion: string){
         this.apellidos = apellidos
+        this.nombres = nombres
         this.password = password
         this.email = email
+        this.idPersona = idPersona
         this.tokenSesion = tokenSesion
     }
     /**
      * Ejecuta el inicio de sesión y retorna la información de una persona
      */
-    public iniciarSesion() {
+    public async iniciarSesion(_email: string, _password: string) {
         
     }
     /**
