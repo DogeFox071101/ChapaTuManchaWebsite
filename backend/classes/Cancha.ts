@@ -3,21 +3,21 @@ import Arrendador from "./Arrendador"
 import Direccion from "../interfaces/Direccion"
 
 class Cancha {
-    protected idCancha: string
+    protected id_cancha: string
     protected nombreLocal: string
     protected arrendador: Arrendador
     protected aforo: number
     protected direccion: Direccion
     protected deportesDisponibles: Deportes[]
     public constructor(
-        idCancha: string,
+        id_cancha: string,
         nombreLocal: string,
         arrendador: Arrendador,
         aforo: number,
         direccion: Direccion,
         deportesDisponibles: Deportes[]
     ) {
-        this.idCancha = idCancha
+        this.id_cancha = id_cancha
         this.nombreLocal = nombreLocal
         this.arrendador = arrendador
         this.aforo = aforo

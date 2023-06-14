@@ -3,7 +3,6 @@ import Consulta from "../database/Consulta";
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
 import CampoBusqueda from "../enums/CampoBusqueda";
-import CriteriosDireccion from "../interfaces/CriteriosDireccion";
 import DAO from "./DAO";
 
 class DAODireccion extends DAO {
@@ -11,7 +10,7 @@ class DAODireccion extends DAO {
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
     
-    public async insertar(criterios: CriteriosDireccion) {
+    public async insertar(criterios: any) {
         const query = `INSERT INTO addresses VALUES ('${criterios.id_address}', '${criterios.address_name}', '${criterios.zip_code}', '${criterios.city}', '${criterios.county}', '${criterios.state_name}', '${criterios.country}');`
         try {
             await this.connection.open()

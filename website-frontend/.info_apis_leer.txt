@@ -9,34 +9,39 @@ IN:  WEB <-- BACKEND
 
 OUT - Creación de Cliente:
 {
-    "nombres" : [NOMBRES],                  // string
-    "apPaterno" : [APPATERNO],              // string
-    "apMaterno" : [APMATERNO],              // string
-    "password" : [PASSWORD],                // string
+    "last_name" : [APELLIDOS],              // string
+    "first_name" : [first_name],                  // string
+    "passwd" : [PASSWORD],                // string
     "email" : [EMAIL],                      // string
     "celular" : [CELULAR],                  // string
-    "fNacimiento" : [FNACIMIENTO],          // string
     "tipoDocumento" : [TIPODOCUMENTO],      // string
-    "documento" : [DOCUMENTO]               // string
+    "numDocumento" : [NUMDOCUMENTO],        // string
+    "fechaNacimiento" : [FECHANACIMIENTO],  // string
+    "direccion" : [DIRECCION],              // string
+    "codigoPostal" : [CODIGOPOSTAL],        // string
+    "ciudad" : [CIUDAD],                    // string
+    "provincia" : [PROVINCIA],              // string
+    "departamento" : [DEPARTAMENTO],        // string
+    "pais" : [PAIS]                         // string
 }
 
 OUT - Inicio de Sesión:
 {
     "email" : [EMAIL],                      // string
-    "password" : [PASSWORD]                 // string
+    "passwd" : [PASSWORD]                 // string
 }
 
 IN - Datos para Persistencia:
 {
     "isAllowed" : [ISALLOWED],              // boolean
-    "idUsuario" : [IDCLIENTE],              // number
+    "idUsuario" : [id_customer],              // number
     "tokenSesion" : [TOKENSESION]           // string
 }
 
 OUT - Cambio de Contraseña:
 {
     "idUsuario" : [IDUSUARIO],              // number
-    "password" : [PASSWORD],                // string
+    "passwd" : [PASSWORD],                // string
     "newPassword" : [PASSWORD]              // string
 }
 
@@ -47,17 +52,17 @@ OUT - Restablecer Contraseña:
 
 OUT - Cerrar Sesión:
 {
-    "idCliente" : [IDCLIENTE]               // number
+    "id_customer" : [id_customer]               // number
 }
 
 OUT - Registro de Arrendador:
 {
-    "idCliente" : [IDCLIENTE]               // number
+    "id_customer" : [id_customer]               // number
 }
 
 OUT - Registro de Cancha:
 {
-    "idArrendador" : [IDARRENDADOR],        // number
+    "id_lessor" : [id_lessor],        // number
     "nombreLocal" : [NOMBRELOCAL],          // string
     "departamento" : [DEPARTAMENTO],        // string
     "provincia" : [PROVINCIA],              // string

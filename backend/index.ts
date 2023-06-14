@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import Seguridad from './classes/Seguridad'
 import Cliente from './classes/Cliente';
 import Direccion from './interfaces/Direccion';
+import Persona from './classes/Persona';
 
 const app: Express = express()
 
@@ -24,26 +25,23 @@ app.get('/api/token', async (_req: Request, res: Response) => {
 })
 app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const data = req.body
-    const fechaNac = new Date(data.fechaNacimiento)
-    const direccion: Direccion = {
-        direccion : data.direccion,
-        codigoPostal : data.codigoPostal,
-        ciudad : data.ciudad,
-        provincia : data.provincia,
-        departamento : data.departamento,
-        pais : data.pais
-    }
-    const cliente = await Cliente.crearCliente(data.apellidos, data.nombres, data.password, data.email, data.celular, fechaNac, data.tipoDocumento, data.numDocumento, direccion)
+    const fechaNac = new Date(data.date_birth)
+    const direccion: Direccion = data.direccion
+    const cliente = await Cliente.crearCliente(data.last_name, data.first_name, data.passwd, data.email, data.phone, fechaNac, data.document_type, data.document_num, direccion)
     const respuesta = {
-        id : cliente.getIdCliente(),
-        tokenSession : cliente.getTokenSession(),
+        id : cliente.id_customer,
+        tokenSession : cliente.tokenSession,
+        is_allowed : cliente.is_allowed
     }
     console.log(respuesta)
     res.json(respuesta)
 })
 app.post('/api/login', async (req: Request, res: Response) => {
     const data = req.body
-    const 
+    const passwd = await Seguridad.generarServerHash(data.msg)
+    const persona = await Persona.iniciarSesion(data.id, passwd.newPw)
+    
+    res.json(persona)
 })
 const PORT = process.env.PORT
 app.listen(PORT, () => {

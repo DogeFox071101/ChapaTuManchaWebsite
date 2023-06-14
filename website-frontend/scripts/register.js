@@ -17,20 +17,22 @@ form.addEventListener("submit", async (event) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            apellidos: document.getElementById("apellidos").value,
-            nombres: document.getElementById("nombres").value,
+            last_name: document.getElementById("last_name").value,
+            first_name: document.getElementById("first_name").value,
             email: document.getElementById("email").value,
             password: res_pw.msg,
             celular: document.getElementById("celular").value,
             fechaNacimiento: document.getElementById("fechaNacimiento").value,
             tipoDocumento: document.getElementById("tipoDocumento").value,
             numDocumento: document.getElementById("numDocumento").value,
-            direccion: document.getElementById("direccion").value,
-            codigoPostal: document.getElementById("codigoPostal").value,
-            ciudad: document.getElementById("ciudad").value,
-            provincia: document.getElementById("provincia").value,
-            departamento: document.getElementById("departamento").value,
-            pais: document.getElementById("pais").value
+            direccion : {
+                direccion: document.getElementById("direccion").value,
+                codigoPostal: document.getElementById("codigoPostal").value,
+                ciudad: document.getElementById("ciudad").value,
+                provincia: document.getElementById("provincia").value,
+                departamento: document.getElementById("departamento").value,
+                pais: document.getElementById("pais").value
+            }
         })
     })
     const respuesta = await upload.json()

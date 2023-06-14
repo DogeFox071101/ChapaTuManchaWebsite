@@ -17,6 +17,14 @@ class Seguridad {
             ).join('')
         return hashHex;
     }
+    public static async generarServerHash (text: string) {
+        const newPw = await this.generarHash(process.env.PW_ACTUAL! + text)
+        const oldPw = await this.generarHash(process.env.PW_COMPAT! + text)
+        return {
+            newPw : newPw,
+            oldPw : oldPw
+        }
+    }
     /**
      * Genera un token aleatorio y lo devuelve en una cadena de texto
      */

@@ -31,7 +31,7 @@ class Usuario {
     set correo(correo) { this.correo = correo }
 
     get passwd() { return this.passwd }
-    set passwd(password) { this.passwd = password }
+    set passwd(passwd) { this.passwd = passwd }
 
     get arrendador() { return this.arrendador }
     set arrendador(arrendador) { this.arrendador = arrendador }
