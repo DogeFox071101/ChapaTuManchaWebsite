@@ -4,6 +4,8 @@ import DAOPersona from "../dao/DAOPersona";
 import Direccion from "../interfaces/Direccion";
 import Persona from "./Persona";
 import Seguridad from "./Seguridad";
+import DAOArrendador from "../dao/DAOArrendador";
+import Arrendador from "./Arrendador";
 
 class Cliente extends Persona {
     protected _id_customer: string
@@ -37,6 +39,30 @@ class Cliente extends Persona {
     }
     public get is_allowed() : boolean {
         return this._is_allowed
+    }
+    public get id_person(): string {
+        return this.id_person
+    }
+    public get first_name(): string {
+        return this.first_name
+    }
+    public get last_name(): string {
+        return this.last_name
+    }
+    public get phone(): string {
+        return this.phone
+    }
+    public get date_birth(): Date {
+        return this.date_birth
+    }
+    public get document_type(): string {
+        return this.document_type
+    }
+    public get document_num(): string {
+        return this.document_num
+    }
+    public get direccion(): Direccion {
+        return this.direccion
     }
     public static async crearCliente(first_name: string, last_name: string, email: string, passwd: string, phone: string, date_birth: Date, document_type: string, document_num: string,  direccion: Direccion) {
         const criteriosPersona = {
@@ -73,13 +99,23 @@ class Cliente extends Persona {
     }
     
     public verInfo() {
-        
+        const cliente = { nombres: this.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
+        return cliente
     }
     public actualizarDatos(): void {
         
     }
     public reservarCancha() {
 
+    }
+    public async upgradeToArrendatario(cliente:Cliente) {
+        const criteriosArrendatario = {
+            id_lessor :  Seguridad.generarUUID(),
+            date_register: new Date(),
+            idCustomer: this.id_customer,
+        }
+        await new DAOArrendador().insertar(criteriosArrendatario);
+        return new Arrendador(cliente._id_person, cliente._first_name, cliente._last_name, cliente.email, cliente.passwd, cliente.tokenSession, cliente.id_customer, cliente._phone, cliente._date_birth, cliente._document_type, cliente._document_num, cliente.is_allowed, cliente._direccion, criteriosArrendatario.id_lessor, criteriosArrendatario.date_register)
     }
 }
 

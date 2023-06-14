@@ -50,7 +50,8 @@ class Cancha {
             return new Cancha(idCancha, nombreLocal, arrendador, aforo, direccion, deportesDisponibles);
         }
     public verInfo() {
-        
+        const cancha = { nombre: this.nombreLocal, aforo: this.aforo, direccion: this.direccion, deportes: this.deportesDisponibles};
+        return cancha
     }
 }
 
