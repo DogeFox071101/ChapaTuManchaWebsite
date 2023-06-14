@@ -5,6 +5,8 @@ import Seguridad from './classes/Seguridad'
 import Cliente from './classes/Cliente';
 import Direccion from './interfaces/Direccion';
 import Persona from './classes/Persona';
+import Cancha from './classes/Cancha';
+import Cancha from './classes/Cancha';
 //import Arrendador from './classes/Arrendador';
 
 const app: Express = express()
@@ -23,6 +25,11 @@ app.get('/api/token', async (_req: Request, res: Response) => {
     const token = await Seguridad.generarToken()
     console.log("Token generado correctamente")
     res.json({ msg : token })
+})
+app.get('/api/BuscarCancha', async (_req: Request, res: Response) => {
+    const cancha = await Cancha.toString
+    console.log("correctamente")
+    res.json({ msg : cancha })
 })
 app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const data = req.body
