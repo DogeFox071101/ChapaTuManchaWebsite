@@ -115,7 +115,7 @@ class Cliente extends Persona {
             idCustomer: this.id_customer,
         }
         await new DAOArrendador().insertar(criteriosArrendatario);
-        return new Arrendador(cliente._id_person, cliente._first_name, cliente._last_name, cliente.email, cliente.passwd, cliente.tokenSession, cliente.id_customer, cliente._phone, cliente._date_birth, cliente._document_type, cliente._document_num, cliente.is_allowed, cliente._direccion, criteriosArrendatario.id_lessor, criteriosArrendatario.date_register)
+        return new Arrendador(cliente._id_person, cliente._first_name, cliente._last_name, cliente.email, cliente.passwd, cliente.token_session, cliente.id_customer, cliente._phone, cliente._date_birth, cliente._document_type, cliente._document_num, cliente.is_allowed, cliente._direccion, criteriosArrendatario.id_lessor, criteriosArrendatario.date_register)
     }
 }
 
