@@ -4,8 +4,6 @@ import DAOPersona from "../dao/DAOPersona";
 import Direccion from "../interfaces/Direccion";
 import Persona from "./Persona";
 import Seguridad from "./Seguridad";
-import DAOArrendador from "../dao/DAOArrendador";
-import Arrendador from "./Arrendador";
 
 class Cliente extends Persona {
     protected _id_customer: string
@@ -82,15 +80,6 @@ class Cliente extends Persona {
     }
     public reservarCancha() {
 
-    }
-    public async upgradeToArrendatario(cliente:Cliente) {
-        const criteriosArrendatario = {
-            id_lessor :  Seguridad.generarUUID(),
-            date_register: new Date(),
-            idCustomer: this.id_customer,
-        }
-        await new DAOArrendador().insertar(criteriosArrendatario);
-        return new Arrendador(cliente._id_person, cliente._first_name, cliente._last_name, cliente.email, cliente.passwd, cliente.tokenSession, cliente.id_customer, cliente._phone, cliente._date_birth, cliente._document_type, cliente._document_num, cliente.is_allowed, cliente._direccion, criteriosArrendatario.id_lessor, criteriosArrendatario.date_register)
     }
 }
 

@@ -5,6 +5,7 @@ import Seguridad from './classes/Seguridad'
 import Cliente from './classes/Cliente';
 import Direccion from './interfaces/Direccion';
 import Persona from './classes/Persona';
+import Arrendador from './classes/Arrendador';
 
 const app: Express = express()
 
@@ -42,6 +43,10 @@ app.post('/api/login', async (req: Request, res: Response) => {
     const persona = await Persona.iniciarSesion(data.id, passwd.newPw)
     
     res.json(persona)
+})
+app.post('/api/obtener/perfil_usuario', async (req: Request, res: Response) => {
+    
+    const arrendador = Arrendador.upgradeToArrendatario()
 })
 const PORT = process.env.PORT
 app.listen(PORT, () => {
