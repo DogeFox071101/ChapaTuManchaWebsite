@@ -34,7 +34,7 @@ class Cliente extends Persona {
     public get passwd() : string {
         return this._passwd
     }
-    public get tokenSession() : string {
+    public get token_session() : string {
         return this._token_session
     }
     public get is_allowed() : boolean {

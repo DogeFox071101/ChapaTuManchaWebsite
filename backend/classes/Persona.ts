@@ -32,7 +32,7 @@ abstract class Persona {
         if (sujeto?._passwd != _passwd || !sujeto){
             return null
         }
-        return { is_allowed : sujeto.is_allowed, idUsuario : sujeto.id_customer, token_session : sujeto.tokenSession }
+        return { is_allowed : sujeto.is_allowed, id_user : sujeto.id_customer, token_session : sujeto.token_session }
     }
     /**
      * Ejecuta un cambio de contraseña
