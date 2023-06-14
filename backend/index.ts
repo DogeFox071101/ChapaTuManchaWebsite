@@ -5,7 +5,7 @@ import Seguridad from './classes/Seguridad'
 import Cliente from './classes/Cliente';
 import Direccion from './interfaces/Direccion';
 import Persona from './classes/Persona';
-import Arrendador from './classes/Arrendador';
+//import Arrendador from './classes/Arrendador';
 
 const app: Express = express()
 
@@ -30,8 +30,8 @@ app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const direccion: Direccion = data.direccion
     const cliente = await Cliente.crearCliente(data.last_name, data.first_name, data.passwd, data.email, data.phone, fechaNac, data.document_type, data.document_num, direccion)
     const respuesta = {
-        id : cliente.id_customer,
-        tokenSession : cliente.tokenSession,
+        id_user : cliente.id_customer,
+        token_session : cliente.token_session,
         is_allowed : cliente.is_allowed
     }
     console.log(respuesta)
@@ -46,7 +46,6 @@ app.post('/api/login', async (req: Request, res: Response) => {
 })
 app.post('/api/obtener/perfil_usuario', async (req: Request, res: Response) => {
     
-    const arrendador = Arrendador.upgradeToArrendatario()
 })
 const PORT = process.env.PORT
 app.listen(PORT, () => {

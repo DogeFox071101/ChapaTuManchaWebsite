@@ -1,4 +1,7 @@
-const iniciar_sesion = async () => {
+const form = document.getElementById("form_login")
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault()
     const correo = document.getElementById("email").value
     const passwd = document.getElementById("password").value
 
@@ -20,13 +23,9 @@ const iniciar_sesion = async () => {
         body : JSON.stringify(mensaje2)  
     })
     const data2 = await response2.json()
-    if(data2 != -1) {
-        localStorage.setItem("lastDataLogin", JSON.stringify(data2))
-        location.href = "./inicio.html"
+    if(data2 && data2.is_allowed) {
+        localStorage.setItem("id_user", data2.id_user)
+        localStorage.setItem("token_session", data2.token_session)
+        location.href = "./"
     }
-}
-
-const goToLogin = () => {
-    localStorage.removeItem("lastDataLogin")
-    location.href = "./"
-}
+})

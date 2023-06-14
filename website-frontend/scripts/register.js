@@ -17,8 +17,8 @@ form.addEventListener("submit", async (event) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            last_name: document.getElementById("last_name").value,
-            first_name: document.getElementById("first_name").value,
+            last_name: document.getElementById("apellidos").value,
+            first_name: document.getElementById("nombres").value,
             email: document.getElementById("email").value,
             password: res_pw.msg,
             celular: document.getElementById("celular").value,
@@ -38,6 +38,6 @@ form.addEventListener("submit", async (event) => {
     const respuesta = await upload.json()
     console.log(respuesta)
     localStorage.setItem("id", respuesta.id, "a")
-    localStorage.setItem("tokenSession", respuesta.tokenSession)
+    localStorage.setItem("token_session", respuesta.tokenSession)
     location.href = "./"
 });
