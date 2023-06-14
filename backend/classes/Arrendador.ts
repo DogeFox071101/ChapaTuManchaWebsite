@@ -2,6 +2,8 @@ import Cliente from "./Cliente";
 import Direccion from "../interfaces/Direccion";
 import Seguridad from "./Seguridad";
 import DAOArrendador from "../dao/DAOArrendador";
+import Cancha from "./Cancha";
+import Deportes from "../enums/Deportes";
 class Arrendador extends Cliente {
     protected _id_lessor: string
     protected _date_register: Date
@@ -10,8 +12,9 @@ class Arrendador extends Cliente {
         this._id_lessor = id_lessor
         this._date_register = date_register
     }
-    public registrarCancha() {
-
+    public async registrarCancha( idCancha: string, nombreLocal: string, aforo: number, direccion: Direccion, deportesDisponibles: Deportes[]) 
+    {    
+        await Cancha.crearCancha({ idCancha, nombreLocal, arrendador: this, aforo, direccion, deportesDisponibles })
     }
     public actualizarDatos() {
         
