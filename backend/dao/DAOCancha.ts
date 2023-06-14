@@ -12,7 +12,7 @@ class DAOCancha extends DAO {
     private consulta: Consulta = this.database.getConsulta()
 
     public async insertar(criterios: any) {
-        const query = `INSERT INTO customer VALUES ('${criterios.id_sportfield}', '${criterios.id_address}', '${criterios.name_txt}', '${criterios.capacity}')`
+        const query = `INSERT INTO sportfield VALUES ('${criterios.id_sportfield}', '${criterios.id_address}', '${criterios.name_txt}', '${criterios.capacity}')`
         try {
             await this.connection.open()
             this.consulta.set(query)
