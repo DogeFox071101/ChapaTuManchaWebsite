@@ -7,8 +7,18 @@ class DAOArrendador extends DAO {
     private database: DB = new PgDB()
     private connection = this.database.getConexion()
     private consulta = this.database.getConsulta()
-    public insertar() {
-        throw new Error("Method not implemented.");
+    public async insertar(criterios: any) {
+        const query = `INSERT INTO lessor VALUES ('${criterios.id_lessor}', '${criterios.id_customer}', '${criterios.registration_date}')`
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error) {
+            console.error(error)
+            await this.connection.close()
+        }
     }
     public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
         const query = `SELECT person.*, customer.*, lessor.* FROM lessor FULL OUTER JOIN customer ON lessor.id_customer = customer.id_customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE ${campoBusqueda} = '${criterio}';`

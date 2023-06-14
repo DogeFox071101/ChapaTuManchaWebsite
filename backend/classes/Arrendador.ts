@@ -1,6 +1,5 @@
 import Cliente from "./Cliente";
 import Direccion from "../interfaces/Direccion";
-
 class Arrendador extends Cliente {
     protected _id_lessor: string
     protected _date_register: Date
