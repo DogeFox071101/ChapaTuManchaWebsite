@@ -24,7 +24,17 @@ class DAOPersona extends DAO {
         }
     }
     public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
-        const query = `SELECT person.*, admins.*, customer.*, lessor.*, addresses.* FROM person FULL OUTER JOIN customer ON person.id_person = customer.id_person FULL OUTER JOIN admins ON admins.id_person = person.id_person FULL OUTER JOIN lessor ON customer.id_customer = lessor.id_customer FULL OUTER JOIN addresses ON addresses.id_address = customer.id_address WHERE ${campoBusqueda} = '${criterio}';`
+        const query = `SELECT person.id_person, person.first_name, person.last_name, person.email, person.passwd, person.token_session,
+            admins.id_admin, admins.last_login, admins.access_level,
+            customer.id_customer, customer.phone, customer.date_birth, customer.document_type, customer.document_num, customer.is_allowed,
+            lessor.id_lessor, lessor.registration_date,
+            addresses.id_address, addresses.address_name, addresses.zip_code, addresses.city, addresses.county, addresses.state_name, addresses.country
+            FROM person 
+            FULL OUTER JOIN admins ON admins.id_person = person.id_person 
+            FULL OUTER JOIN customer ON customer.id_person = person.id_person 
+            FULL OUTER JOIN lessor ON lessor.id_customer = customer.id_customer 
+            FULL OUTER JOIN addresses ON addresses.id_address = customer.id_address 
+            WHERE ${campoBusqueda} = '${criterio}';`
         try {
             await this.connection.open()
             this.consulta.set(query)

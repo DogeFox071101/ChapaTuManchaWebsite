@@ -32,6 +32,9 @@ class Seguridad {
         const value = Math.random().toString(36).substring(2)
         return await this.generarHash(value)
     }
+    /**
+     * Genera un UUID único para cada invocación
+     */
     public static generarUUID(): string {
         return crypto.randomUUID()
     }

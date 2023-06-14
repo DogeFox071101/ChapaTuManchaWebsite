@@ -28,10 +28,11 @@ abstract class Persona {
      */
     public static async iniciarSesion(_email: string, _passwd: string) {
         const sujeto = await new DAOPersona().seleccionarUno(_email, CampoBusqueda.EMAIL)
+        console.log(sujeto)
         if (sujeto?._passwd != _passwd || !sujeto){
             return null
         }
-        return { is_allowed : sujeto.is_allowed, idUsuario : sujeto.id_customer, token_session : sujeto.tokenSession}
+        return { is_allowed : sujeto.is_allowed, idUsuario : sujeto.id_customer, token_session : sujeto.tokenSession }
     }
     /**
      * Ejecuta un cambio de contraseña
