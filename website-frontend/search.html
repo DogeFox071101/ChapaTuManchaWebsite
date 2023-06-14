@@ -75,7 +75,6 @@
           text-align: center;
           color: #4CAF50;
           font-size: 18px;
-
         }
         input{
             width: 100%;
@@ -84,6 +83,7 @@
             box-sizing: border-box;
             border: 2px solid #4CAF50;
             border-radius: 4px;
+            
         }
         h1 {
           text-align: center;
@@ -106,8 +106,6 @@
             border: 2px solid #4CAF50;
             border-radius: 4px;
         }
-
-        
     </style>
     <script>
         function mostrarMensaje() {
@@ -131,58 +129,72 @@
 
                 if (seleccion === "cancha") {
                     inputElement.placeholder = "Código postal";
-                    mensajeElement.innerHTML = "Si no sabes tu código postal puedes entrar a <a href='http://www.codigopostal.gob.pe/pages/invitado/consulta.jsf''>CÓDIGO POSTAL NACIONAL</a>";
+                    mensajeElement.innerHTML = "Si no sabes tu código postal puedes entrar a <a href='http://www.codigopostal.gob.pe/pages/invitado/consulta.jsf'>CÓDIGO POSTAL NACIONAL</a>";
                     mensajeAntesElement.innerHTML = "Ingresa Código postal";
+                    inputElement.pattern = "\\d+";
                 } else if (seleccion === "usuario") {
                     inputElement.placeholder = "Nombre de usuario";
-                    mensajeElement.innerHTML = "Asegurese de ingresar correctamente el nombre de usuario";
-                    mensajeAntesElement.innerHTML = "Ingrese el nombre de usuario";
+                    mensajeElement.innerHTML = "Asegúrate de ingresar correctamente el nombre de usuario";
+                    mensajeAntesElement.innerHTML = "Ingresa el nombre de usuario";
+                    inputElement.pattern = "[A-Za-z0-9]+";
                 }
             }
+        }
+
+        function validarFormulario() {
+            var inputElement = document.getElementById("campo-entrada");
+            if (!inputElement.checkValidity()) {
+                return false;
+            }
+            var formElement = document.getElementById("form-busqueda");
+            var seleccion = document.getElementById("opciones").value;
+            if (seleccion === "cancha") {
+                formElement.action = "resultsCancha.html?codigo=" + inputElement.value;
+            } else if (seleccion === "usuario") {
+                formElement.action = "resultsUser.html?usuario=" + inputElement.value;
+            }
+            return true;
         }
     </script>
 </head>
 
 <body>
     <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../website-frontend/images/logo.png" alt="logo">
-                <span>CHAPA TU MANCHA</span>
-            </a>
-            <div class="subheader">
-                <a href="#">PERFIL</a>
-                <a href="#">COMUNIDAD</a>
-                <a href="#">RESERVAS</a>
-                <a href="#">SOPORTE</a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="../website-frontend/images/logo.png" alt="logo">
+                    <span>CHAPA TU MANCHA</span>
+                </a>
+                <div class="subheader">
+                    <a href="#">PERFIL</a>
+                    <a href="#">COMUNIDAD</a>
+                    <a href="#">RESERVAS</a>
+                    <a href="#">SOPORTE</a>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
 
     <div class="container mt-5">
         <div class="d-flex justify-content-between full-height">
-          <h1>Búsqueda</h1>
-        </div class="">
+            <h1>Búsqueda</h1>
+        </div>
         <h2>Seleccione una opción</h2>
-        <select id="opciones" onchange="mostrarMensaje()">
-            <option value="">Seleccionar</option>
-            <option value="cancha">Cancha</option>
-            <option value="usuario">Usuario</option>
-        </select>
-        <div>
+        <form id="form-busqueda" onsubmit="return validarFormulario()">
+            <select id="opciones" onchange="mostrarMensaje()">
+                <option value="">Seleccionar</option>
+                <option value="cancha">Cancha</option>
+                <option value="usuario">Usuario</option>
+            </select>
             <h2 id="mensaje-antes" style="display: none;"></h2>
-          <form action="resultados.html" method="GET">
-            <input type="text" id="campo-entrada" style="display: none;" readonly>
+            <input type="text" id="campo-entrada" style="display: none;" required>
             <p id="mensaje" style="display: none;"></p>
             <button id="boton" type="submit" style="display: none;">Buscar</button>
         </form>
-        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-

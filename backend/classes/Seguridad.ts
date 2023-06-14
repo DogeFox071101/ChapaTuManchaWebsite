@@ -17,6 +17,14 @@ class Seguridad {
             ).join('')
         return hashHex;
     }
+    public static async generarServerHash (text: string) {
+        const newPw = await this.generarHash(process.env.PW_ACTUAL! + text)
+        const oldPw = await this.generarHash(process.env.PW_COMPAT! + text)
+        return {
+            newPw : newPw,
+            oldPw : oldPw
+        }
+    }
     /**
      * Genera un token aleatorio y lo devuelve en una cadena de texto
      */
@@ -24,6 +32,9 @@ class Seguridad {
         const value = Math.random().toString(36).substring(2)
         return await this.generarHash(value)
     }
+    /**
+     * Genera un UUID único para cada invocación
+     */
     public static generarUUID(): string {
         return crypto.randomUUID()
     }

@@ -157,14 +157,11 @@ INSERT INTO booking VALUES (
 
 -- Querys de obtención de datos
 
--- Iniciar Sesión:
-select email, passwd from person
-	where email = 'paco@paco.pa' and passwd = 'xd';
--- Retornar Información de Cliente
-select person.id_person, person.first_name, person.last_name, person.email, person.passwd,
-	person.token_session, customer.id_customer, customer.phone, customer.date_birth, customer.document_type,
-	customer.document_num, customer.is_allowed, addresses.id_address, addresses.address_name, addresses.city,
-	addresses.county, addresses.state_name, addresses.country from customer
-	join person on customer.id_person = person.id_person
-	join addresses on customer.id_address = addresses.id_address
-	where email = 'paco@paco.pa' and passwd = 'xd';
+
+
+select person.id_person, admins.id_admin, customer.id_customer, lessor.id_lessor
+	from person
+	full outer join admins on person.id_person = admins.id_person
+	full outer join customer on person.id_person = customer.id_person
+	full outer join lessor on customer.id_customer = lessor.id_customer
+	where person.email = 'lgfalconch@hotmail.com';
