@@ -99,6 +99,33 @@
             border: 2px solid #4CAF50;
             border-radius: 4px;
         }
+        .container {
+            margin-top: 30px;
+        }
+        .cancha {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cancha img {
+            width: 100px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+        .cancha .info {
+            display: flex;
+            flex-direction: column;
+        }
+        .cancha .nombre1 {
+            font-size: 24px;
+            color: black;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+        .cancha .nombre {
+            font-size: 18px;
+            color: #4CAF50;
+        }
     </style>
 </head>
 
@@ -106,15 +133,15 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="index.html">
                     <img src="../website-frontend/images/logo.png" alt="logo">
                     <span>CHAPA TU MANCHA</span>
                 </a>
                 <div class="subheader">
-                    <a href="#">PERFIL</a>
-                    <a href="#">COMUNIDAD</a>
-                    <a href="#">RESERVAS</a>
-                    <a href="#">SOPORTE</a>
+                    <a href="userProfile.html">PERFIL</a>
+                    <a href="search.html">BUSCAR</a>
+                    <a href="reserva.html">RESERVAS</a>
+                    <a href="index.html">SOPORTE</a>
                 </div>
             </div>
         </nav>
@@ -124,6 +151,13 @@
         <div class="row justify-content-center">
             <h2>Resultados de la Búsqueda</h2>
             <ul id="results"></ul>
+            <div class="cancha">
+                <a href="userProfile.html"><img src="../website-frontend/images/logo.png" alt="Imagen de la cancha"></a>
+                <div class="info" onclick="window.location.href='userProfile.html'">
+                    <div class="nombre1"><a href="userProfile.html">Juan1</a></div>
+                    <div class="nombre">Juan Carlos Sanchez Lopez</div>
+                </div>
+            </div>
         </div>
     </div>
     <p id="message"></p>
