@@ -2,7 +2,7 @@ const form = document.getElementById("form_login")
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault()
-    const id_customer = document.getElementById("id_field").value
+    const id_field = document.getElementById("id_field").value
 
     const mensaje = { msg : id_field}
     let response = await fetch('http://localhost:3001/api/buscar_cancha', {

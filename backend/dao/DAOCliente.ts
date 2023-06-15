@@ -43,8 +43,28 @@ class DAOCliente extends DAO{
             return undefined
         }
     }
-    public seleccionarLista(_criterio: string, _campoBusqueda: CampoBusqueda) {
-        throw new Error("Method not implemented.");
+    public async seleccionarLista(criterio: string) {
+        const query = `SELECT person.*, customer.* FROM customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE person.first_name = '${criterio}';`
+        try {
+            await this.connection.open();
+            this.consulta.set(query);
+            const solicitud = await this.consulta.execute();
+            await this.connection.close();
+            const data = solicitud.rows;
+            const canchas = data.map((row: any) => ({
+                id: row.id_customer,
+                nombre: row.first_name,
+                apellido: row.last_name,
+                celular: row.phone,
+                fechaNacimiento: row.date_birth,
+            }));
+            return canchas;
+            //probar en la nube - frontend :3
+        } catch (error) {
+            console.error(error);
+            await this.connection.close();
+            return undefined;
+        }
     }
     public seleccionarTodos() {
         throw new Error("Method not implemented.");

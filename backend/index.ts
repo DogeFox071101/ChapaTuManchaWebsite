@@ -41,10 +41,11 @@ app.get('/api/buscar_cancha_id', async (req: Request, res: Response) => {
     const cancha = await new DAOCancha().seleccionarUnoID(id)
     res.json({ msg : cancha })
 })
-app.get('/api/buscar_usuario', async (req: Request, res: Response) => {
-    const id = req.body.msg
-    const cliente = await new DAOCliente().seleccionarUnoId(id)
-    res.json({ msg : cliente?.verInfo })
+app.get('/api/buscar_usuarios', async (req: Request, res: Response) => {
+    const nombre = req.body.msg
+    const clientes = await new DAOCliente().seleccionarLista(nombre)
+    for (const cliente of clientes) 
+        res.json({ msg: cliente })
 })
 app.get('/api/buscar_usuario_id', async (req: Request, res: Response) => {
     const id = req.body.msg
