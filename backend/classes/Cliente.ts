@@ -98,8 +98,8 @@ class Cliente extends Persona {
         return new Cliente(criteriosPersona.id_person, first_name, last_name, email, passwd, criteriosPersona.token_session, criteriosCliente.id_customer, phone, criteriosCliente.date_birth, document_type, document_num, criteriosCliente.is_allowed, direccion)
     }
     
-    public verInfo() {
-        const cliente = { nombres: this.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
+    public  async verInfo(cliente:Cliente) {
+        const cliente = { nombres: cliente.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
         return cliente
     }
     public actualizarDatos(): void {
