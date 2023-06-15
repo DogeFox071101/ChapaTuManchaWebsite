@@ -55,7 +55,7 @@ class DAOCancha extends DAO {
                 capacidad: row.capacity,
             }));
             return canchas;
-            //probar en la nube
+            //probar en la nube - frontend :3
         } catch (error) {
             console.error(error);
             await this.connection.close();

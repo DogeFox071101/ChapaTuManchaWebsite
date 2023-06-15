@@ -3,7 +3,6 @@ enum CampoBusqueda {
     ID_CLIENTE = "customer.id_customer",
     ID_ARRENDADOR = "lessor.id_lessor",
     EMAIL = "person.email",
-    
 }
 
 export default CampoBusqueda

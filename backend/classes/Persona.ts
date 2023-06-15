@@ -1,6 +1,3 @@
-import DAOPersona from "../dao/DAOPersona"
-import CampoBusqueda from "../enums/CampoBusqueda"
-
 /**
  * Clase Persona
  */
@@ -19,20 +16,29 @@ abstract class Persona {
         this._passwd = passwd
         this._token_session = token_session
     }
+    public get id_person() : string {
+        return this._id_person
+    }
+    public get first_name() : string {
+        return this._first_name
+    }
+    public get last_name() : string {
+        return this._last_name
+    }
+    public get email() : string {
+        return this._email
+    }
     public get passwd() : string {
         return this._passwd
     }
-    
-    /**
-     * Ejecuta el inicio de sesión y retorna la información de una persona
-     */
-    public static async iniciarSesion(_email: string, _passwd: string) {
-        const sujeto = await new DAOPersona().seleccionarUno(_email, CampoBusqueda.EMAIL)
-        console.log(sujeto)
-        if (sujeto?._passwd != _passwd || !sujeto){
-            return null
+    public get token_session() : string {
+        return this._token_session
+    }
+    public iniciarSesion(passwd: string): boolean {
+        if (passwd !== this._passwd) {
+            return false
         }
-        return { is_allowed : sujeto.is_allowed, id_user : sujeto.id_customer, token_session : sujeto.token_session }
+        return true
     }
     /**
      * Ejecuta un cambio de contraseña

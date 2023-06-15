@@ -3,9 +3,6 @@ import DAODireccion from "../dao/DAODireccion";
 import DAOPersona from "../dao/DAOPersona";
 import Direccion from "../interfaces/Direccion";
 import Persona from "./Persona";
-import Seguridad from "./Seguridad";
-import DAOArrendador from "../dao/DAOArrendador";
-import Arrendador from "./Arrendador";
 
 class Cliente extends Persona {
     protected _id_customer: string
@@ -65,38 +62,10 @@ class Cliente extends Persona {
     public get direccion(): Direccion {
         return this.direccion
     }
-    public static async crearCliente(first_name: string, last_name: string, email: string, passwd: string, phone: string, date_birth: Date, document_type: string, document_num: string,  direccion: Direccion) {
-        const criteriosPersona = {
-            id_person : Seguridad.generarUUID(),
-            first_name : first_name,
-            last_name : last_name,
-            email : email,
-            passwd : await Seguridad.generarHash(process.env.PW_ACTUAL! + passwd),
-            token_session : await Seguridad.generarToken()
-        }
-        const criteriosDireccion = {
-            id_address : Seguridad.generarUUID(),
-            address_name : direccion.direccion,
-            zip_code : direccion.codigoPostal,
-            city : direccion.ciudad,
-            county : direccion.provincia,
-            state_name : direccion.departamento,
-            country : direccion.pais
-        }
-        const criteriosCliente = {
-            id_customer : Seguridad.generarUUID(),
-            id_person : criteriosPersona.id_person,
-            id_address : criteriosDireccion.id_address,
-            phone : phone,
-            date_birth : new Date(date_birth.getFullYear() + "-" + date_birth.getMonth() + "-" + date_birth.getDay()),
-            document_type : document_type,
-            document_num : document_num,
-            is_allowed : true
-        }
-        await new DAOPersona().insertar(criteriosPersona)
-        await new DAODireccion().insertar(criteriosDireccion)
-        await new DAOCliente().insertar(criteriosCliente)
-        return new Cliente(criteriosPersona.id_person, first_name, last_name, email, passwd, criteriosPersona.token_session, criteriosCliente.id_customer, phone, criteriosCliente.date_birth, document_type, document_num, criteriosCliente.is_allowed, direccion)
+    public async crearCliente() {
+        await new DAOPersona().insertar(this)
+        await new DAODireccion().insertar(this)
+        await new DAOCliente().insertar(this)
     }
     
     public async verInfo() {
@@ -108,15 +77,6 @@ class Cliente extends Persona {
     }
     public reservarCancha() {
 
-    }
-    public async upgradeToArrendatario(cliente:Cliente) {
-        const criteriosArrendatario = {
-            id_lessor :  Seguridad.generarUUID(),
-            date_register: new Date(),
-            idCustomer: this.id_customer,
-        }
-        await new DAOArrendador().insertar(criteriosArrendatario);
-        return new Arrendador(cliente._id_person, cliente._first_name, cliente._last_name, cliente.email, cliente.passwd, cliente.token_session, cliente.id_customer, cliente._phone, cliente._date_birth, cliente._document_type, cliente._document_num, cliente.is_allowed, cliente._direccion, criteriosArrendatario.id_lessor, criteriosArrendatario.date_register)
     }
 }
 

@@ -1,9 +1,11 @@
+import DAO from "./DAO"
+import Direccion from "../interfaces/Direccion"
+import Admin from "../classes/Admin"
+import Arrendador from "../classes/Arrendador"
 import Cliente from "../classes/Cliente"
 import DB from "../database/DB"
 import PgDB from "../database/PgDB"
 import CampoBusqueda from "../enums/CampoBusqueda"
-import Direccion from "../interfaces/Direccion"
-import DAO from "./DAO"
 
 class DAOPersona extends DAO {
     private database: DB = new PgDB()
@@ -42,11 +44,11 @@ class DAOPersona extends DAO {
             await this.connection.close()
             const data = solicitud.rows[0]
             if (data.id_admin) {
-                return undefined
+                return new Admin(data.id_person, data.first_name, data.last_name, data.email, data.passwd, data.token_session, data.id_admin, data.last_login, data.access_level)
             }
             const direccion : Direccion = { direccion : data.address_name, ciudad : data.city, provincia : data.county, departamento : data.state_name, pais : data.country, codigoPostal : data.zip_code }
             if (data.id_lessor) {
-                return undefined
+                return new Arrendador(data.id_person, data.first_name, data.last_name, data.email, data.passwd, data.token_session, data.id_customer, data.phone, data.date_birth, data.document_type, data.document_num, data.is_allowed, direccion, data.id_lessor, data.date_register)
             }
             return new Cliente(data.id_person, data.first_name, data.last_name, data.email, data.passwd, data.token_session, data.id_customer, data.phone, data.date_birth, data.document_type, data.document_num, data.is_allowed, direccion)
         }

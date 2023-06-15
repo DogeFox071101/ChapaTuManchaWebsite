@@ -1,4 +1,4 @@
-import DB from "../database/DB";
+import type DB from "../database/DB";
 import PgDB from "../database/PgDB";
 import CampoBusqueda from "../enums/CampoBusqueda";
 import DAO from "./DAO";

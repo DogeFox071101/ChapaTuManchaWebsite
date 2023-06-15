@@ -10,7 +10,7 @@ class DAOCliente extends DAO{
     private database: DB = new PgDB
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
-
+    
     public async insertar(criterios: any) {
         const query = `INSERT INTO customer VALUES ('${criterios.id_customer}', '${criterios.id_person}', '${criterios.id_address}', '${criterios.phone}', '${criterios.date_birth}', '${criterios.document_type}', '${criterios.document_num}', '${criterios.is_allowed}')`
         try {
@@ -23,6 +23,9 @@ class DAOCliente extends DAO{
             console.error(error)
             await this.connection.close()
         }
+    }
+    public seleccionarUno(_criterio: string, _campoBusqueda: CampoBusqueda) {
+        throw new Error("Method not implemented.");
     }
     public async seleccionarUnoId(criterio: string) {
         const query = `SELECT person.*, customer.* FROM customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE id_customer = '${criterio}';`
