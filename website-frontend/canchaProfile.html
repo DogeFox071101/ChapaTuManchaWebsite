@@ -57,6 +57,33 @@
             display: flex;
             flex-direction: column;
         }
+        .carousel-item img {
+            width: 100%;
+            object-fit: cover;
+            min-height: 500px; 
+            max-height: 500px;/* Establece la altura máxima deseada */
+        }
+        .fila-carrusel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+        .slide_carrusel{
+            max-width: 80%;
+        }
+        .carousel-inner {
+            max-width: 100%; 
+        }
+        .carousel-indicators .active {
+            background-color: #4CAF50;
+        } 
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 40px;
+            height: 40px;
+            background-size: 100% 100%;
+        }
         form {
             background-color: white;
             padding: 40px;
@@ -191,6 +218,34 @@
             <div id="square">
                 <form action="#" class="formulario" id="formulario">
                     <h1 class="text-center mb-4 nombre-usuario">DEPORZETA</h1>
+                    <div class="row fila-carrusel">
+                        <div id="carouselExampleIndicators" class="carousel slide slide_carrusel" data-bs-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="../website-frontend/images/deporz.jpg" class="imagen" alt="Image 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../website-frontend/images/deporz2.jpg" class="imagen" alt="Image 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../website-frontend/images/deporz3.jpg" class="imagen" alt="Image 3">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card">
@@ -213,22 +268,14 @@
                             <div class="card">
                                 <h3 class="card-title text-center">Información del arrendador</h3>
                                 <div class="container-datos">
-                                    <div class="col-md">
-                                        <h5>Nombres:</h5>
-                                        <p id="nombre_arrendador">Juan Carlos</p>
-                                    </div>
-                                    <div class="col-md">
-                                        <h5>Apellidos:</h5>
-                                        <p id="nombre_arrendador">Sanchez Lopez</p>
-                                    </div>
-                                    <div class="col-md">
-                                        <h5>Email:</h5>
-                                        <p id="email">john.doe@example.com</p>
-                                    </div>
-                                    <div class="col-md">
-                                        <h5>Telefono:</h5>
-                                        <p id="direccion">934534432</p>
-                                    </div>
+                                    <h5>Nombres:</h5>
+                                    <p id="nombre_arrendador">Juan Carlos</p>
+                                    <h5>Apellidos:</h5>
+                                    <p id="nombre_arrendador">Sanchez Lopez</p>
+                                    <h5>Email:</h5>
+                                    <p id="email">john.doe@example.com</p>
+                                    <h5>Telefono:</h5>
+                                    <p id="direccion">934534432</p>
                                 </div>
                             </div>
                         </div>
@@ -237,6 +284,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
