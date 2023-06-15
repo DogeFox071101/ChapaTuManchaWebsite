@@ -29,10 +29,10 @@ app.get('/api/token', async (_req: Request, res: Response) => {
     console.log("Token generado correctamente")
     res.json({ msg : token })
 })
-app.get('/api/buscar_cancha', async (_req: Request, res: Response) => {
-    const cancha = await Cancha
-    console.log("correctamente")
-    res.json({ msg : cancha })
+app.get('/api/buscar_cancha', async (req: Request, res: Response) => {
+    const id = req.body.msg
+    const cliente = await new DAOCliente().seleccionarUnoId(id)
+    res.json({ msg : cliente?.verInfo })
 })
 app.get('/api/buscar_usuario_id', async (req: Request, res: Response) => {
     const id = req.body.msg
