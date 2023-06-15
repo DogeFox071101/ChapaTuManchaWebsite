@@ -13,6 +13,7 @@ class Cancha {
     protected aforo: number
     protected direccion: Direccion
     protected deportesDisponibles: Deportes[]
+
     public constructor(
         id_cancha: string,
         nombreLocal: string,
@@ -49,7 +50,7 @@ class Cancha {
             await new DAODireccion().insertar(criteriosDireccion)
             return new Cancha(idCancha, nombreLocal, arrendador, aforo, direccion, deportesDisponibles);
         }
-    public verInfo() {
+    public async verInfo() {
         const cancha = { nombre: this.nombreLocal, aforo: this.aforo, direccion: this.direccion, deportes: this.deportesDisponibles};
         return cancha
     }

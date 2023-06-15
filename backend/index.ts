@@ -6,7 +6,8 @@ import Cliente from './classes/Cliente';
 import Direccion from './interfaces/Direccion';
 import Persona from './classes/Persona';
 import Cancha from './classes/Cancha';
-import Cancha from './classes/Cancha';
+import DAOCliente from './dao/DAOCliente';
+
 //import Arrendador from './classes/Arrendador';
 
 const app: Express = express()
@@ -26,10 +27,15 @@ app.get('/api/token', async (_req: Request, res: Response) => {
     console.log("Token generado correctamente")
     res.json({ msg : token })
 })
-app.get('/api/BuscarCancha', async (_req: Request, res: Response) => {
-    const cancha = await Cancha.toString
+app.get('/api/buscar_cancha', async (_req: Request, res: Response) => {
+    const cancha = await Cancha
     console.log("correctamente")
     res.json({ msg : cancha })
+})
+app.get('/api/buscar_usuario_id', async (req: Request, res: Response) => {
+    const id = req.body.msg
+    const cliente = await new DAOCliente().seleccionarUnoId(id)
+    res.json({ msg : cliente?.verInfo })
 })
 app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     const data = req.body

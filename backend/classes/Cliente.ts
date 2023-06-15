@@ -15,6 +15,7 @@ class Cliente extends Persona {
     protected _document_num: string
     protected _is_allowed: boolean
     protected _direccion: Direccion
+
     public constructor(id_person:string, first_name:string, last_name:string, email:string, passwd:string, token_session:string, id_customer:string, phone:string, date_birth:Date, document_type:string, document_num:string, is_allowed:boolean, direccion:Direccion) {
         super(id_person, first_name, last_name, email, passwd, token_session)
         this._id_customer = id_customer
@@ -98,7 +99,7 @@ class Cliente extends Persona {
         return new Cliente(criteriosPersona.id_person, first_name, last_name, email, passwd, criteriosPersona.token_session, criteriosCliente.id_customer, phone, criteriosCliente.date_birth, document_type, document_num, criteriosCliente.is_allowed, direccion)
     }
     
-    public verInfo() {
+    public async verInfo() {
         const cliente = { nombres: this.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
         return cliente
     }

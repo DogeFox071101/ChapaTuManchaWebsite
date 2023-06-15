@@ -24,8 +24,8 @@ class DAOCliente extends DAO{
             await this.connection.close()
         }
     }
-    public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
-        const query = `SELECT person.*, customer.* FROM customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE ${campoBusqueda} = '${criterio}';`
+    public async seleccionarUnoId(criterio: string) {
+        const query = `SELECT person.*, customer.* FROM customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE id_customer = '${criterio}';`
         try {
             await this.connection.open()
             this.consulta.set(query)
