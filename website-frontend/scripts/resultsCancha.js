@@ -3,7 +3,8 @@ const resultsContainer = document.getElementById("results");
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const codigoPostal = document.getElementById("id_field").value;
+    const codigoPostalInput = document.getElementById("campo-entrada");
+    const codigoPostal = codigoPostalInput.value;
 
     const mensaje = { msg: codigoPostal };
     let response = await fetch('http://localhost:3001/api/buscar_canchas', {
