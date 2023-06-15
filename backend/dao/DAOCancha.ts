@@ -23,7 +23,7 @@ class DAOCancha extends DAO {
             await this.connection.close()
         }
     }
-    public async seleccionarUno(criterio: string) {
+    public async seleccionarUnoID(criterio: string) {
         const query = `SELECT name_txt.*, capacity.* FROM sportfield FULL OUTER JOIN addresses ON sportfield.id_address = addresses.id_address WHERE id_sportfield = '${criterio}';`
         try {
             await this.connection.open()

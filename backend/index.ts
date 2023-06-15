@@ -11,6 +11,7 @@ import Arrendador from './classes/Arrendador';
 import Cancha from './classes/Cancha';
 import CampoBusqueda from './enums/CampoBusqueda';
 import Admin from './classes/Admin';
+import DAOCancha from './dao/DAOCancha';
 
 const app: Express = express()
 
@@ -29,10 +30,10 @@ app.get('/api/token', async (_req: Request, res: Response) => {
     console.log("Token generado correctamente")
     res.json({ msg : token })
 })
-app.get('/api/buscar_cancha', async (req: Request, res: Response) => {
+app.get('/api/buscar_cancha_id', async (req: Request, res: Response) => {
     const id = req.body.msg
-    const cliente = await new DAOCliente().seleccionarUnoId(id)
-    res.json({ msg : cliente?.verInfo })
+    const cancha = await new DAOCancha().seleccionarUnoID(id)
+    res.json({ msg : cancha })
 })
 app.get('/api/buscar_usuario_id', async (req: Request, res: Response) => {
     const id = req.body.msg
