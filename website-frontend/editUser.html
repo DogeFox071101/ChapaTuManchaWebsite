@@ -24,32 +24,27 @@
   </header>
 
   <div class="container mt-5">
-    <form action="procesar_formulario.php" method="POST">
-      <h2 class="text-success mb-4">Cambiar Contraseña</h2>
+    <form id="form_update_usuario" method="POST">
+      <h2 class="text-success mb-4">Editar datos de usuario</h2>
       <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre:</label>
+        <label for="nombre" class="form-label">Nombres:</label>
         <input type="text" id="nombre" name="nombre" class="form-control" required>
       </div>
 
       <div class="mb-3">
-        <label for="apellido" class="form-label">Apellido:</label>
+        <label for="apellido" class="form-label">Apellidos:</label>
         <input type="text" id="apellido" name="apellido" class="form-control" required>
       </div>
 
       <div class="mb-3">
         <label for="correo" class="form-label">Correo electrónico:</label>
-        <input type="email" id="correo" name="correo" class="form-control" required>
-      </div>
-
-      <div class="mb-3">
-        <label for="contrasena" class="form-label">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" class="form-control" required>
+        <input disabled type="email" id="correo" name="correo" class="form-control" required>
       </div>
 
       <button type="submit" class="btn btn-success">Guardar cambios</button>
     </form>
   </div>
-
+  <script src="./scripts/editUser.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>

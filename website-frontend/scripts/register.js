@@ -3,7 +3,7 @@ const message = document.getElementById("message");
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    let req_pw = await fetch("http://localhost:3001/api/hash", {
+    let req_pw = await fetch("http://localhost:3001/api/helper/hash", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -36,8 +36,9 @@ form.addEventListener("submit", async (event) => {
         })
     })
     const respuesta = await upload.json()
+    
     console.log(respuesta)
-    localStorage.setItem("id_user", respuesta.id_user, "a")
+    localStorage.setItem("id_user", respuesta.id_user)
     localStorage.setItem("token_session", respuesta.token_session)
     location.href = "./"
 });

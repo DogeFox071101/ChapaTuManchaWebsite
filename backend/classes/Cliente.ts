@@ -3,6 +3,7 @@ import DAODireccion from "../dao/DAODireccion";
 import DAOPersona from "../dao/DAOPersona";
 import Direccion from "../interfaces/Direccion";
 import Persona from "./Persona";
+import Seguridad from "./Seguridad";
 
 class Cliente extends Persona {
     protected _id_customer: string
@@ -63,9 +64,10 @@ class Cliente extends Persona {
         return this._direccion
     }
     public async crearCliente() {
-        await new DAOPersona().insertar(this)
-        await new DAODireccion().insertar(this)
-        await new DAOCliente().insertar(this)
+        const id_address = Seguridad.generarUUID()
+        await new DAOPersona().insertar({id_person: this._id_person, first_name: this._first_name, last_name:this.last_name, email:this._email, passwd: this._passwd, token_session: this._token_session})
+        await new DAODireccion().insertar({id_address: id_address, address_name: this._direccion.direccion, zip_code: this._direccion.codigoPostal, city: this._direccion.ciudad, county: this._direccion.provincia, state_name: this._direccion.departamento, country: this._direccion.pais})
+        await new DAOCliente().insertar({id_customer: this._id_customer, id_person: this._id_person, id_address:id_address, phone:this._phone, date_birth: this._date_birth.toDateString(), document_type: this._document_type, document_num: this._document_num, is_allowed: this._is_allowed})
     }
     
     public verInfo() {

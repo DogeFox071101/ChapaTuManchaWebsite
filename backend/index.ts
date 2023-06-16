@@ -36,6 +36,9 @@ app.post('/api/usuario/crear', async (req: Request, res: Response) => {
     const date_birth = new Date(data.date_birth)
     const direccion: Direccion = data.direccion
     const cliente = new Cliente(Seguridad.generarUUID(), data.first_name, data.last_name, data.email, data.passwd, await Seguridad.generarToken(), Seguridad.generarUUID(), data.phone, date_birth, data.document_type, data.document_num, true, direccion)
+    if (cliente) {
+        cliente.crearCliente()
+    }
     const respuesta = {
         id_user : cliente.id_customer,
         token_session : cliente.token_session,
@@ -90,11 +93,23 @@ app.post('/api/usuario/contrasena/cambiar', async (req: Request, res: Response) 
     res.json({ status : status })
 })
 // Modificar Datos de Cuenta
-app.post('/api/usuario/info/obtener', async (_req: Request, _res: Response) => {
-    // TODO
+app.post('/api/usuario/info/obtener', async (req: Request, res: Response) => {
+    const id_user = req.body.msg
+    const persona = await new DAOPersona().seleccionarUno(id_user, CamposBD.A_ID_ALL_USER)
+    if (persona) {
+        const respuesta = persona.verInfo()
+        res.json(respuesta)
+    }
 })
-app.post('/api/usuario/info/modificar', async (_req: Request, _res: Response) => {
-    // TODO
+app.post('/api/usuario/info/modificar', async (req: Request, res: Response) => {
+    const data = req.body
+    const persona = await new DAOPersona().seleccionarUno(data.id_user, CamposBD.PERSON_ID_PERSON)
+    if (persona) {
+        await persona.set_first_name(data.first_name)
+        await persona.set_last_name(data.last_name)
+        res.json({result: 0})
+    }
+    res.json({result: -1})
 })
 // Cerrar Sesión
 app.post('/api/usuario/logout', async (req: Request, res: Response) =>  {

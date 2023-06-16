@@ -38,6 +38,14 @@ abstract class Persona {
     public get token_session() : string {
         return this._token_session
     }
+    public async set_first_name(first_name: string) {
+        this._first_name = first_name
+        await new DAOPersona().actualizar(this._id_person, CamposBD.A_ID_PERSON, this._first_name, CamposBD.A_FIRST_NAME)
+    }
+    public async set_last_name(last_name: string) {
+        this._last_name = last_name
+        await new DAOPersona().actualizar(this._id_person, CamposBD.A_ID_PERSON, this._last_name, CamposBD.A_LAST_NAME)
+    }
     public iniciarSesion(passwd: string): boolean {
         if (passwd !== this._passwd) {
             return false

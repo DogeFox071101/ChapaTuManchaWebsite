@@ -1,8 +1,8 @@
 const id_user = localStorage.getItem("id_user")
 console.log(id_user)
-window.addEventListener("load", async() => {
+window.addEventListener("load", async () => {
     const mensaje = { msg : id_user }
-    let response = await fetch('http://localhost:3001/api/buscar_usuario_id', {
+    let response = await fetch('http://localhost:3001/api/usuario/info/obtener', {
         method : 'POST',
         headers : {
             "Content-Type" : "application/json"
@@ -17,4 +17,8 @@ window.addEventListener("load", async() => {
     document.getElementById("celular").innerHTML = data.phone;
     document.getElementById("fecha-nacimiento").innerHTML = data.date_birth;
     document.getElementById("correo").innerHTML = data.email;
+})
+const button = document.getElementById("button_update_usuario")
+button.addEventListener("click", async (event) => {
+    location.href = "./editUser.html"
 })
