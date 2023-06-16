@@ -1,3 +1,7 @@
+import DAOPersona from "../dao/DAOPersona"
+import CamposBD from "../enums/CamposBD"
+import Seguridad from "./Seguridad"
+
 /**
  * Clase Persona
  */
@@ -43,8 +47,10 @@ abstract class Persona {
     /**
      * Ejecuta un cambio de contraseña
      */
-    public cambiarContrasena() {
-
+    public async cambiarContrasena(new_passwd: string) {
+        this._passwd = (await Seguridad.generarServerHash(new_passwd)).newPw
+        const dao = new DAOPersona()
+        await dao.actualizar(this._id_person, CamposBD.ID_PERSON, new_passwd, CamposBD.PASSWD)
     }
     /**
      * Reestablece una contraseña

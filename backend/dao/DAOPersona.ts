@@ -5,7 +5,7 @@ import Arrendador from "../classes/Arrendador"
 import Cliente from "../classes/Cliente"
 import DB from "../database/DB"
 import PgDB from "../database/PgDB"
-import CampoBusqueda from "../enums/CampoBusqueda"
+import CamposBD from "../enums/CamposBD"
 
 class DAOPersona extends DAO {
     private database: DB = new PgDB()
@@ -25,7 +25,7 @@ class DAOPersona extends DAO {
             await this.connection.close()
         }
     }
-    public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
+    public async seleccionarUno(criterio: string, campoBusqueda: CamposBD) {
         const query = `SELECT person.id_person, person.first_name, person.last_name, person.email, person.passwd, person.token_session,
             admins.id_admin, admins.last_login, admins.access_level,
             customer.id_customer, customer.phone, customer.date_birth, customer.document_type, customer.document_num, customer.is_allowed,
@@ -36,10 +36,14 @@ class DAOPersona extends DAO {
             FULL OUTER JOIN customer ON customer.id_person = person.id_person 
             FULL OUTER JOIN lessor ON lessor.id_customer = customer.id_customer 
             FULL OUTER JOIN addresses ON addresses.id_address = customer.id_address 
-            WHERE ${campoBusqueda} = '${criterio}';`
+            WHERE `
+        var condition = `${campoBusqueda} = '${criterio}';`
+        if (campoBusqueda === CamposBD.ID_ALL_USER) {
+            condition = `${CamposBD.ID_PERSON} = ${criterio} OR ${CamposBD.ID_ADMIN} = ${criterio} OR ${CamposBD.ID_CUSTOMER} = ${criterio} OR ${CamposBD.ID_LESSOR} = ${criterio}`
+        }
         try {
             await this.connection.open()
-            this.consulta.set(query)
+            this.consulta.set(query + condition)
             const solicitud = await this.consulta.execute()
             await this.connection.close()
             const data = solicitud.rows[0]
@@ -76,8 +80,18 @@ class DAOPersona extends DAO {
             return new Array<any>()
         }
     }
-    public async actualizar() {
-        throw new Error("Method not implemented.");
+    public async actualizar(criterio: string, campoBusqueda: CamposBD, valor: string, campoActualizar: CamposBD) {
+        const query = `UPDATE person SET ${campoActualizar} = ${valor} WHERE ${campoBusqueda} = ${criterio};`
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
     }
     public async eliminar() {
         throw new Error("Method not implemented.");

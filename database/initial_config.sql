@@ -84,11 +84,13 @@ CREATE TABLE IF NOT EXISTS lessor (
 );
 CREATE TABLE IF NOT EXISTS sportfield (
 	id_sportfield UUID NOT NULL,
+	id_lessor UUID NOT NULL,
 	id_address UUID NOT NULL,
-	name_txt VARCHAR (32) NOT NULL,
+	sportfield_name VARCHAR (32) NOT NULL,
 	capacity SMALLINT NOT NULL,
 	PRIMARY KEY (id_sportfield),
 	CONSTRAINT fk_address FOREIGN KEY (id_address) REFERENCES addresses (id_address)
+	CONSTRAINT fk_customer FOREIGN KEY (id_lessor) REFERENCES lessor (id_lessor)
 );
 CREATE TABLE IF NOT EXISTS booking (
 	id_booking UUID NOT NULL,

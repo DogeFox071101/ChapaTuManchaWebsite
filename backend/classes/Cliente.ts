@@ -68,7 +68,7 @@ class Cliente extends Persona {
         await new DAOCliente().insertar(this)
     }
     
-    public async verInfo() {
+    public verInfo() {
         const cliente = { nombres: this.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
         return cliente
     }

@@ -1,6 +1,6 @@
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
-import CampoBusqueda from "../enums/CampoBusqueda";
+import CamposBD from "../enums/CamposBD";
 import DAO from "./DAO";
 
 class DAOAdmin extends DAO {
@@ -10,7 +10,7 @@ class DAOAdmin extends DAO {
     public insertar() {
         throw new Error("Method not implemented.");
     }
-    public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
+    public async seleccionarUno(criterio: string, campoBusqueda: CamposBD) {
         const query = `SELECT person.*, admins.* FROM admins FULL OUTER JOIN person ON admins.id_person = person.id_person WHERE ${campoBusqueda} = '${criterio}';`
         try {
             await this.connection.open()
@@ -25,7 +25,7 @@ class DAOAdmin extends DAO {
             return {}
         }
     }
-    public seleccionarLista(_criterio: string, _campoBusqueda: CampoBusqueda) {
+    public seleccionarLista(_criterio: string, _campoBusqueda: CamposBD) {
         throw new Error("Method not implemented.");
     }
     public seleccionarTodos() {

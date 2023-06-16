@@ -3,7 +3,7 @@ import Conexion from "../database/Conexion";
 import Consulta from "../database/Consulta";
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
-import CampoBusqueda from "../enums/CampoBusqueda";
+import CamposBD from "../enums/CamposBD";
 import DAO from "./DAO";
 
 class DAOCliente extends DAO{
@@ -24,8 +24,21 @@ class DAOCliente extends DAO{
             await this.connection.close()
         }
     }
-    public seleccionarUno(_criterio: string, _campoBusqueda: CampoBusqueda) {
-        throw new Error("Method not implemented.");
+    public async seleccionarUno(criterio: string, criterioBusqueda: CamposBD) {
+        const query = `SELECT person.*, customer.* FROM customer LEFT JOIN person ON customer.id_person = person.id_person WHERE ${criterioBusqueda} = ${criterio};`
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            const solicitud = await this.consulta.execute()
+            await this.connection.close()
+            const data = solicitud.rows[0]
+            return new Cliente(data.last_name, data.first_name, data.passwd, data.email, data.phone, data.date_birth, data.document_type, data.document_num, data.id_address, data.id_person, data.token_session, data.id_customer, data.is_allowed)
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+            return undefined
+        }
     }
     public async seleccionarUnoId(criterio: string) {
         const query = `SELECT person.*, customer.* FROM customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE id_customer = '${criterio}';`

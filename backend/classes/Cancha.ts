@@ -1,57 +1,41 @@
 import Deportes from "../enums/Deportes"
 import Arrendador from "./Arrendador"
 import Direccion from "../interfaces/Direccion"
-import Seguridad from "./Seguridad";
-import CriteriosCancha from "../interfaces/Cancha";
-import DAODireccion from "../dao/DAODireccion";
-import DAOCancha from "../dao/DAOCancha";
 
 class Cancha {
-    protected id_cancha: string
-    protected nombreLocal: string
-    protected arrendador: Arrendador
-    protected aforo: number
-    protected direccion: Direccion
-    protected deportesDisponibles: Deportes[]
+    protected _id_sportfield: string
+    protected _arrendador: Arrendador
+    protected _direccion: Direccion
+    protected _sportfield_name: string
+    protected _capacity: number
+    //protected _available_sports: Deportes[]
 
-    public constructor(
-        id_cancha: string,
-        nombreLocal: string,
-        arrendador: Arrendador,
-        aforo: number,
-        direccion: Direccion,
-        deportesDisponibles: Deportes[]
-    ) {
-        this.id_cancha = id_cancha
-        this.nombreLocal = nombreLocal
-        this.arrendador = arrendador
-        this.aforo = aforo
-        this.direccion = direccion
-        this.deportesDisponibles = deportesDisponibles
+    public get id_sportfield(): string {
+        return this._id_sportfield
     }
-    public static async crearCancha(
-        idCancha: string, nombreLocal: string, arrendador: Arrendador, aforo: number, direccion: Direccion, deportesDisponibles: Deportes[]) {
-            const criteriosCancha: CriteriosCancha = {
-                id_sportfield : Seguridad.generarUUID(),
-                id_address: direccion.direccion,
-                name_txt: nombreLocal,
-                capacity: aforo
-            }
-            const criteriosDireccion = {
-                id_address : Seguridad.generarUUID(),
-                address_name : direccion.direccion,
-                zip_code : direccion.codigoPostal,
-                city : direccion.ciudad,
-                county : direccion.provincia,
-                state_name : direccion.departamento,
-                country : direccion.pais
-            }
-            await new DAOCancha().insertar(criteriosCancha)
-            await new DAODireccion().insertar(criteriosDireccion)
-            return new Cancha(idCancha, nombreLocal, arrendador, aforo, direccion, deportesDisponibles);
-        }
+    public get arrendador(): Arrendador {
+        return this._arrendador
+    }
+    public get direccion(): Direccion {
+        return this._direccion
+    }
+    public get sportfield_name(): string {
+        return this._sportfield_name
+    }
+    public get capacity(): number {
+        return this._capacity
+    }
+
+    public constructor(id_sportfield: string, arrendador: Arrendador, direccion: Direccion, sportfield_name: string, capacity: number, _available_sports?: Deportes[]) {
+        this._id_sportfield = id_sportfield
+        this._arrendador = arrendador
+        this._direccion = direccion
+        this._sportfield_name = sportfield_name
+        this._capacity = capacity
+        //this._available_sports = available_sports
+    }
     public async verInfo() {
-        const cancha = { nombre: this.nombreLocal, aforo: this.aforo, direccion: this.direccion, deportes: this.deportesDisponibles};
+        const cancha = { nombre: this._sportfield_name, aforo: this._capacity, direccion: this._direccion };
         return cancha
     }
 }

@@ -3,7 +3,9 @@ import Seguridad from "./Seguridad";
 import Direccion from "../interfaces/Direccion";
 import Cliente from "./Cliente";
 import Cancha from "./Cancha";
-import Deportes from "../enums/Deportes";
+import DAOCancha from "../dao/DAOCancha";
+import DAODireccion from "../dao/DAODireccion";
+//import Deportes from "../enums/Deportes";
 
 class Arrendador extends Cliente {
     protected _id_lessor: string
@@ -19,9 +21,27 @@ class Arrendador extends Cliente {
     public get date_register(): Date {
         return this._date_register
     }
-    public async registrarCancha( idCancha: string, nombreLocal: string, aforo: number, direccion: Direccion, deportesDisponibles: Deportes[]) 
-    {    
-        await Cancha.crearCancha(idCancha, nombreLocal, this , aforo, direccion, deportesDisponibles)
+    public async registrarCancha(direccion: Direccion, sportfield_name: string, capacity: number) {    
+        const cancha = new Cancha(Seguridad.generarUUID(), this, direccion, sportfield_name, capacity)
+        const id_address = Seguridad.generarUUID()
+        const criteriosCancha = {
+            id_sportfield: cancha.id_sportfield,
+            id_lessor: this._id_lessor,
+            id_address: id_address,
+            sportfield_name: cancha.sportfield_name,
+            capacity: cancha.capacity
+        }
+        const criteriosDireccion = {
+            id_address: id_address,
+            address_name: cancha.direccion.direccion,
+            zip_code: cancha.direccion.codigoPostal,
+            city: cancha.direccion.ciudad,
+            county: cancha.direccion.provincia,
+            state_name: cancha.direccion.departamento,
+            country: cancha.direccion.pais
+        }
+        await new DAOCancha().insertar(criteriosCancha)
+        await new DAODireccion().insertar(criteriosDireccion)
     }
     public actualizarDatos() {
         

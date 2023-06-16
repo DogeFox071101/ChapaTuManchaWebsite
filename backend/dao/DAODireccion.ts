@@ -2,7 +2,7 @@ import Conexion from "../database/Conexion";
 import Consulta from "../database/Consulta";
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
-import CampoBusqueda from "../enums/CampoBusqueda";
+import CamposBD from "../enums/CamposBD";
 import DAO from "./DAO";
 
 class DAODireccion extends DAO {
@@ -23,10 +23,10 @@ class DAODireccion extends DAO {
             await this.connection.close()
         }
     }
-    public seleccionarUno(_criterio: string, _campoBusqueda: CampoBusqueda) {
+    public seleccionarUno(_criterio: string, _campoBusqueda: CamposBD) {
         throw new Error("Method not implemented.");
     }
-    public seleccionarLista(_criterio: string, _campoBusqueda: CampoBusqueda) {
+    public seleccionarLista(_criterio: string, _campoBusqueda: CamposBD) {
         throw new Error("Method not implemented.");
     }
     public seleccionarTodos() {

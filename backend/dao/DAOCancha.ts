@@ -2,6 +2,7 @@ import Conexion from "../database/Conexion";
 import Consulta from "../database/Consulta";
 import DB from "../database/DB";
 import PgDB from "../database/PgDB";
+import CamposBD from "../enums/CamposBD";
 import DAO from "./DAO";
 
 
@@ -9,7 +10,7 @@ class DAOCancha extends DAO {
     private database: DB = new PgDB
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
-
+    
     public async insertar(criterios: any) {
         const query = `INSERT INTO sportfield VALUES ('${criterios.id_sportfield}', '${criterios.id_address}', '${criterios.name_txt}', '${criterios.capacity}')`
         try {
@@ -22,6 +23,9 @@ class DAOCancha extends DAO {
             console.error(error)
             await this.connection.close()
         }
+    }
+    public seleccionarUno(_criterio: string, _campoBusqueda: CamposBD) {
+        throw new Error("Method not implemented.");
     }
     public async seleccionarUnoID(criterio: string) {
         const query = `SELECT name_txt.*, capacity.* FROM sportfield FULL OUTER JOIN addresses ON sportfield.id_address = addresses.id_address WHERE id_sportfield = '${criterio}';`

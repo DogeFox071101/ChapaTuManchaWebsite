@@ -1,6 +1,7 @@
+import Arrendador from "../classes/Arrendador";
 import type DB from "../database/DB";
 import PgDB from "../database/PgDB";
-import CampoBusqueda from "../enums/CampoBusqueda";
+import CamposBD from "../enums/CamposBD";
 import DAO from "./DAO";
 
 class DAOArrendador extends DAO {
@@ -20,22 +21,23 @@ class DAOArrendador extends DAO {
             await this.connection.close()
         }
     }
-    public async seleccionarUno(criterio: string, campoBusqueda: CampoBusqueda) {
-        const query = `SELECT person.*, customer.*, lessor.* FROM lessor FULL OUTER JOIN customer ON lessor.id_customer = customer.id_customer FULL OUTER JOIN person ON customer.id_person = person.id_person WHERE ${campoBusqueda} = '${criterio}';`
+    public async seleccionarUno(criterio: string, campoBusqueda: CamposBD) {
+        const query = `SELECT person.*, customer.*, lessor.* FROM lessor LEFT JOIN customer ON lessor.id_customer = customer.id_customer LEFT JOIN person ON customer.id_person = person.id_person WHERE ${campoBusqueda} = '${criterio}';`
         try {
             await this.connection.open()
             this.consulta.set(query)
             const solicitud = await this.consulta.execute()
             await this.connection.close()
-            return solicitud.rows[0]
+            const data = solicitud.rows[0]
+            return new Arrendador(data.id_person, data.first_name, data.last_name, data.email, data.passwd, data.token_session, data.id_customer, data.phone, data.date_birth, data.document_type, data.document_num, data.is_allowed, data.direccion, data.id_lessor, data.date_register)
         }
         catch (error){
             console.error(error)
             await this.connection.close()
-            return {}
+            return undefined
         }
     }
-    public seleccionarLista(_criterio: string, _campoBusqueda: CampoBusqueda) {
+    public seleccionarLista(_criterio: string, _campoBusqueda: CamposBD) {
         throw new Error("Method not implemented.");
     }
     public seleccionarTodos() {

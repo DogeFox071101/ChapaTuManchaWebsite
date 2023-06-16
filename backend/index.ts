@@ -5,54 +5,33 @@ import Seguridad from './classes/Seguridad'
 import Direccion from './interfaces/Direccion';
 import DAOPersona from './dao/DAOPersona';
 import DAOCliente from './dao/DAOCliente';
-import Persona from './classes/Persona';
 import Cliente from './classes/Cliente';
 import Arrendador from './classes/Arrendador';
 import Cancha from './classes/Cancha';
-import CampoBusqueda from './enums/CampoBusqueda';
+import CamposBD from './enums/CamposBD';
 import Admin from './classes/Admin';
 import DAOCancha from './dao/DAOCancha';
+import DAOArrendador from './dao/DAOArrendador';
 
 const app: Express = express()
 
 app.use(express.json());
 app.use(cors());
 dotenv.config();
-
-app.post('/api/hash', async (req: Request, res: Response) => {
+// Funciones auxiliares
+app.post('/api/helper/hash', async (req: Request, res: Response) => {
     const data = req.body.msg
     const pw = await Seguridad.generarHash(data)
     console.log("Hash generado correctamente")
     res.json({ msg : pw })
 })
-app.get('/api/token', async (_req: Request, res: Response) => {
+app.get('/api/helper/token', async (_req: Request, res: Response) => {
     const token = await Seguridad.generarToken()
     console.log("Token generado correctamente")
     res.json({ msg : token })
 })
-app.get('/api/buscar_canchas', async (req: Request, res: Response) => {
-    const codigoPostal = req.body.msg
-    const canchas = await new DAOCancha().seleccionarLista(codigoPostal)
-    for (const cancha of canchas) {
-        res.json({ msg: cancha });
-})
-app.get('/api/buscar_cancha_id', async (req: Request, res: Response) => {
-    const id = req.body.msg
-    const cancha = await new DAOCancha().seleccionarUnoID(id)
-    res.json({ msg : cancha })
-})
-app.get('/api/buscar_usuarios', async (req: Request, res: Response) => {
-    const nombre = req.body.msg
-    const clientes = await new DAOCliente().seleccionarLista(nombre)
-    for (const cliente of clientes) 
-        res.json({ msg: cliente })
-})
-app.get('/api/buscar_usuario_id', async (req: Request, res: Response) => {
-    const id = req.body.msg
-    const cliente = await new DAOCliente().seleccionarUnoId(id)
-    res.json({ msg : cliente?.verInfo })
-})
-app.post('/api/crear/cliente', async (req: Request, res: Response) => {
+// Crear Cuenta
+app.post('/api/usuario/crear', async (req: Request, res: Response) => {
     const data = req.body
     const date_birth = new Date(data.date_birth)
     const direccion: Direccion = data.direccion
@@ -65,10 +44,11 @@ app.post('/api/crear/cliente', async (req: Request, res: Response) => {
     console.log(respuesta)
     res.json(respuesta)
 })
-app.post('/api/login', async (req: Request, res: Response) => {
+// Inicio de Sesión
+app.post('/api/usuario/login', async (req: Request, res: Response) => {
     const data = req.body
     const passwd = await Seguridad.generarServerHash(data.msg)
-    const persona = await new DAOPersona().seleccionarUno(data.id, CampoBusqueda.EMAIL)
+    const persona = await new DAOPersona().seleccionarUno(data.id, CamposBD.EMAIL)
     var respuesta = { id_user : "", token_session : "", is_allowed : false, warning: true }
     if (!persona) { res.json(respuesta) }
     if (!persona!.iniciarSesion(passwd.oldPw)) {
@@ -91,18 +71,90 @@ app.post('/api/login', async (req: Request, res: Response) => {
         res.json(respuesta)
     }
 })
-app.post('/api/cambiar/contrasena', async (req: Request, res: Response) => {
-    const data = req.body
-    const persona: Persona | undefined = await new DAOPersona().seleccionarUno(data.id_user, CampoBusqueda.ID_PERSONA)
-    res.json(persona)
+// Recuperar Contraseña
+app.post('/api/usuario/contrasena/recuperar', async (_req: Request, _res: Response) => {
+    // TODO
 })
-app.get('/api/buscar/cancha', async (_req: Request, res: Response) => {
+// Cambiar Contraseña
+app.post('/api/usuario/contrasena/cambiar', async (req: Request, res: Response) => {
+    const data = req.body
+    const persona = await new DAOPersona().seleccionarUno(data.id_user, CamposBD.ID_PERSON)
+    if (data.mode === "consulta") {
+        res.json({ result : (data.msg === persona!.passwd) })
+    }
+    await persona!.cambiarContrasena(data.msg)
+    const status = 0
+    res.json({ status : status })
+})
+// Modificar Datos de Cuenta
+app.post('/api/usuario/info/obtener', async (_req: Request, _res: Response) => {
+    // TODO
+})
+app.post('/api/usuario/info/modificar', async (_req: Request, _res: Response) => {
+    // TODO
+})
+// Cerrar Sesión
+app.post('/api/usuario/logout', async (_req: Request, _res: Response) =>  {
+    // TODO
+})
+// Registrar una Cancha
+app.post('/api/cliente/upgrade', async (req: Request, res: Response) => {
+    const id_user = req.body.id
+    const usuario = await new DAOCliente().seleccionarUno(id_user, CamposBD.ID_ALL_USER)
+    if (usuario) {
+        const arrendador = await Arrendador.upgradeToArrendatario(usuario)
+        res.json({ new_id_user: arrendador.id_lessor  })
+    }
+    res.json({ id_user: "Not Allowed" })
+})
+app.post('/api/cancha/registrar', async (req: Request, res: Response) => {
+    const id_arrendador = req.body.id
+    const direccion: Direccion = req.body.direccion
+    const arrendador = await new DAOArrendador().seleccionarUno(id_arrendador, CamposBD.ID_LESSOR)
+    if (arrendador) {
+        await arrendador.registrarCancha(direccion, req.body.sportfield_name, req.body.capacity)
+    }
+    const estado = 0
+    res.json({status : estado})
+})
+// Modificar Rango de Búaqueda de Canchas Deportivas
+app.post('/api/cancha/buscar', async (_req: Request, _res: Response) => {
+    // TODO
+})
+// Visualizar Información de Canchas Deportivas
+app.post('/api/buscar_cancha_id', async (req: Request, res: Response) => {
+    const id = req.body.msg
+    const cancha = await new DAOCancha().seleccionarUnoID(id)
+    res.json(cancha)
+})
+app.post('/api/buscar/cancha', async (_req: Request, res: Response) => {
     const cancha = await Cancha.toString()
     console.log("correctamente")
     res.json({ msg : cancha })
 })
-app.post('/api/obtener/perfil_usuario', async (_req: Request, _res: Response) => {
-    
+// Buscar usuarios por nombre
+app.get('/api/buscar_usuarios', async (req: Request, res: Response) => {
+    const nombre = req.body.msg
+    const clientes = await new DAOCliente().seleccionarLista(nombre)
+    for (const cliente of clientes) 
+        res.json({ msg: cliente })
+})
+app.post('/api/buscar_usuario_id', async (req: Request, res: Response) => {
+    const id = req.body.msg
+    const cliente = await new DAOCliente().seleccionarUnoId(id)
+    res.json(cliente!.verInfo())
+})
+// Revisar Información de Arrendadores
+app.post('/api/arrendador/info/obtener', async (_req: Request, _res: Response) => {
+
+})
+// Reservar una Cancha Deportiva
+app.post('/api/buscar_canchas', async (req: Request, res: Response) => {
+    const codigoPostal = req.body.msg
+    const canchas = await new DAOCancha().seleccionarLista(codigoPostal)
+    for (const cancha of canchas) {
+        res.json({ msg: cancha }); // no se puede hacer esto
+    }
 })
 const PORT = process.env.PORT
 app.listen(PORT, () => {
