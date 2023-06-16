@@ -44,13 +44,17 @@ abstract class Persona {
         }
         return true
     }
+    public async actualizarToken(token_session: string) {
+        await new DAOPersona().actualizar(this._id_person, CamposBD.A_ID_PERSON, token_session, CamposBD.A_TOKEN_SESSION)
+        return token_session
+    }
     /**
      * Ejecuta un cambio de contraseña
      */
     public async cambiarContrasena(new_passwd: string) {
         this._passwd = (await Seguridad.generarServerHash(new_passwd)).newPw
         const dao = new DAOPersona()
-        await dao.actualizar(this._id_person, CamposBD.ID_PERSON, new_passwd, CamposBD.PASSWD)
+        await dao.actualizar(this._id_person, CamposBD.A_ID_PERSON, new_passwd, CamposBD.A_PASSWD)
     }
     /**
      * Reestablece una contraseña

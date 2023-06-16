@@ -39,28 +39,28 @@ class Cliente extends Persona {
         return this._is_allowed
     }
     public get id_person(): string {
-        return this.id_person
+        return this._id_person
     }
     public get first_name(): string {
-        return this.first_name
+        return this._first_name
     }
     public get last_name(): string {
-        return this.last_name
+        return this._last_name
     }
     public get phone(): string {
-        return this.phone
+        return this._phone
     }
     public get date_birth(): Date {
-        return this.date_birth
+        return this._date_birth
     }
     public get document_type(): string {
-        return this.document_type
+        return this._document_type
     }
     public get document_num(): string {
-        return this.document_num
+        return this._document_num
     }
     public get direccion(): Direccion {
-        return this.direccion
+        return this._direccion
     }
     public async crearCliente() {
         await new DAOPersona().insertar(this)
@@ -69,7 +69,7 @@ class Cliente extends Persona {
     }
     
     public verInfo() {
-        const cliente = { nombres: this.first_name, apellidos: this.last_name, fecha_nacimiento: this._date_birth, direccion: this.direccion ,telefono: this.phone, email: this.email};
+        const cliente = { first_name: this._first_name, last_name: this._last_name, date_birth: this._date_birth, direccion: this._direccion, phone: this._phone, email: this._email };
         return cliente
     }
     public actualizarDatos(): void {

@@ -38,8 +38,8 @@ class DAOPersona extends DAO {
             FULL OUTER JOIN addresses ON addresses.id_address = customer.id_address 
             WHERE `
         var condition = `${campoBusqueda} = '${criterio}';`
-        if (campoBusqueda === CamposBD.ID_ALL_USER) {
-            condition = `${CamposBD.ID_PERSON} = ${criterio} OR ${CamposBD.ID_ADMIN} = ${criterio} OR ${CamposBD.ID_CUSTOMER} = ${criterio} OR ${CamposBD.ID_LESSOR} = ${criterio}`
+        if (campoBusqueda === CamposBD.A_ID_ALL_USER) {
+            condition = `${CamposBD.PERSON_ID_PERSON} = '${criterio}' OR ${CamposBD.ADMINS_ID_ADMIN} = '${criterio}' OR ${CamposBD.CUSTOMER_ID_CUSTOMER} = '${criterio}' OR ${CamposBD.LESSOR_ID_LESSOR} = '${criterio}'`
         }
         try {
             await this.connection.open()
@@ -81,7 +81,7 @@ class DAOPersona extends DAO {
         }
     }
     public async actualizar(criterio: string, campoBusqueda: CamposBD, valor: string, campoActualizar: CamposBD) {
-        const query = `UPDATE person SET ${campoActualizar} = ${valor} WHERE ${campoBusqueda} = ${criterio};`
+        const query = `UPDATE person SET ${campoActualizar} = '${valor}' WHERE ${campoBusqueda} = '${criterio}';`
         try {
             await this.connection.open()
             this.consulta.set(query)
