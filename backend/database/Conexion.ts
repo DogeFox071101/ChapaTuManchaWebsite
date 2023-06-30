@@ -1,6 +1,6 @@
 abstract class Conexion {
-    public open(): any {}
-    public close(): any {}
+    public abstract open(): Promise<void>
+    public abstract close(): Promise<void>
 }
 
 export default Conexion

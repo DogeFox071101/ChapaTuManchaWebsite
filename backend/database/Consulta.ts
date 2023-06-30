@@ -1,6 +1,6 @@
 abstract class Consulta {
-    public abstract set(_text : string): void
-    public abstract execute(): any
+    public abstract set(_input : any): void
+    public abstract execute(): Promise<any>
 }
 
 export default Consulta
