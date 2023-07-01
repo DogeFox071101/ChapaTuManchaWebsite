@@ -2,7 +2,7 @@ import type DB from "../database/DB"
 import type Conexion from "../database/Conexion"
 import type Consulta from "../database/Consulta"
 import PgDB from "../database/PgDB"
-import Usuario from "../classes/Usuario"
+import type Usuario from "../classes/Usuario"
 
 class UsersDAO {
     private database: DB = new PgDB()
@@ -152,6 +152,102 @@ class UsersDAO {
         const query = {
             text: "UPDATE users SET first_name = $1, last_name = $2 WHERE user_id = $3",
             values: [usuario.firstName, usuario.lastName, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarContrasena(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET password = $1 WHERE user_id = $2",
+            values: [usuario.password, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarTokenDeSesion(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET token_session = $1 WHERE user_id = $2",
+            values: [usuario.tokenSession, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarFechaNacimiento(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET date_birth = $1 WHERE user_id = $2",
+            values: [usuario.dateBirth, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarDocumentoIdentidad(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET document_type = $1, document_num = $2 WHERE user_id = $3",
+            values: [usuario.documentType, usuario.documentNum, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarRegistroArrendatario(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET date_register_as_lessor = $1 WHERE user_id = $2",
+            values: [usuario.dateRegisterLessor, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarMetodosDePago(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET payment_methods = $1 WHERE user_id = $2",
+            values: [usuario.paymentMethods, usuario.userId]
         }
         try {
             await this.connection.open()

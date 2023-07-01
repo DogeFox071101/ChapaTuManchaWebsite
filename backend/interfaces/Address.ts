@@ -1,7 +1,8 @@
 interface Address {
     addressId  : string;
-    address     : string;
-    number      : number;
+    addressLine     : string;
+    addressExt      : string;
+    doorNumber      : number;
     zipCode    : number;
     district    : string;
     city        : string;
