@@ -12,16 +12,16 @@ class Usuario {
     private _email: string;
     private _password: string;
     private _tokenSession: string;
-    private _phone: Phone;
-    private _address: Address;
     private _dateBirth: Date;
     private _documentType: string;
     private _documentNum: string;
     private _dateRegisterLessor: string;
     private _paymentMethods: string[];
+    private _address: Address;
+    private _phone: Phone;
 
     constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string);
-    constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, phone?: any, address?: any, dateBirth?: any, documentType?: any, documentNum?: any, dateRegisterLessor?: any, paymentMethods?: any) {
+    constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth?: any, documentType?: any, documentNum?: any, dateRegisterLessor?: any, paymentMethods?: any, address?: any, phone?: any) {
         this._userId = userId;
         this._firstName = firstName;
         this._lastName = lastName;
