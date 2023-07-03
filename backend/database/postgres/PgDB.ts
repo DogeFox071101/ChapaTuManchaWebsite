@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import DB from "./DB";
+import DB from "../DB";
 import PgConexion from "./PgConexion";
 import PgConsulta from "./PgConsulta";
 

@@ -1,13 +1,14 @@
 import type DB from "../database/DB"
 import type Conexion from "../database/Conexion"
 import type Consulta from "../database/Consulta"
-import PgDB from "../database/PgDB"
+import PgDB from "../database/postgres/PgDB"
 import type Phone from "../interfaces/Phone"
 
 class PhoneNumbersDAO {
     private database: DB = new PgDB()
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
+    
     public async insertar(phone: Phone) {
         const query = {
             text: "INSERT INTO phone_numbers(phone_id, prefix, number, country, is_fixed) VALUES ($1, $2, $3, $4, $5)",

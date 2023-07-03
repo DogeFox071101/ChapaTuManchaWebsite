@@ -7,23 +7,27 @@ class Cancha {
     private _description: string;
     private _capacity: number;
     private _price: number;
+	private _image: Image;
     private _datePost: Date;
     private _timeStart: string;
     private _timeEnd: string;
     private _user: Usuario;
     private _address: Address;
-    public constructor(sportfieldId: string, name: string, description: string, capacity: number, price: number, datePost: Date, timeStart: string, timeEnd: string, user: Usuario, address: Address) {
+
+    public constructor(sportfieldId: string, name: string, description: string, capacity: number, price: number, image: Image, datePost: Date, timeStart: string, timeEnd: string, user: Usuario, address: Address) {
         this._sportfieldId = sportfieldId
         this._name = name
         this._description = description
         this._capacity = capacity
         this._price = price
+		this._image = image
         this._datePost = datePost
         this._timeStart = timeStart
         this._timeEnd = timeEnd
         this._user = user
         this._address = address
     }
+	
 	public get sportfieldId(): string {
 		return this._sportfieldId;
 	}
@@ -38,6 +42,9 @@ class Cancha {
 	}
 	public get price(): number {
 		return this._price;
+	}
+	public get image(): Image {
+		return this._image;
 	}
 	public get datePost(): Date {
 		return this._datePost;
@@ -54,6 +61,7 @@ class Cancha {
     public get address(): Address {
         return this._address;
     }
+	
 	public set sportfieldId(value: string) {
 		this._sportfieldId = value;
 	}
@@ -68,6 +76,9 @@ class Cancha {
 	}
 	public set price(value: number) {
 		this._price = value;
+	}
+	public set image(value: Image) {
+		this._image = value;
 	}
 	public set datePost(value: Date) {
 		this._datePost = value;

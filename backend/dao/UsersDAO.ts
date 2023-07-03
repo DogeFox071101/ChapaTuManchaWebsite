@@ -1,13 +1,14 @@
 import type DB from "../database/DB"
 import type Conexion from "../database/Conexion"
 import type Consulta from "../database/Consulta"
-import PgDB from "../database/PgDB"
+import PgDB from "../database/postgres/PgDB"
 import type Usuario from "../classes/Usuario"
 
 class UsersDAO {
     private database: DB = new PgDB()
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
+
     public async insertar(usuario: Usuario) {
         const query = {
             text: "INSERT INTO users(user_id, first_name, last_name, email, password, token_session, phone_id) VALUES ($1, $2, $3, $4, $5, $6, $7)",
@@ -63,6 +64,24 @@ class UsersDAO {
         const query = {
             text: "SELECT * FROM users WHERE UPPER(first_name) LIKE $1",
             values: ["%" + firstName.toUpperCase() + "%"]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            const res = await this.consulta.execute()
+            await this.connection.close()
+            return res
+        }
+        catch (error){
+            console.error(error)
+            await this.connection.close()
+            return null
+        }
+    }
+    public async seleccionarPorCorreo(email: string) {
+        const query = {
+            text: "SELECT * FROM users WHERE email = $1",
+            values: [email]
         }
         try {
             await this.connection.open()

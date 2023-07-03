@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import Consulta from "./Consulta";
+import Consulta from "../Consulta";
 
 class PgConsulta extends Consulta {
     protected client : Client

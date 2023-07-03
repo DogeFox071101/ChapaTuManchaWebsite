@@ -1,5 +1,5 @@
 import { Client } from "pg";
-import Conexion from "./Conexion";
+import Conexion from "../Conexion";
 
 class PgConexion extends Conexion {
     protected client : Client

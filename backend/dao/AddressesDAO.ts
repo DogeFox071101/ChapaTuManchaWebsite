@@ -1,13 +1,14 @@
 import type DB from "../database/DB"
 import type Conexion from "../database/Conexion"
 import type Consulta from "../database/Consulta"
-import PgDB from "../database/PgDB"
+import PgDB from "../database/postgres/PgDB"
 import type Address from "../interfaces/Address"
 
 class AddressesDAO {
     private database: DB = new PgDB()
     private connection: Conexion = this.database.getConexion()
     private consulta: Consulta = this.database.getConsulta()
+    
     public async insertar(address: Address) {
         const query = {
             text: "INSERT INTO addresses(address_id, address_line, door_number, zip_code, district, city, state, country) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
@@ -76,7 +77,7 @@ class AddressesDAO {
     }
     public async eliminar(address: Address) {
         const query = {
-            text: "DELETE addresses WHERE address_id = $1",
+            text: "DELETE FROM addresses WHERE address_id = $1",
             values: [address.addressId]
         }
         try {
