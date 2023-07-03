@@ -8,6 +8,7 @@ class Reserva {
     private _timeEnd: string;
     private _sportfield: Cancha;
     private _user: Usuario;
+
     public constructor(bookingId: string, dateBooking: Date, timeStart: string, timeEnd: string, sportfield: Cancha, user: Usuario) {
         this._bookingId = bookingId
         this._dateBooking = dateBooking
@@ -16,6 +17,7 @@ class Reserva {
         this._sportfield = sportfield
         this._user = user
     }
+	
 	public get bookingId(): string {
 		return this._bookingId;
 	}
@@ -34,6 +36,7 @@ class Reserva {
 	public get user(): Usuario {
 		return this._user;
 	}
+	
 	public set bookingId(value: string) {
 		this._bookingId = value;
 	}
@@ -54,7 +57,7 @@ class Reserva {
 	}
     
     public verInfo() {
-        
+        throw new Error("Method not implemented");
     }
 }
 

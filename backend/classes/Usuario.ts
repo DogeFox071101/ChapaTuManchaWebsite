@@ -1,6 +1,8 @@
+import AddressesDAO from "../dao/AddressesDAO";
 import UsersDAO from "../dao/UsersDAO";
 import type Address from "../interfaces/Address";
 import type Phone from "../interfaces/Phone";
+import Favorito from "./Favorito";
 
 /**
  * Clase Persona
@@ -36,6 +38,7 @@ class Usuario {
         this._dateRegisterLessor = dateRegisterLessor;
         this._paymentMethods = paymentMethods;
     };
+	
 	public get userId(): string {
 		return this._userId;
     };
@@ -75,6 +78,7 @@ class Usuario {
 	public get paymentMethods(): string[] {
 		return this._paymentMethods;
 	};
+
 	public set userId(value: string) {
 		this._userId = value;
 	};
@@ -115,51 +119,50 @@ class Usuario {
 		this._paymentMethods = value;
 	};
     
-    public async crearCuenta() {
-        await new UsersDAO().insertar(this)
+    public async crearCuenta(): Promise<void> {
+        await new AddressesDAO().insertar(this.address)
+		await new UsersDAO().insertar(this)
     };
-    public inicioSesion() {
-
+    public async inicioSesion(): Promise<boolean> {
+		throw new Error("Method not implemented");
     };
-    public recuperarContrasena() {
-
+    public recuperarContrasena(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public cambiarContrasena() {
-
+    public cambiarContrasena(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public cerrarSesion() {
-
+    public cerrarSesion(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public registrarCancha() {
-
+    public registrarCancha(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public modificarDatos() {
-
+    public modificarDatos(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public verInfo() {
-
+    public reservarCancha(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public reservarCancha() {
-
+    public valorarCancha(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public valorarCancha() {
-
+    public marcarFavorito(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public marcarFavorito() {
-
+    public verFavoritos(): Promise<Favorito[]> {
+		throw new Error("Method not implemented");
     };
-    public verFavoritos() {
-
+    public desmarcarFavorito(): Promise<void> {
+        throw new Error("Method not implemented");
     };
-    public desmarcarFavorito() {
-        
+    public reportarCancha(): Promise<void> {
+		throw new Error("Method not implemented");
     };
-    public reportarCancha() {
-
-    };
-    public publicacionCancha() {
-
-    };
+	// NO REALIZABLE --> Requiere modificación del backlog
+    // public publicacionCancha(): Promise<void> {
+	// 	throw new Error("Method not implemented");
+    // };
 }
 
 export default Usuario

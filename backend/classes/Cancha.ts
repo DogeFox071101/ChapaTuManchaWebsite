@@ -1,3 +1,4 @@
+import SportfieldsDAO from "../dao/SportfieldsDAO";
 import type Address from "../interfaces/Address";
 import type Usuario from "./Usuario";
 
@@ -96,8 +97,11 @@ class Cancha {
         this._address = value;
     }
 
+	public crearCancha() {
+		throw new Error("Method not implemented");
+	}
     public verInfo() {
-        
+        throw new Error("Method not implemented");
     }
 }
 

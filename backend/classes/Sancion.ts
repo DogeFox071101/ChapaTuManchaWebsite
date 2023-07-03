@@ -9,6 +9,7 @@ class Sancion {
     private _user: Usuario;
     private _report: Reporte;
     private _admin: Administrador;
+
 	constructor(sanctionId: string, judgment: string, sanctionEnd: Date, user: Usuario, report: Reporte, admin: Administrador) {
 		this._sanctionId = sanctionId;
 		this._judgment = judgment;
@@ -17,6 +18,7 @@ class Sancion {
 		this._report = report;
 		this._admin = admin;
 	}
+	
 	public get sanctionId(): string {
 		return this._sanctionId;
 	}
@@ -35,6 +37,7 @@ class Sancion {
 	public get admin(): Administrador {
 		return this._admin;
 	}
+	
 	public set sanctionId(value: string) {
 		this._sanctionId = value;
 	}

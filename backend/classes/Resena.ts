@@ -8,6 +8,7 @@ class Resena {
     private _reviewStars: number;
     private _user: Usuario;
     private _sportfield: Cancha;
+
 	constructor(reviewId: string, reviewText: string, dateReview: Date, reviewStars: number, user: Usuario, sportfield: Cancha) {
 		this._reviewId = reviewId;
 		this._reviewText = reviewText;
@@ -16,6 +17,7 @@ class Resena {
 		this._user = user;
 		this._sportfield = sportfield;
 	}
+	
 	public get reviewId(): string {
 		return this._reviewId;
 	}
@@ -34,6 +36,7 @@ class Resena {
 	public get sportfield(): Cancha {
 		return this._sportfield;
 	}
+	
 	public set reviewId(value: string) {
 		this._reviewId = value;
 	}

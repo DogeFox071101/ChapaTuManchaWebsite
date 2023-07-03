@@ -5,11 +5,13 @@ class Favorito {
     private _sportfield: Cancha;
     private _user: Usuario;
     private _dateAdded: Date;
+
 	constructor(sportfield: Cancha, user: Usuario, dateAdded: Date) {
 		this._sportfield = sportfield;
 		this._user = user;
 		this._dateAdded = dateAdded;
 	}
+	
 	public get sportfield(): Cancha {
 		return this._sportfield;
 	}
@@ -19,6 +21,7 @@ class Favorito {
 	public get dateAdded(): Date {
 		return this._dateAdded;
 	}
+	
 	public set sportfield(value: Cancha) {
 		this._sportfield = value;
 	}

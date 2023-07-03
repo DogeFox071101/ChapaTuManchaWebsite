@@ -1,11 +1,14 @@
+import AdminsDAO from "../dao/AdminsDAO";
+
 class Administrador {
-    private _adminId: string;
+	private _adminId: string;
     private _fullName: string;
     private _username: string;
     private _password: string;
     private _accessLevel: number;
     private _documentType: string;
     private _documentNum: number;
+
 	constructor(adminId: string, fullName: string, username: string, password: string, accessLevel: number, documentType: string, documentNum: number) {
 		this._adminId = adminId;
 		this._fullName = fullName;
@@ -15,6 +18,7 @@ class Administrador {
 		this._documentType = documentType;
 		this._documentNum = documentNum;
 	}
+
 	public get adminId(): string {
 		return this._adminId;
 	}
@@ -36,6 +40,7 @@ class Administrador {
 	public get documentNum(): number {
 		return this._documentNum;
 	}
+
 	public set adminId(value: string) {
 		this._adminId = value;
 	}
@@ -58,14 +63,17 @@ class Administrador {
 		this._documentNum = value;
 	}
     
+	public crearAdministrador() {
+		throw new Error("Method not implemented");
+	}
     public verReportes() {
-
+		throw new Error("Method not implemented");
     }
     public emitirSentencia() {
-
+		throw new Error("Method not implemented");
     }
     public eliminarUsuario() {
-        
+        throw new Error("Method not implemented");
     }
 }
 
