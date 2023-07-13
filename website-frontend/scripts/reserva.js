@@ -1,49 +1,85 @@
+const form = document.getElementById("reservation-form");
+const resultsContainer = document.getElementById("results");
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Obtener el formulario de reserva
-    const reservationForm = document.getElementById('reservation-form');
-  
-    // Manejar el evento de envío del formulario
-    reservationForm.addEventListener('submit', function(event) {
-      event.preventDefault(); // Evitar que se envíe el formulario
-  
-      // Obtener los valores del formulario
-      const fecha = document.getElementById('fecha').value;
-      const turno = document.getElementById('turno').value;
-  
-      // Realizar la lógica de verificación de disponibilidad del turno
-      const isTurnoDisponible = verificarDisponibilidadTurno(turno); // Función para verificar la disponibilidad del turno
-  
-      if (isTurnoDisponible) {
-        // Realizar la lógica de reserva aquí
-        realizarReserva(fecha, turno); // Función para realizar la reserva
-  
-        // Mostrar un mensaje de éxito
-        const message = document.getElementById('message');
-        message.textContent = 'Reserva creada exitosamente';
-        message.style.color = 'green';
-      } else {
-        // Mostrar un mensaje de error si el turno no está disponible
-        const message = document.getElementById('message');
-        message.textContent = 'El turno seleccionado no está disponible';
-        message.style.color = 'red';
-      }
-    });
-  
-    // Función para verificar la disponibilidad del turno
-    function verificarDisponibilidadTurno(turno) {
-      // Lógica para verificar la disponibilidad del turno ,se completara en el sprint 3 
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-      // Devolver true si el turno está disponible, false en caso contrario
+  // Obtener los valores ingresados en el formulario
+  const nombreCliente = document.getElementById("nombre").value;
+  const fechaHora = new Date(document.getElementById("fecha").value);
+  const turno = document.getElementById("turno").value;
 
-      return true;
-    }
-  
-    // Función para realizar la reserva se completara en el sprint 3 
-    function realizarReserva(fecha, turno) {
-      // Lógica para realizar la reserva
-      // ...
+  const mensaje = {
+    nombreCliente,
+    fechaHora,
+    turno
+  };
 
-    }
+  let response = await fetch("http://localhost:3001/api/reservar_cancha", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(mensaje)
   });
-  
+
+  const data = await response.json();
+  const reservaExitosa = data.reservaExitosa;
+
+  if (reservaExitosa) {
+    // Mostrar mensaje de éxito
+    alert("¡Reserva realizada con éxito!");
+
+    // Obtener datos adicionales de la cancha desde el backend
+    const idCancha = data.idCancha;
+    const canchaResponse = await obtenerCanchaPorId(idCancha);
+    
+    // Obtener datos adicionales del arrendador desde el backend
+    const idArrendador = canchaResponse.msg.idArrendador;
+    const arrendadorResponse = await obtenerUsuarioPorId(idArrendador);
+
+    if (canchaResponse && arrendadorResponse) {
+      const cancha = canchaResponse.msg;
+      const arrendador = arrendadorResponse.msg;
+      
+      // Actualizar los datos en el formulario
+      document.getElementById("nombre_local").textContent = cancha.nombreLocal;
+      document.getElementById("direccion").textContent = cancha.direccion;
+      document.getElementById("nombre_Arrendador").textContent = arrendador.nombreArrendador;
+      document.getElementById("precio").textContent = cancha.precioReserva;
+    }
+  } else {
+    // Mostrar mensaje de error
+    alert("La cancha no está disponible en el horario solicitado. Por favor, elige otro horario.");
+  }
+});
+
+async function obtenerCanchaPorId(id) {
+  const mensaje = { msg: id };
+
+  let response = await fetch("http://localhost:3001/api/buscar_cancha_id", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(mensaje)
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+async function obtenerUsuarioPorId(id) {
+  const mensaje = { msg: id };
+
+  let response = await fetch("http://localhost:3001/api/buscar_usuario_id", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(mensaje)
+  });
+
+  const data = await response.json();
+  return data;
+}
