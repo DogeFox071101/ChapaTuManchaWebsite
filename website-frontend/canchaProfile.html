@@ -1,109 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil cancha</title>
-    <script src="./scripts/login.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./styles/canchaProfile.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil cancha</title>
+        <script src="./scripts/login.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./styles/canchaProfile.css">
+    </head>
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <img src="../website-frontend/images/logo.png" alt="logo">
-                    <span>CHAPA TU MANCHA</span>
-                </a>
-                <div class="subheader">
-                    <a href="userProfile.html">PERFIL</a>
-                    <a href="search.html">BUSCAR</a>
-                    <a href="reserva.html">RESERVAS</a>
-                    <a href="index.html">SOPORTE</a>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="../website-frontend/images/logo.png" alt="logo">
+                        <span>CHAPA TU MANCHA</span>
+                    </a>
+                    <div class="subheader">
+                        <a href="userProfile.html">PERFIL</a>
+                        <a href="search.html">BUSCAR</a>
+                        <a href="reserva.html">RESERVAS</a>
+                        <a href="index.html">SOPORTE</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div id="square">
+                    <form action="#" class="formulario" id="formulario">
+                        <h1 class="text-center mb-4 nombre-usuario">DEPORZETA</h1>
+                        <div class="row fila-carrusel">
+                            <div id="carouselExampleIndicators" class="carousel slide slide_carrusel" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="../website-frontend/images/deporz.jpg" class="imagen" alt="Image 1">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="../website-frontend/images/deporz2.jpg" class="imagen" alt="Image 2">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="../website-frontend/images/deporz3.jpg" class="imagen" alt="Image 3">
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <h3 class="card-title text-center">Información de la cancha</h3>
+                                    <div class="container-datos">
+                                        <h5>Nombre:</h5>
+                                        <p id="nombre_cancha"></p>
+                                        <h5>Aforo:</h5>
+                                        <p id="aforo"></p>
+                                        <h5>Direccion:</h5>
+                                        <p id="direccion"></p>
+                                        <h5>Precio por hora:</h5>
+                                        <p id="precio"></p>
+                                        <h5>Deportes:</h5>
+                                        <p id="tipo"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <h3 class="card-title text-center">Información del arrendador</h3>
+                                    <div class="container-datos">
+                                        <h5>Nombres:</h5>
+                                        <p id="nombre"></p>
+                                        <h5>Apellidos:</h5>
+                                        <p id="apellido"></p>
+                                        <h5>Email:</h5>
+                                        <p id="correo"></p>
+                                        <h5>Telefono:</h5>
+                                        <p id="celular"></p>
+                                    </div>
+                                </div>
+                                <div class="mb-3 boton_reserva">
+                                    <a href="./reserva.html" class="btn btn-success btn-lg mb-3 boton-verde">Reservar</a>
+                                    <a class="btn btn-success btn-lg mb-3 boton-verde" id="btnFavorito" onclick="toggleFavorito()">Agregar a
+                                        favoritos</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div id="reseñas">
+                    <h3 class="card-title text-center">Reseñas y comentarios</h3>
+                    <form id="formulario-reseña">
+                        <div class="mb-3">
+                            <label for="comentario" class="form-label">Comentario:</label>
+                            <textarea class="form-control" id="comentario" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </form>
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div id="square">
-                <form action="#" class="formulario" id="formulario">
-                    <h1 class="text-center mb-4 nombre-usuario">DEPORZETA</h1>
-                    <div class="row fila-carrusel">
-                        <div id="carouselExampleIndicators" class="carousel slide slide_carrusel" data-bs-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="../website-frontend/images/deporz.jpg" class="imagen" alt="Image 1">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../website-frontend/images/deporz2.jpg" class="imagen" alt="Image 2">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="../website-frontend/images/deporz3.jpg" class="imagen" alt="Image 3">
-                                </div>
-                            </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card">
-                                <h3 class="card-title text-center">Información de la cancha</h3>
-                                <div class="container-datos">
-                                    <h5>Nombre:</h5>
-                                    <p id="nombre_cancha">Deporzeta</p>
-                                    <h5>Aforo:</h5>
-                                    <p id="aforo">35</p>
-                                    <h5>Direccion:</h5>
-                                    <p id="direccion">Av. Javier Prado Este, Ate 15026</p>
-                                    <h5>Precio por hora:</h5>
-                                    <p id="precio">30 soles</p>
-                                    <h5>Deportes:</h5>
-                                    <p id="tipo">Fútbol</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card">
-                                <h3 class="card-title text-center">Información del arrendador</h3>
-                                <div class="container-datos">
-                                    <h5>Nombres:</h5>
-                                    <p id="nombre_arrendador">Juan Carlos</p>
-                                    <h5>Apellidos:</h5>
-                                    <p id="nombre_arrendador">Sanchez Lopez</p>
-                                    <h5>Email:</h5>
-                                    <p id="email">john.doe@example.com</p>
-                                    <h5>Telefono:</h5>
-                                    <p id="direccion">934534432</p>
-                                </div>
-                            </div>
-                            <div class="mb-3 boton_reserva">
-                                <a href="./reserva.html" class="btn btn-success btn-lg mb-3 boton-verde">Reservar</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        <script src="./scripts/canchaProfile.js"></script>
+        <script src="./scripts/usuarioProfile.js"></script>
+    </body>
 
-</html>
+    </html>
