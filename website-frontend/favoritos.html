@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscar</title>
-    <script src="./scripts/login.js"></script>
+    <title>Favoritos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./styles/search.css">
-    <script src="./scripts/search.js"></script>
+    <link rel="stylesheet" href="./styles/favoritos.css">
 </head>
 
 <body>
@@ -30,25 +29,30 @@
         </nav>
     </header>
 
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between full-height">
-            <h1>Búsqueda</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2>Lista de favoritos</h2>
+            <ul id="results">
+                <li class="cancha">
+                    <a href="canchaProfile.html">
+                        <img src="../website-frontend/images/logo.png" alt="Imagen de la cancha">
+                    </a>
+                    <div class="nombre">
+                        <a href="canchaProfile.html">Deporzeta</a>
+                    </div>
+                    <div class="direccion">Av. Javier Prado Este, Ate 15026</div>
+                    <div class="precio">$50.00</div>
+                    <div class="eliminar">
+                        <button class="btn_eliminar" onclick="removeFavorite(this)">Eliminar</button>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <h2>Seleccione una opción</h2>
-        <form id="form-busqueda" onsubmit="return validarFormulario()">
-            <select id="opciones" onchange="mostrarMensaje()">
-                <option value="">Seleccionar</option>
-                <option value="cancha">Cancha</option>
-                <option value="usuario">Usuario</option>
-            </select>
-            <h2 id="mensaje-antes" style="display: none;"></h2>
-            <input type="text" id="campo-entrada" style="display: none;" required>
-            <p id="mensaje" style="display: none;"></p>
-            <button id="boton" type="submit" style="display: none;">Buscar</button>
-        </form>
     </div>
-
+    <p id="message"></p>
+    <script src="./scripts/resultsCancha.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
