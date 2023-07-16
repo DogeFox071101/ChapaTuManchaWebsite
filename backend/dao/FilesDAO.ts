@@ -1,7 +1,7 @@
 import fs from "fs"
 
 class FilesDAO {
-    private filePath = process.env.PATH_FILESYSTEM!
+    protected filePath = process.env.PATH_FILESYSTEM!
 
     public insertarEvidencia(fileName: string, content: Buffer) {
         const path = this.filePath + "evidences/" + fileName

@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS admins (
 	username TEXT NOT NULL,
 	password TEXT NOT NULL,
 	access_level INT NOT NULL,
-	document_num TEXT NOT NULL,
 	document_type TEXT NOT NULL,
+	document_num INT NOT NULL,
 	PRIMARY KEY (admin_id)
 );
 CREATE TABLE IF NOT EXISTS users (
@@ -53,9 +53,9 @@ CREATE TABLE IF NOT EXISTS users (
 	document_type TEXT,
 	document_num INT,
 	date_register_lessor DATE,
-	payment_methods TEXT,
+	payment_methods TEXT[],
 	address_id UUID,
-	phone_id UUID NOT NULL,
+	phone_id UUID,
 	PRIMARY KEY (user_id),
 	CONSTRAINT address_id FOREIGN KEY (address_id) REFERENCES addresses (address_id),
 	CONSTRAINT phone_id FOREIGN KEY (phone_id) REFERENCES phone_numbers (phone_id)
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS sportfields (
 	description TEXT NOT NULL,
 	capacity INT NOT NULL,
 	price NUMERIC NOT NULL,
+	image_uuid UUID NOT NULL,
 	date_post DATE NOT NULL,
 	time_start TEXT NOT NULL,
 	time_end TEXT NOT NULL,
@@ -78,9 +79,9 @@ CREATE TABLE IF NOT EXISTS sportfields (
 CREATE TABLE IF NOT EXISTS favorites (
 	sportfield_id UUID NOT NULL,
 	user_id UUID NOT NULL,
-	date_added DATE NOT NULL
-	PRIMARY KEY (sportfield_id) REFERENCES sportfields (sportfield_id),
-	PRIMARY KEY (user_id) REFERENCES users (user_id)
+	date_added DATE NOT NULL,
+	CONSTRAINT sportfield_id FOREIGN KEY (sportfield_id) REFERENCES sportfields (sportfield_id),
+	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 CREATE TABLE IF NOT EXISTS bookings (
 	booking_id UUID NOT NULL,
@@ -99,7 +100,6 @@ CREATE TABLE IF NOT EXISTS reports (
     status TEXT NOT NULL,
 	user_id UUID NOT NULL,
 	sportfield_id UUID NOT NULL,
-	status TEXT NOT NULL,
 	PRIMARY KEY (report_id),
 	CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users (user_id),
 	CONSTRAINT sportfield_id FOREIGN KEY (sportfield_id) REFERENCES sportfields (sportfield_id)

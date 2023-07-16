@@ -5,14 +5,14 @@ import PgDB from "../database/postgres/PgDB"
 import type Sancion from "../classes/Sancion"
 
 class SanctionsDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
 
     public async insertar(sancion: Sancion) {
         const query = {
-            text: "INSERT INTO sanctions (sanction_id, judgment, sanction_end, user_id, report_id, admin_id) VALUES ($1, $2, $3, $4, $5, $6)",
-            values: [sancion.sanctionId, sancion.judgment, sancion.sanctionEnd, sancion.user.userId, sancion.report.reportId, sancion.admin.adminId]
+            text: "INSERT INTO sanctions (sanction_id, judgment, sanction_starts, sanction_ends, report_id, admin_id) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+            values: [sancion.sanctionId, sancion.judgment, sancion.sanctionStarts, sancion.sanctionEnds, sancion.report.reportId, sancion.admin.adminId]
         }
         try {
             await this.connection.open()
@@ -81,8 +81,8 @@ class SanctionsDAO {
     }
     public async actualizar(sancion: Sancion) {
         const query = {
-            text: "UPDATE sanctions SET judgment = $1, sanction_end = $2, user_id = $3, report_id = $4, admin_id = $5, WHERE sanction_id = $6",
-            values: [sancion.judgment, sancion.sanctionEnd, sancion.user.userId, sancion.report.reportId, sancion.admin.adminId, sancion.sanctionId]
+            text: "UPDATE sanctions SET judgment = $1, sanction_starts = $2, sanction_ends = $3, report_id = $4, admin_id = $5, WHERE sanction_id = $6",
+            values: [sancion.judgment, sancion.sanctionStarts,  sancion.sanctionEnds, sancion.report.reportId, sancion.admin.adminId, sancion.sanctionId]
         }
         try {
             await this.connection.open()

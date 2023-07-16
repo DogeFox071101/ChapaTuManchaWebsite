@@ -4,23 +4,25 @@ import AddressesDAO from "./AddressesDAO"
 import PhoneNumbersDAO from "./PhoneNumbersDAO"
 
 class UsersDAO {
-    private database = new PgDB()
-    private connection = this.database.getConexion()
-    private consulta = this.database.getConsulta()
+    protected database = new PgDB()
+    protected connection = this.database.getConexion()
+    protected consulta = this.database.getConsulta()
 
-    private async mapArrayToClassArray(res: any[]) {
-        const lista_usuarios = []
-        for (const lista of res) {
-            const address = await new AddressesDAO().seleccionarPorID(lista.address_id)
-            const phone = await new PhoneNumbersDAO().seleccionarPorID(lista.phone_id)
-            const usuario = new Usuario(lista.user_id, lista.first_name, lista.last_name, lista.email, lista.password, lista.token_sesion, lista.date_birth, lista.document_type, lista.document_num, lista.date_register_as_lessor, lista.payment_methods, address, phone)
+    protected async mapArrayToClassArray(rows: any[]) {
+        const lista_usuarios = new Array<Usuario>
+        for (const lista of rows) {
+            const address : any = await new AddressesDAO().seleccionarPorID(lista.address_id)
+            const phone : any = await new PhoneNumbersDAO().seleccionarPorID(lista.phone_id)
+            const usuario = new Usuario(lista.user_id, lista.first_name, lista.last_name, lista.email, lista.password, lista.token_sesion, lista.date_birth, lista.document_type, lista.document_num, lista.date_register_as_lessor, lista.payment_methods, address[0], phone[0])
+            lista_usuarios.push(usuario)
         }
+        return lista_usuarios
     }
 
     public async insertar(usuario: Usuario) {
         const query = {
-            text: "INSERT INTO users(user_id, first_name, last_name, email, password, token_session, phone_id) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-            values: [usuario.userId, usuario.firstName, usuario.lastName, usuario.email, usuario.password, usuario.tokenSession, usuario.phone.phoneId]
+            text: "INSERT INTO users(user_id, first_name, last_name, email, password, token_session) VALUES ($1, $2, $3, $4, $5, $6)",
+            values: [usuario.userId, usuario.firstName, usuario.lastName, usuario.email, usuario.password, usuario.tokenSession]
         }
         try {
             await this.connection.open()
@@ -28,7 +30,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -42,11 +44,11 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            
-            
+
+
             return res
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -62,9 +64,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -80,9 +82,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -98,9 +100,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -116,9 +118,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -134,9 +136,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -152,9 +154,9 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
             return null
@@ -188,7 +190,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -204,7 +206,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -220,7 +222,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -236,7 +238,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -252,7 +254,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -268,7 +270,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
@@ -284,14 +286,46 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarDireccion(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET address_id = $1 WHERE user_id = $2",
+            values: [usuario.address.addressId, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error) {
+            console.error(error)
+            await this.connection.close()
+        }
+    }
+    public async actualizarTelefono(usuario: Usuario) {
+        const query = {
+            text: "UPDATE users SET phone_id = $1 WHERE user_id = $2",
+            values: [usuario.phone.phoneId, usuario.userId]
+        }
+        try {
+            await this.connection.open()
+            this.consulta.set(query)
+            await this.consulta.execute()
+            await this.connection.close()
+        }
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }
     }
     public async eliminar(usuario: Usuario) {
         const query = {
-            text: "DELETE FROM users WHERE user_id = $1'",
+            text: "DELETE FROM users WHERE user_id = $1",
             values: [usuario.userId]
         }
         try {
@@ -300,7 +334,7 @@ class UsersDAO {
             await this.consulta.execute()
             await this.connection.close()
         }
-        catch (error){
+        catch (error) {
             console.error(error)
             await this.connection.close()
         }

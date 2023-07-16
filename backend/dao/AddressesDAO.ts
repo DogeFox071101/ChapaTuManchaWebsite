@@ -5,10 +5,31 @@ import PgDB from "../database/postgres/PgDB"
 import type Address from "../interfaces/Address"
 
 class AddressesDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
     
+    protected async mapArrayToClassArray(rows: any[]) {
+        const lista_direcciones = new Array<Address>
+        for (const lista of rows) {
+            const address: Address = {
+                addressId : lista.address_id,
+                addressExt : lista.address_ext,
+                addressLine : lista.address_line,
+                doorNumber : lista.door_number,
+                zipCode : lista.zip_code,
+                district : lista.district,
+                city : lista.city,
+                state : lista.state,
+                country : lista.country,
+                coord_x : lista.coord_x,
+                coord_y : lista.coord_y
+            }
+            lista_direcciones.push(address)
+        }
+        return lista_direcciones
+    }
+
     public async insertar(address: Address) {
         const query = {
             text: "INSERT INTO addresses(address_id, address_line, door_number, zip_code, district, city, state, country) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
@@ -35,7 +56,7 @@ class AddressesDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
         catch (error){
             console.error(error)

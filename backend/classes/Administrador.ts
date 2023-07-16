@@ -6,13 +6,13 @@ import Seguridad from "./Seguridad";
 import Usuario from "./Usuario";
 
 class Administrador {
-	private _adminId: string;
-    private _fullName: string;
-    private _username: string;
-    private _password: string;
-    private _accessLevel: number;
-    private _documentType: string;
-    private _documentNum: number;
+	protected _adminId: string;
+    protected _fullName: string;
+    protected _username: string;
+    protected _password: string;
+    protected _accessLevel: number;
+    protected _documentType: string;
+    protected _documentNum: number;
 
 	constructor();
 	constructor(adminId?: any, fullName?:any, username?: any, password?: any, accessLevel?: any, documentType?: any, documentNum?: any) {
@@ -52,8 +52,8 @@ class Administrador {
 		this._password = (await Seguridad.generarServerHash(preKey + contrasena)).newPw
 		await new AdminsDAO().actualizar(this)
 	}
-	public emitirSentencia(juicio: string, fecha_final: Date, usuario: Usuario, reporte: Reporte) {
-		new Sancion(Seguridad.generarUUID(), juicio, fecha_final, usuario, reporte, this)
+	public emitirSentencia(juicio: string, fecha_inicial: Date, fecha_final: Date, usuario: Usuario, reporte: Reporte) {
+		new Sancion(Seguridad.generarUUID(), juicio, fecha_inicial, fecha_final, reporte, this)
     }
     public eliminarUsuario(usuario: Usuario) {
         new UsersDAO().eliminar(usuario)

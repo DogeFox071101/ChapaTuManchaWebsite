@@ -5,14 +5,14 @@ import PgDB from "../database/postgres/PgDB";
 import type Administrador from "../classes/Administrador";
 
 class AdminsDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
     
     public async insertar(admin: Administrador) {
         const query = {
-            text: "INSERT INTO admins (admin_id, full_name, username, password, access_level, document_num, document_type) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-            values: [admin.adminId, admin.fullName, admin.username, admin.password, admin.accessLevel, admin.documentNum, admin.documentType]
+            text: "INSERT INTO admins (admin_id, full_name, username, password, access_level, document_type, document_num) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+            values: [admin.adminId, admin.fullName, admin.username, admin.password, admin.accessLevel, admin.documentType, admin.documentNum]
         }
         try {
             await this.connection.open()
@@ -45,8 +45,8 @@ class AdminsDAO {
     }
     public async actualizar(admin: Administrador) {
         const query = {
-            text: "UPDATE admins SET full_name = $1, username = $2, password = $3, access_level = $4, document_num = $5, document_type = $6, WHERE admin_id = $7",
-            values: [admin.fullName, admin.username, admin.password, admin.accessLevel, admin.documentNum, admin.documentType, admin.adminId]
+            text: "UPDATE admins SET full_name = $1, username = $2, password = $3, access_level = $4, document_type = $5, document_num = $6, WHERE admin_id = $7",
+            values: [admin.fullName, admin.username, admin.password, admin.accessLevel, admin.documentType, admin.documentNum, admin.adminId]
         }
         try {
             await this.connection.open()

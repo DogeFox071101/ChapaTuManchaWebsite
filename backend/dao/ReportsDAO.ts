@@ -5,9 +5,9 @@ import PgDB from "../database/postgres/PgDB"
 import type Reporte from "../classes/Reporte"
 
 class ReportsDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
 
     public async insertar(reporte: Reporte) {
         const query = {
@@ -100,7 +100,7 @@ class ReportsDAO {
     public async actualizar(reporte: Reporte) {
         const query = {
             text: "UPDATE reports SET report_text = $1, evidence = $2, status = $3, user_id = $4, sportfield_id = $5, WHERE report_id = $6",
-            values: [reporte.reportText, reporte.evidence, reporte.status, reporte.user.userId, reporte.sportfield.sportfieldId, reporte.reportId]
+            values: [reporte.reportText, reporte.evidence.evidenceId, reporte.status, reporte.user.userId, reporte.sportfield.sportfieldId, reporte.reportId]
         }
         try {
             await this.connection.open()

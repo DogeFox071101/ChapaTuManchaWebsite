@@ -5,9 +5,9 @@ import PgDB from "../database/postgres/PgDB"
 import type Favorito from "../classes/Favorito"
 
 class FavoritesDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
 
     public async insertar(favorito: Favorito) {
         const query = {

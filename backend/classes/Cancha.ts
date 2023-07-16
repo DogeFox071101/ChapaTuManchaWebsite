@@ -3,17 +3,17 @@ import type Address from "../interfaces/Address";
 import type Usuario from "./Usuario";
 
 class Cancha {
-    private _sportfieldId: string;
-    private _name: string;
-    private _description: string;
-    private _capacity: number;
-    private _price: number;
-	private _image: Image;
-    private _datePost: Date;
-    private _timeStart: string;
-    private _timeEnd: string;
-    private _user: Usuario;
-    private _address: Address;
+    protected _sportfieldId: string;
+    protected _name: string;
+    protected _description: string;
+    protected _capacity: number;
+    protected _price: number;
+	protected _image: Image;
+    protected _datePost: Date;
+    protected _timeStart: string;
+    protected _timeEnd: string;
+    protected _user: Usuario;
+    protected _address: Address;
 
     constructor(sportfieldId: string, name: string, description: string, capacity: number, price: number, image: Image, datePost: Date, timeStart: string, timeEnd: string, user: Usuario, address: Address){
         this._sportfieldId = sportfieldId

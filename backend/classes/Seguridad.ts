@@ -4,7 +4,7 @@ import crypto from 'crypto'
  * Provee funcionalidades de seguridad para CTM
  */
 class Seguridad {
-    private constructor() {}
+    protected constructor() {}
     /**
      * Produce una clave hash empleando el algoritmo SHA-256
      */

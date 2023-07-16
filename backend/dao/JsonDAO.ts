@@ -1,7 +1,7 @@
 import fs from "fs"
 
 class JsonDAO {
-    private filePath = process.env.PATH_JSON!
+    protected filePath = process.env.PATH_JSON!
 
     public seleccionarRegionesPeru() {
         const path = this.filePath + "regiones_PE.json"

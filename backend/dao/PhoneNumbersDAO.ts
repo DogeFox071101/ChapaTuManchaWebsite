@@ -5,10 +5,25 @@ import PgDB from "../database/postgres/PgDB"
 import type Phone from "../interfaces/Phone"
 
 class PhoneNumbersDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
     
+    protected async mapArrayToClassArray(rows: any[]) {
+        const lista_telefonos = new Array<Phone>
+        for (const lista of rows) {
+            const phone: Phone = {
+                phoneId : lista.phone_id,
+                prefix : lista.prefix,
+                number : lista.number,
+                country : lista.country,
+                isFixed : lista.is_fixed
+            }
+            lista_telefonos.push(phone)
+        }
+        return lista_telefonos
+    }
+
     public async insertar(phone: Phone) {
         const query = {
             text: "INSERT INTO phone_numbers(phone_id, prefix, number, country, is_fixed) VALUES ($1, $2, $3, $4, $5)",
@@ -35,7 +50,7 @@ class PhoneNumbersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return res
+            return this.mapArrayToClassArray(res.rows)
         }
         catch (error){
             console.error(error)

@@ -2,12 +2,12 @@ import type Cancha from "./Cancha";
 import type Usuario from "./Usuario";
 
 class Resena {
-    private _reviewId: string;
-    private _reviewText: string;
-    private _dateReview: Date;
-    private _reviewStars: number;
-    private _user: Usuario;
-    private _sportfield: Cancha;
+    protected _reviewId: string;
+    protected _reviewText: string;
+    protected _dateReview: Date;
+    protected _reviewStars: number;
+    protected _user: Usuario;
+    protected _sportfield: Cancha;
 
 	constructor(reviewId: string, reviewText: string, dateReview: Date, reviewStars: number, user: Usuario, sportfield: Cancha) {
 		this._reviewId = reviewId;

@@ -2,12 +2,12 @@ import type Cancha from "./Cancha"
 import type Usuario from "./Usuario"
 
 class Reserva {
-    private _bookingId: string;
-    private _dateBooking: Date;
-    private _timeStart: string;
-    private _timeEnd: string;
-    private _sportfield: Cancha;
-    private _user: Usuario;
+    protected _bookingId: string;
+    protected _dateBooking: Date;
+    protected _timeStart: string;
+    protected _timeEnd: string;
+    protected _sportfield: Cancha;
+    protected _user: Usuario;
 
     public constructor(bookingId: string, dateBooking: Date, timeStart: string, timeEnd: string, sportfield: Cancha, user: Usuario) {
         this._bookingId = bookingId

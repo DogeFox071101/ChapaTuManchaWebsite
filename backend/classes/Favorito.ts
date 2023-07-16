@@ -2,9 +2,9 @@ import type Cancha from "./Cancha"
 import type Usuario from "./Usuario";
 
 class Favorito {
-    private _sportfield: Cancha;
-    private _user: Usuario;
-    private _dateAdded: Date;
+    protected _sportfield: Cancha;
+    protected _user: Usuario;
+    protected _dateAdded: Date;
 
 	constructor(sportfield: Cancha, user: Usuario, dateAdded: Date) {
 		this._sportfield = sportfield;

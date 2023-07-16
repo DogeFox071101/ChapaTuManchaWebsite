@@ -7,19 +7,19 @@ import Favorito from "./Favorito";
  * Clase Persona
  */
 class Usuario {
-    private _userId: string;
-    private _firstName: string;
-    private _lastName: string;
-    private _email: string;
-    private _password: string;
-    private _tokenSession: string;
-    private _dateBirth: Date;
-    private _documentType: string;
-    private _documentNum: number;
-    private _dateRegisterLessor: Date;
-    private _paymentMethods: string[];
-    private _address: Address;
-    private _phone: Phone;
+    protected _userId: string;
+    protected _firstName: string;
+    protected _lastName: string;
+    protected _email: string;
+    protected _password: string;
+    protected _tokenSession: string;
+    protected _dateBirth: Date;
+    protected _documentType: string;
+    protected _documentNum: number;
+    protected _dateRegisterLessor: Date;
+    protected _paymentMethods: string[];
+    protected _address: Address;
+    protected _phone: Phone;
 
 	constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string);
     constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth: Date, documentType: string, documentNum: number, dateRegisterLessor: Date, paymentMethods: string[], address: Address, phone: Phone)
@@ -89,8 +89,11 @@ class Usuario {
 	public async crearCuenta() {
 		new UsersDAO().insertar(this)
 	}
-    public async inicioSesion(): Promise<boolean> {
-		throw new Error("Method not implemented");
+    public iniciarSesion(email: string, password: string): boolean {
+		if (this._password === password) {
+			return true
+		}
+		return false
     };
     public recuperarContrasena(): Promise<void> {
 		throw new Error("Method not implemented");

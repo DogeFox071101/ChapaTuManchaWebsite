@@ -5,13 +5,13 @@ import PgDB from "../database/postgres/PgDB"
 import type Cancha from "../classes/Cancha"
 
 class SportfieldsDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
 
     public async insertar(cancha: Cancha) {
         const query = {
-            text: "INSERT INTO sportfields (sportfield_id, name, description, capacity, price, image_id, date_post, time_start, time_end, user_id, address_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
+            text: "INSERT INTO sportfields (sportfield_id, name, description, capacity, price, image_uuid, date_post, time_start, time_end, user_id, address_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)",
             values: [cancha.sportfieldId, cancha.name, cancha.description, cancha.capacity, cancha.price, cancha.image.imageId, cancha.datePost, cancha.timeStart, cancha.timeEnd, cancha.user.userId, cancha.address.addressId]
         }
         try {
@@ -99,7 +99,7 @@ class SportfieldsDAO {
     }
     public async actualizar(cancha: Cancha) {
         const query = {
-            text: "UPDATE sportfields SET name = $1, description = $2, capacity = $3, price = $4, image_id = $5, date_post = $6, time_start = $7, time_end = $8, user_id = $9, address_id = $10,, WHERE sportfield_id = $11",
+            text: "UPDATE sportfields SET name = $1, description = $2, capacity = $3, price = $4, image_uuid = $5, date_post = $6, time_start = $7, time_end = $8, user_id = $9, address_id = $10,, WHERE sportfield_id = $11",
             values: [cancha.name, cancha.description, cancha.capacity, cancha.price, cancha.image.imageId, cancha.datePost, cancha.timeStart, cancha.timeEnd, cancha.user.userId, cancha.address.addressId, cancha.sportfieldId]
         }
         try {

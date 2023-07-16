@@ -5,9 +5,9 @@ import PgDB from "../database/postgres/PgDB"
 import type Reserva from "../classes/Reserva"
 
 class BookingsDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    protected database: DB = new PgDB()
+    protected connection: Conexion = this.database.getConexion()
+    protected consulta: Consulta = this.database.getConsulta()
 
     public async insertar(reserva: Reserva) {
         const query = {

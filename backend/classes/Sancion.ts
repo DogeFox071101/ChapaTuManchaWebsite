@@ -3,18 +3,18 @@ import Reporte from "./Reporte";
 import Usuario from "./Usuario";
 
 class Sancion {
-    private _sanctionId: string;
-    private _judgment: string;
-    private _sanctionEnd: Date;
-    private _user: Usuario;
-    private _report: Reporte;
-    private _admin: Administrador;
+    protected _sanctionId: string;
+    protected _judgment: string;
+	protected _sanctionStarts: Date;
+    protected _sanctionEnds: Date;
+    protected _report: Reporte;
+    protected _admin: Administrador;
 
-	constructor(sanctionId: string, judgment: string, sanctionEnd: Date, user: Usuario, report: Reporte, admin: Administrador) {
+	constructor(sanctionId: string, judgment: string, sanctionStarts: Date, sanctionEnds: Date, report: Reporte, admin: Administrador) {
 		this._sanctionId = sanctionId;
 		this._judgment = judgment;
-		this._sanctionEnd = sanctionEnd;
-		this._user = user;
+		this._sanctionStarts = sanctionStarts;
+		this._sanctionEnds = sanctionEnds;
 		this._report = report;
 		this._admin = admin;
 	}
@@ -25,11 +25,11 @@ class Sancion {
 	public get judgment(): string {
 		return this._judgment;
 	}
-	public get sanctionEnd(): Date {
-		return this._sanctionEnd;
+	public get sanctionStarts(): Date {
+		return this._sanctionStarts;
 	}
-	public get user(): Usuario {
-		return this._user;
+	public get sanctionEnds(): Date {
+		return this._sanctionEnds;
 	}
 	public get report(): Reporte {
 		return this._report;

@@ -3,12 +3,12 @@ import type Cancha from "./Cancha";
 import type Usuario from "./Usuario";
 
 class Reporte {
-    private _reportId: string;
-    private _reportText: string;
-    private _evidence: Evidence;
-    private _status: string;
-    private _user: Usuario;
-    private _sportfield: Cancha;
+    protected _reportId: string;
+    protected _reportText: string;
+    protected _evidence: Evidence;
+    protected _status: string;
+    protected _user: Usuario;
+    protected _sportfield: Cancha;
 
 	constructor(reportId: string, reportText: string, evidence: Evidence, status: string, user: Usuario, sportfield: Cancha) {
 		this._reportId = reportId;
