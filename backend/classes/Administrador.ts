@@ -1,4 +1,9 @@
 import AdminsDAO from "../dao/AdminsDAO";
+import UsersDAO from "../dao/UsersDAO";
+import Reporte from "./Reporte";
+import Sancion from "./Sancion";
+import Seguridad from "./Seguridad";
+import Usuario from "./Usuario";
 
 class Administrador {
 	private _adminId: string;
@@ -9,7 +14,8 @@ class Administrador {
     private _documentType: string;
     private _documentNum: number;
 
-	constructor(adminId: string, fullName: string, username: string, password: string, accessLevel: number, documentType: string, documentNum: number) {
+	constructor();
+	constructor(adminId?: any, fullName?:any, username?: any, password?: any, accessLevel?: any, documentType?: any, documentNum?: any) {
 		this._adminId = adminId;
 		this._fullName = fullName;
 		this._username = username;
@@ -40,40 +46,17 @@ class Administrador {
 	public get documentNum(): number {
 		return this._documentNum;
 	}
-
-	public set adminId(value: string) {
-		this._adminId = value;
-	}
-	public set fullName(value: string) {
-		this._fullName = value;
-	}
-	public set username(value: string) {
-		this._username = value;
-	}
-	public set password(value: string) {
-		this._password = value;
-	}
-	public set accessLevel(value: number) {
-		this._accessLevel = value;
-	}
-	public set documentType(value: string) {
-		this._documentType = value;
-	}
-	public set documentNum(value: number) {
-		this._documentNum = value;
-	}
     
-	public crearAdministrador() {
-		throw new Error("Method not implemented");
+	public async cambiarContraseña(contrasena: string) {
+		const preKey = process.env.PW_ACTUAL
+		this._password = (await Seguridad.generarServerHash(preKey + contrasena)).newPw
+		await new AdminsDAO().actualizar(this)
 	}
-    public verReportes() {
-		throw new Error("Method not implemented");
+	public emitirSentencia(juicio: string, fecha_final: Date, usuario: Usuario, reporte: Reporte) {
+		new Sancion(Seguridad.generarUUID(), juicio, fecha_final, usuario, reporte, this)
     }
-    public emitirSentencia() {
-		throw new Error("Method not implemented");
-    }
-    public eliminarUsuario() {
-        throw new Error("Method not implemented");
+    public eliminarUsuario(usuario: Usuario) {
+        new UsersDAO().eliminar(usuario)
     }
 }
 

@@ -1,13 +1,21 @@
-import type DB from "../database/DB"
-import type Conexion from "../database/Conexion"
-import type Consulta from "../database/Consulta"
 import PgDB from "../database/postgres/PgDB"
-import type Usuario from "../classes/Usuario"
+import Usuario from "../classes/Usuario"
+import AddressesDAO from "./AddressesDAO"
+import PhoneNumbersDAO from "./PhoneNumbersDAO"
 
 class UsersDAO {
-    private database: DB = new PgDB()
-    private connection: Conexion = this.database.getConexion()
-    private consulta: Consulta = this.database.getConsulta()
+    private database = new PgDB()
+    private connection = this.database.getConexion()
+    private consulta = this.database.getConsulta()
+
+    private async mapArrayToClassArray(res: any[]) {
+        const lista_usuarios = []
+        for (const lista of res) {
+            const address = await new AddressesDAO().seleccionarPorID(lista.address_id)
+            const phone = await new PhoneNumbersDAO().seleccionarPorID(lista.phone_id)
+            const usuario = new Usuario(lista.user_id, lista.first_name, lista.last_name, lista.email, lista.password, lista.token_sesion, lista.date_birth, lista.document_type, lista.document_num, lista.date_register_as_lessor, lista.payment_methods, address, phone)
+        }
+    }
 
     public async insertar(usuario: Usuario) {
         const query = {
@@ -34,6 +42,8 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
+            
+            
             return res
         }
         catch (error){

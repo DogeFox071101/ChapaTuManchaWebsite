@@ -21,16 +21,10 @@ class Favorito {
 	public get dateAdded(): Date {
 		return this._dateAdded;
 	}
-	
-	public set sportfield(value: Cancha) {
-		this._sportfield = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-	public set dateAdded(value: Date) {
-		this._dateAdded = value;
-	}
     
+	public calcularDiasFavorito() {
+		const milis = Date.now() - this._dateAdded.getMilliseconds()
+		return milis / (1000 * 60 * 60 * 24)
+	}
 }
 export default Favorito

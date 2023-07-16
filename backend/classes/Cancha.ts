@@ -15,7 +15,7 @@ class Cancha {
     private _user: Usuario;
     private _address: Address;
 
-    public constructor(sportfieldId: string, name: string, description: string, capacity: number, price: number, image: Image, datePost: Date, timeStart: string, timeEnd: string, user: Usuario, address: Address) {
+    constructor(sportfieldId: string, name: string, description: string, capacity: number, price: number, image: Image, datePost: Date, timeStart: string, timeEnd: string, user: Usuario, address: Address){
         this._sportfieldId = sportfieldId
         this._name = name
         this._description = description
@@ -62,47 +62,10 @@ class Cancha {
     public get address(): Address {
         return this._address;
     }
-	
-	public set sportfieldId(value: string) {
-		this._sportfieldId = value;
-	}
-	public set name(value: string) {
-		this._name = value;
-	}
-	public set description(value: string) {
-		this._description = value;
-	}
-	public set capacity(value: number) {
-		this._capacity = value;
-	}
-	public set price(value: number) {
-		this._price = value;
-	}
-	public set image(value: Image) {
-		this._image = value;
-	}
-	public set datePost(value: Date) {
-		this._datePost = value;
-	}
-	public set timeStart(value: string) {
-		this._timeStart = value;
-	}
-	public set timeEnd(value: string) {
-		this._timeEnd = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-    public set address(value: Address) {
-        this._address = value;
-    }
 
-	public crearCancha() {
-		throw new Error("Method not implemented");
+	public async crearCancha() {
+		new SportfieldsDAO().insertar(this)
 	}
-    public verInfo() {
-        throw new Error("Method not implemented");
-    }
 }
 
 export default Cancha

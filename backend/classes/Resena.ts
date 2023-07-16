@@ -37,24 +37,6 @@ class Resena {
 		return this._sportfield;
 	}
 	
-	public set reviewId(value: string) {
-		this._reviewId = value;
-	}
-	public set reviewText(value: string) {
-		this._reviewText = value;
-	}
-	public set dateReview(value: Date) {
-		this._dateReview = value;
-	}
-	public set reviewStars(value: number) {
-		this._reviewStars = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-	public set sportfield(value: Cancha) {
-		this._sportfield = value;
-	}
-    
+ 
 }
 export default Resena

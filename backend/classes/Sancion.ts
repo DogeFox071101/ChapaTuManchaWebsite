@@ -38,24 +38,6 @@ class Sancion {
 		return this._admin;
 	}
 	
-	public set sanctionId(value: string) {
-		this._sanctionId = value;
-	}
-	public set judgment(value: string) {
-		this._judgment = value;
-	}
-	public set sanctionEnd(value: Date) {
-		this._sanctionEnd = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-	public set report(value: Reporte) {
-		this._report = value;
-	}
-	public set admin(value: Administrador) {
-		this._admin = value;
-	}
-    
+
 }
 export default Sancion

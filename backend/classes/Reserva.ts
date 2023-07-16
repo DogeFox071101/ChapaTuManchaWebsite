@@ -37,25 +37,6 @@ class Reserva {
 		return this._user;
 	}
 	
-	public set bookingId(value: string) {
-		this._bookingId = value;
-	}
-	public set dateBooking(value: Date) {
-		this._dateBooking = value;
-	}
-	public set timeStart(value: string) {
-		this._timeStart = value;
-	}
-	public set timeEnd(value: string) {
-		this._timeEnd = value;
-	}
-	public set sportfield(value: Cancha) {
-		this._sportfield = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-    
     public verInfo() {
         throw new Error("Method not implemented");
     }

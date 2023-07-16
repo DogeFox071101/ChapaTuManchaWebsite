@@ -38,26 +38,6 @@ class Reporte {
 		return this._sportfield;
 	}
 
-	public set reportId(value: string) {
-		this._reportId = value;
-	}
-	public set reportText(value: string) {
-		this._reportText = value;
-	}
-	public set evidence(value: Evidence) {
-		this._evidence = value;
-	}
-	public set status(value: string) {
-		this._status = value;
-	}
-	public set user(value: Usuario) {
-		this._user = value;
-	}
-	public set sportfield(value: Cancha) {
-		this._sportfield = value;
-	}
-
-
     
 }
 export default Reporte
