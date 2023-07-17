@@ -12,9 +12,9 @@ function mostrarMensaje() {
         botonElement.style.display = "block";
 
         if (seleccion === "Yape") {
-            imagenElement.src = "https://ruta/imagen_yape.png";
+            imagenElement.src = "../website-frontend/images/qr.png";
         } else if (seleccion === "Plin") {
-            imagenElement.src = "https://ruta/imagen_plin.png";
+            imagenElement.src = "../website-frontend/images/qr.png";
         }
     }
 }
