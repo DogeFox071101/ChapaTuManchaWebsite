@@ -30,9 +30,9 @@ form.addEventListener("submit", async (event) => {
         body: JSON.stringify(mensaje_login)
     })
     const data_login = await response_login.json()
-    if (data_login && data_login.is_allowed) {
-        //localStorage.setItem("id_user", data_login.id_user)
-        //localStorage.setItem("token_session", data_login.token_session)
-        //location.href = "./"
+    if (data_login && data_login.id_user && data_login.is_allowed) {
+        localStorage.setItem("id_user", data_login.id_user)
+        localStorage.setItem("token_session", data_login.token_session)
+        location.href = "./"
     }
 })

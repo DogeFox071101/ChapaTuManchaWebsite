@@ -64,7 +64,7 @@ class UsersDAO {
             this.consulta.set(query)
             const res = await this.consulta.execute()
             await this.connection.close()
-            return this.mapArrayToClassArray(res.rows)
+            return (await this.mapArrayToClassArray(res.rows))[0]
         }
         catch (error) {
             console.error(error)
@@ -294,7 +294,7 @@ class UsersDAO {
     public async actualizarDireccion(usuario: Usuario) {
         const query = {
             text: "UPDATE users SET address_id = $1 WHERE user_id = $2",
-            values: [usuario.address.addressId, usuario.userId]
+            values: [usuario.address!.addressId, usuario.userId]
         }
         try {
             await this.connection.open()
@@ -310,7 +310,7 @@ class UsersDAO {
     public async actualizarTelefono(usuario: Usuario) {
         const query = {
             text: "UPDATE users SET phone_id = $1 WHERE user_id = $2",
-            values: [usuario.phone.phoneId, usuario.userId]
+            values: [usuario.phone!.phoneId, usuario.userId]
         }
         try {
             await this.connection.open()

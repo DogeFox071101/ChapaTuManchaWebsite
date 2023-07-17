@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express"
+import express, { Request, Response, response } from "express"
 import Usuario from "../classes/Usuario"
 import Seguridad from "../classes/Seguridad"
 import UsersDAO from "../dao/UsersDAO"
@@ -20,20 +20,30 @@ router.post('/create', async (req: Request, res: Response) => {
 router.post('/login', async (req: Request, res: Response) => {
     const data = req.body
     const lista_usuarios = await new UsersDAO().seleccionarPorCorreo(data.id)
-    
     if (lista_usuarios) {
         const usuario = lista_usuarios[0]
-        
-        if (usuario.iniciarSesion(data.id, data.msg)) {
-            const respuesta = {
-                id_user: usuario.userId,
-                token_session: await Seguridad.generarToken(),
-                is_allowed: true
-            }
-        }
+        const response = await usuario.iniciarSesion(data.msg)
+        res.json(response)
     }
-
-    res.json(respuesta)
+    else {
+        res.json(null)
+    }
+})
+router.post('/logout', async (req: Request, res: Response) => {
+    const data = req.body
+    const usuario = await new UsersDAO().seleccionarPorID(data.id_user)
+    if (usuario) {
+        await usuario.revocarTokenSession()
+        res.json({result: true})
+    }
+    else{
+        res.json({result: false})
+    }
+})
+router.put('/completeData', async (req: Request, res: Response) => {
+    const data = req.body
+    
+    
 })
 
 export default router

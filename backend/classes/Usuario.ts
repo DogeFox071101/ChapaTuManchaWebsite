@@ -2,6 +2,7 @@ import UsersDAO from "../dao/UsersDAO";
 import type Address from "../interfaces/Address";
 import type Phone from "../interfaces/Phone";
 import Favorito from "./Favorito";
+import Seguridad from "./Seguridad";
 
 /**
  * Clase Persona
@@ -13,13 +14,13 @@ class Usuario {
     protected _email: string;
     protected _password: string;
     protected _tokenSession: string;
-    protected _dateBirth: Date;
-    protected _documentType: string;
-    protected _documentNum: number;
-    protected _dateRegisterLessor: Date;
-    protected _paymentMethods: string[];
-    protected _address: Address;
-    protected _phone: Phone;
+    protected _dateBirth?: Date|undefined;
+    protected _documentType?: string|undefined;
+    protected _documentNum?: number|undefined;
+    protected _dateRegisterLessor?: Date|undefined;
+    protected _paymentMethods?: string[]|undefined;
+    protected _address?: Address|undefined;
+    protected _phone?: Phone|undefined;
 
 	constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string);
     constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth: Date, documentType: string, documentNum: number, dateRegisterLessor: Date, paymentMethods: string[], address: Address, phone: Phone)
@@ -57,43 +58,54 @@ class Usuario {
 	public get tokenSession(): string {
 		return this._tokenSession;
 	};
-	public get phone(): Phone {
+	public get phone(): Phone|undefined {
 		return this._phone;
 	};
-	public get address(): Address {
+	public get address(): Address|undefined {
 		return this._address;
     };
-	public get dateBirth(): Date {
+	public get dateBirth(): Date|undefined {
 		return this._dateBirth;
     };
-	public get documentType(): string {
+	public get documentType(): string|undefined {
 		return this._documentType;
 	};
-	public get documentNum(): number {
+	public get documentNum(): number|undefined {
 		return this._documentNum;
 	};
-	public get dateRegisterLessor(): Date {
+	public get dateRegisterLessor(): Date|undefined {
 		return this._dateRegisterLessor;
 	};
-	public get paymentMethods(): string[] {
+	public get paymentMethods(): string[]|undefined {
 		return this._paymentMethods;
 	};
-	
-	public static inicializarNuevo(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string) {
 
+	public async actualizarTokenSession() {
+		this._tokenSession = await Seguridad.generarToken()
+		await new UsersDAO().actualizarTokenDeSesion(this)
 	}
-	public static inicializarExistente(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth: Date|null, documentType: string|null, documentNum: number|null, dateRegisterLessor: Date|null, paymentMethods: string[]|null, address: Address|null, phone: Phone|null) {
-		
+	public async revocarTokenSession() {
+		this._tokenSession = ""
+		await new UsersDAO().actualizarTokenDeSesion(this)
 	}
 
 	public async crearCuenta() {
-		new UsersDAO().insertar(this)
+		await new UsersDAO().insertar(this)
 	}
-    public iniciarSesion(email: string, password: string): boolean {
+    public async iniciarSesion(password: string){
 		if (this._password === password) {
-			return true
+			await this.actualizarTokenSession()
+			return {
+				id_user: this._userId,
+				token_session: this._tokenSession,
+				is_allowed: true
+			}
 		}
-		return false
+		return {
+			id_user: null,
+			token_session: null,
+			is_allowed: false
+		}
     };
     public recuperarContrasena(): Promise<void> {
 		throw new Error("Method not implemented");
