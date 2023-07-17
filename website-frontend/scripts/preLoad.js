@@ -8,7 +8,4 @@ window.addEventListener('load', async () => {
     if (!id_user) {
         location.href = "./login.html"
     }
-    if (location.href != "/website-frontend/login.html") {
-
-    }
 })

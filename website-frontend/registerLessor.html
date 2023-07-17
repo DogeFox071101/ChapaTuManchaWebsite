@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Modificar Datos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles/search.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+          <a class="navbar-brand" href="index.html">
+              <img src="../website-frontend/images/logo.png" alt="logo">
+              <span>CHAPA TU MANCHA</span>
+          </a>
+          <div class="subheader">
+            <a href="userProfile.html">PERFIL</a>
+            <a href="search.html">BUSCAR</a>
+            <a href="reserva.html">RESERVAS</a>
+            <a href="favoritos.html">FAVORITOS</a>
+            <a href="index.html">SOPORTE</a>
+          </div>
+      </div>
+  </nav>
+  </header>
+
+  <div class="container mt-5">
+    <form id="form_update_usuario" method="POST">
+      <h2 class="text-success mb-4">Complete la información faltante para registrarse como Arrendador</h2>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Fecha de Nacimiento</label>
+        <input type="date" id="correo" name="correo" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Tipo de Documento</label>
+        <select name="" id="" class="form-select">
+
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Número de Documento</label>
+        <input type="" id="" name="" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Seleccione sus métodos de pago preferidos</label>
+        <select name="" id="" class="form-select">
+
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Dirección</label>
+        <input type="" id="" name="" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Numero de Teléfono</label>
+        <input type="" id="" name="" class="form-control" required>
+      </div>
+
+      <button type="submit" class="btn btn-success">Guardar cambios</button>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>

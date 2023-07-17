@@ -14,16 +14,16 @@ class Usuario {
     protected _email: string;
     protected _password: string;
     protected _tokenSession: string;
-    protected _dateBirth?: Date|undefined;
-    protected _documentType?: string|undefined;
-    protected _documentNum?: number|undefined;
-    protected _dateRegisterLessor?: Date|undefined;
-    protected _paymentMethods?: string[]|undefined;
-    protected _address?: Address|undefined;
-    protected _phone?: Phone|undefined;
+    protected _dateBirth: Date|null;
+    protected _documentType: string|null;
+    protected _documentNum: number|null;
+    protected _dateRegisterLessor: Date|null;
+    protected _paymentMethods: string[]|null;
+    protected _address: Address|null;
+    protected _phone: Phone|null;
 
 	constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string);
-    constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth: Date, documentType: string, documentNum: number, dateRegisterLessor: Date, paymentMethods: string[], address: Address, phone: Phone)
+    constructor(userId: string, firstName: string, lastName: string, email: string, password: string, tokenSession: string, dateBirth: Date, documentType: string, documentNum: number, dateRegisterLessor: Date, paymentMethods: string[], address: Address|null, phone: Phone|null)
 	constructor(userId: any, firstName?: any, lastName?: any, email?: any, password?: any, tokenSession?: any, dateBirth?: any, documentType?: any, documentNum?: any, dateRegisterLessor?: any, paymentMethods?: any, address?: any, phone?: any) {
         this._userId = userId;
         this._firstName = firstName;
@@ -58,38 +58,52 @@ class Usuario {
 	public get tokenSession(): string {
 		return this._tokenSession;
 	};
-	public get phone(): Phone|undefined {
+	public get phone(): Phone|null {
 		return this._phone;
 	};
-	public get address(): Address|undefined {
+	public get address(): Address|null {
 		return this._address;
     };
-	public get dateBirth(): Date|undefined {
+	public get dateBirth(): Date|null {
 		return this._dateBirth;
     };
-	public get documentType(): string|undefined {
+	public get documentType(): string|null {
 		return this._documentType;
 	};
-	public get documentNum(): number|undefined {
+	public get documentNum(): number|null {
 		return this._documentNum;
 	};
-	public get dateRegisterLessor(): Date|undefined {
+	public get dateRegisterLessor(): Date|null {
 		return this._dateRegisterLessor;
 	};
-	public get paymentMethods(): string[]|undefined {
+	public get paymentMethods(): string[]|null {
 		return this._paymentMethods;
 	};
 
 	public async actualizarTokenSession() {
 		this._tokenSession = await Seguridad.generarToken()
+		console.log(this._tokenSession)
 		await new UsersDAO().actualizarTokenDeSesion(this)
 	}
 	public async revocarTokenSession() {
 		this._tokenSession = ""
 		await new UsersDAO().actualizarTokenDeSesion(this)
 	}
-	public async verificarArrendador() {
-		console.log(this)
+	public compararTokenSession(token_session: string) {
+		if (token_session === this._tokenSession) {
+            return true
+        }
+        else {
+            return false
+        }
+	}
+	public verificarArrendador(): boolean {
+		if (!this._dateBirth || !this._documentType || !this._documentNum || !this._dateRegisterLessor || !this._paymentMethods || !this._address || !this._phone) {
+			return false
+		}
+		else {
+			return true
+		}
 	}
 
 	public async crearCuenta() {

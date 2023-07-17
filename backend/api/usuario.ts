@@ -40,14 +40,24 @@ router.post('/logout', async (req: Request, res: Response) => {
         res.json({result: false})
     }
 })
+router.post('/getUserToken', async (req: Request, res: Response) => {
+    const data = req.body
+    const usuario = await new UsersDAO().seleccionarPorID(data.id_user)
+    let result: boolean|null = null
+    if (usuario) {
+        result = usuario.compararTokenSession(data.token_session)
+    }
+    res.json({result: result})
+})
 router.post('/validateLessor', async (req: Request, res: Response) => {
     const data = req.body
     const usuario = await new UsersDAO().seleccionarPorID(data.id_user)
+    let result: boolean|null = null
     if (usuario) {
-        await usuario.verificarArrendador()
+        result = usuario.verificarArrendador()
     }
     res.json({
-        result: true
+        result: result
     })
 })
 router.put('/completeData', async (req: Request, res: Response) => {

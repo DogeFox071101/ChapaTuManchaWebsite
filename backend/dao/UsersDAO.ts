@@ -2,6 +2,8 @@ import PgDB from "../database/postgres/PgDB"
 import Usuario from "../classes/Usuario"
 import AddressesDAO from "./AddressesDAO"
 import PhoneNumbersDAO from "./PhoneNumbersDAO"
+import Address from "../interfaces/Address"
+import Phone from "../interfaces/Phone"
 
 class UsersDAO {
     protected database = new PgDB()
@@ -11,9 +13,17 @@ class UsersDAO {
     protected async mapArrayToClassArray(rows: any[]) {
         const lista_usuarios = new Array<Usuario>
         for (const lista of rows) {
-            const address : any = await new AddressesDAO().seleccionarPorID(lista.address_id)
-            const phone : any = await new PhoneNumbersDAO().seleccionarPorID(lista.phone_id)
-            const usuario = new Usuario(lista.user_id, lista.first_name, lista.last_name, lista.email, lista.password, lista.token_sesion, lista.date_birth, lista.document_type, lista.document_num, lista.date_register_as_lessor, lista.payment_methods, address[0], phone[0])
+            const addresses = await new AddressesDAO().seleccionarPorID(lista.address_id)
+            let address: Address|null = addresses![0]
+            const phones = await new PhoneNumbersDAO().seleccionarPorID(lista.phone_id)
+            let phone: Phone|null = phones![0]
+            if (addresses && addresses.length == 0) {
+                address = null
+            }
+            if (phones && phones.length == 0) {
+                phone = null
+            }
+            const usuario = new Usuario(lista.user_id, lista.first_name, lista.last_name, lista.email, lista.password, lista.token_session, lista.date_birth, lista.document_type, lista.document_num, lista.date_register_lessor, lista.payment_methods, address, phone)
             lista_usuarios.push(usuario)
         }
         return lista_usuarios
