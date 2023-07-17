@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import usuario from './api/usuario'; 
 import seguridad from './api/seguridad';
 import cancha from './api/cancha';
+import json from './api/json'
 
 const app = express();
 
@@ -15,6 +16,7 @@ dotenv.config();
 app.use('/api/user', usuario)
 app.use('/api/security', seguridad)
 app.use('/api/sportfield', cancha)
+app.use('/api/json', json)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Modificar Datos</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="./styles/search.css">
 </head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-          <a class="navbar-brand" href="index.html">
-              <img src="../website-frontend/images/logo.png" alt="logo">
-              <span>CHAPA TU MANCHA</span>
-          </a>
-          <div class="subheader">
-            <a href="userProfile.html">PERFIL</a>
-            <a href="search.html">BUSCAR</a>
-            <a href="reserva.html">RESERVAS</a>
-            <a href="favoritos.html">FAVORITOS</a>
-            <a href="index.html">SOPORTE</a>
-          </div>
+        <a class="navbar-brand" href="index.html">
+          <img src="../website-frontend/images/logo.png" alt="logo">
+          <span>CHAPA TU MANCHA</span>
+        </a>
+        <div class="subheader">
+          <a href="userProfile.html">PERFIL</a>
+          <a href="search.html">BUSCAR</a>
+          <a href="reserva.html">RESERVAS</a>
+          <a href="favoritos.html">FAVORITOS</a>
+          <a href="index.html">SOPORTE</a>
+        </div>
       </div>
-  </nav>
+    </nav>
   </header>
-
-  <div class="container mt-5">
+  <main class="container mt-5">
     <form id="form_update_usuario" method="POST">
       <h2 class="text-success mb-4">Complete la información faltante para registrarse como Arrendador</h2>
       <div class="mb-3">
@@ -33,8 +34,8 @@
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Tipo de Documento</label>
-        <select name="" id="" class="form-select">
-
+        <select name="" id="tipoDocumento" class="form-select">
+          <option value="null">Seleccione una opción...</option>
         </select>
       </div>
       <div class="mb-3">
@@ -42,23 +43,77 @@
         <input type="" id="" name="" class="form-control" required>
       </div>
       <div class="mb-3">
+        <div class="row">
+          <div class="col-4">
+            <label for="" class="form-label">Calle / Avenida / Jirón:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-2">
+            <label for="" class="form-label">Número:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-4">
+            <label for="" class="form-label">Piso / Apartamento / Urbanización: (opcional)</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-2">
+            <label for="" class="form-label">Código Postal:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label for="" class="form-label">País:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-3">
+            <label for="" class="form-label">Departamento:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-3">
+            <label for="" class="form-label">Provincia:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+          <div class="col-3">
+            <label for="" class="form-label">Distrito:</label>
+            <input type="" id="" name="" class="form-control" required>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="" class="form-label">Número:</label>
+        <div class="row">
+          <div class="col-6">
+            <div class="input-group">
+              <div class="col-2">
+                <select name="" id="" class="form-select">
+                  <option value="PE">+51</option>
+                </select>
+              </div>
+              <div class="col-10">
+                <input inputmode="numeric" id="" name="" class="form-control" required>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 form-check">
+            <input type="checkbox" id="isFixed" name="" class="form-check-input" required>
+            <label class="form-check" for="isFixed">Es un Teléfono Fijo</label>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
         <label for="" class="form-label">Seleccione sus métodos de pago preferidos</label>
         <select name="" id="" class="form-select">
 
         </select>
       </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Dirección</label>
-        <input type="" id="" name="" class="form-control" required>
-      </div>
-      <div class="mb-3">
-        <label for="" class="form-label">Numero de Teléfono</label>
-        <input type="" id="" name="" class="form-control" required>
-      </div>
 
       <button type="submit" class="btn btn-success">Guardar cambios</button>
     </form>
-  </div>
+  </main>
+  <script src="./scripts/registerLessor.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
+</html>

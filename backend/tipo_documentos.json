@@ -4,7 +4,7 @@
         {"nombre":"Libreta Electoral","nombreCorto":"L.E."},
         {"nombre":"Carnet de Extranjería","nombreCorto":"Carnet Ext."},
         {"nombre":"Registro Único de Contribuyentes","nombreCorto":"RUC"},
-        {"nombre":"Pasaporte","nombreCorto":"Pasaporte"},
-        {"nombre":"Partida de Nacimiento-Identidad","nombreCorto":"P. Nac."}
+        {"nombre":"Pasaporte","nombreCorto":"PASAPORTE"},
+        {"nombre":"Partida de Nacimiento-Identidad","nombreCorto":"P. NAC."}
     ]
 }
