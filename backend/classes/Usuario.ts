@@ -88,6 +88,9 @@ class Usuario {
 		this._tokenSession = ""
 		await new UsersDAO().actualizarTokenDeSesion(this)
 	}
+	public async verificarArrendador() {
+		console.log(this)
+	}
 
 	public async crearCuenta() {
 		await new UsersDAO().insertar(this)

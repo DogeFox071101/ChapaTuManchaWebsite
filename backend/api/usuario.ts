@@ -40,6 +40,16 @@ router.post('/logout', async (req: Request, res: Response) => {
         res.json({result: false})
     }
 })
+router.post('/validateLessor', async (req: Request, res: Response) => {
+    const data = req.body
+    const usuario = await new UsersDAO().seleccionarPorID(data.id_user)
+    if (usuario) {
+        await usuario.verificarArrendador()
+    }
+    res.json({
+        result: true
+    })
+})
 router.put('/completeData', async (req: Request, res: Response) => {
     const data = req.body
     

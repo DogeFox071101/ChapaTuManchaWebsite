@@ -28,20 +28,23 @@
             </div>
         </nav>
     </header>
-
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between full-height">
-            <div class="mb-3">
-                <a href="./changePassword.html" class="btn btn-success btn-lg mb-3">Cambiar Contraseña</a>
+    <main class="container">
+        <div class="row">
+            <div class="col-4">
+                <a href="./changePassword.html" class="btn btn-success btn-lg col-12">Cambiar Contraseña</a>
             </div>
-            <div class="mb-3">
-                <a href="./registerCancha.html" class="btn btn-success btn-lg mb-3">Registrar Cancha</a>
+            <div class="col-4">
+                <a href="#" id="btnRegistrarCancha" class="btn btn-success btn-lg col-12">Registrar Cancha</a>
             </div>
-            <div class="mb-3">
-                <a href="#" id="button_logout" class="btn btn-success btn-lg mb-3">Cerrar Sesión</a>
+            <div class="col-4">
+                <a href="#" id="button_logout" class="btn btn-success btn-lg col-12">Cerrar Sesión</a>
             </div>
         </div>
-    </div>
+        <div>
+            <div class="fs-3 mt-4">Canchas Disponibles</div>
+            <div id="lista_canchas" class="mt-2"></div>
+        </div>
+    </main>
     <script src="./scripts/index.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
