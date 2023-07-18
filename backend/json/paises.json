@@ -1,6 +1,7 @@
 {
+"paises": [{
     "codigo": "PE",
-    "nombre": "Perú",
+    "nombre": "PERÚ",
     "prefijoTel": "+51",
     "regiones": [
         {"departamento":"AMAZONAS","provincia":"CHACHAPOYAS","distrito":"CHACHAPOYAS"},
@@ -1897,4 +1898,5 @@
         {"departamento": "TUMBES","provincia": "TUMBES","distrito": "SAN JACINTO"},
         {"departamento": "TUMBES","provincia": "TUMBES","distrito": "SAN JUAN DE LA VIRGEN"}
     ]
+}]
 }

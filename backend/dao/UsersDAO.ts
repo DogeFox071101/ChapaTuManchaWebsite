@@ -271,7 +271,7 @@ class UsersDAO {
     }
     public async actualizarRegistroArrendatario(usuario: Usuario) {
         const query = {
-            text: "UPDATE users SET date_register_as_lessor = $1 WHERE user_id = $2",
+            text: "UPDATE users SET date_register_lessor = $1 WHERE user_id = $2",
             values: [usuario.dateRegisterLessor, usuario.userId]
         }
         try {

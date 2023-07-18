@@ -1,6 +1,9 @@
+import AddressesDAO from "../dao/AddressesDAO";
+import PhoneNumbersDAO from "../dao/PhoneNumbersDAO";
 import UsersDAO from "../dao/UsersDAO";
 import type Address from "../interfaces/Address";
 import type Phone from "../interfaces/Phone";
+import Cancha from "./Cancha";
 import Favorito from "./Favorito";
 import Seguridad from "./Seguridad";
 
@@ -130,16 +133,58 @@ class Usuario {
     public cambiarContrasena(): Promise<void> {
 		throw new Error("Method not implemented");
     };
-    public cerrarSesion(): Promise<void> {
-		throw new Error("Method not implemented");
+    public async modificarDireccion(addressId: string, addressLine: string, addressExt: string, doorNumber: number, zipCode: number, district: string, city: string, state: string, country: string) {
+		const direccion: Address = {
+			addressId: addressId,
+			addressLine: addressLine,
+			addressExt: addressExt,
+			doorNumber: doorNumber,
+			zipCode: zipCode,
+			district: district,
+			city: city,
+			state: state,
+			country: country,
+			coord_x: null,
+			coord_y: null
+		}
+		if (!this._address) {
+			await new AddressesDAO().insertar(direccion)
+		}
+		this._address = direccion
+		await new UsersDAO().actualizarDireccion(this)
     };
-    public registrarCancha(): Promise<void> {
-		throw new Error("Method not implemented");
+	public async modificarTelefono(phoneId: string, prefix: string, number: number, country: string, isFixed: boolean) {
+		const telefono: Phone = {
+			phoneId: phoneId,
+			prefix: prefix,
+			number: number,
+			country: country,
+			isFixed: isFixed
+		}
+		if (!this._phone) {
+			await new PhoneNumbersDAO().insertar(telefono)
+		}
+		this._phone = telefono
+		await new UsersDAO().actualizarTelefono(this)
     };
-    public modificarDatos(): Promise<void> {
-		throw new Error("Method not implemented");
+	public async modificarDocumentos(documentType: string, documentNum: number) {
+		this._documentType = documentType
+		this._documentNum = documentNum
+		await new UsersDAO().actualizarDocumentoIdentidad(this)
     };
-    public reservarCancha(): Promise<void> {
+	public async modificarMetodosPago(paymentMethods: string[]) {
+		this._paymentMethods = paymentMethods
+		await new UsersDAO().actualizarMetodosDePago(this)
+    };
+    public async modificarFechaNacimiento(dateBirth: Date) {
+		this._dateBirth = dateBirth
+		await new UsersDAO().actualizarFechaNacimiento(this)
+	}
+	public async registrarArrendador() {
+		this._dateRegisterLessor = new Date()
+		await new UsersDAO().actualizarRegistroArrendatario(this)
+	}
+	public reservarCancha(): Promise<void> {
 		throw new Error("Method not implemented");
     };
     public valorarCancha(): Promise<void> {

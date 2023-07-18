@@ -8,7 +8,7 @@ interface Address {
     city        : string;
     state       : string;
     country     : string;
-    coord_x     : number;
-    coord_y     : number;
+    coord_x     : number|null;
+    coord_y     : number|null;
 };
 export default Address;

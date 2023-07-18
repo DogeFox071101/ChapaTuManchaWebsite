@@ -26,57 +26,62 @@
     </nav>
   </header>
   <main class="container mt-5">
-    <form id="form_update_usuario" method="POST">
+    <form id="form_update_usuario">
       <h2 class="text-success mb-4">Complete la información faltante para registrarse como Arrendador</h2>
       <div class="mb-3">
         <label for="correo" class="form-label">Fecha de Nacimiento</label>
-        <input type="date" id="correo" name="correo" class="form-control" required>
+        <input type="date" id="date_birth" name="correo" class="form-control" required>
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Tipo de Documento</label>
-        <select name="" id="tipoDocumento" class="form-select">
+        <select name="" id="document_type" class="form-select">
           <option value="null">Seleccione una opción...</option>
         </select>
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Número de Documento</label>
-        <input type="" id="" name="" class="form-control" required>
+        <input type="" id="document_num" name="" class="form-control" required>
       </div>
       <div class="mb-3">
         <div class="row">
           <div class="col-4">
             <label for="" class="form-label">Calle / Avenida / Jirón:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <input type="" id="address_line" name="" class="form-control" required>
           </div>
           <div class="col-2">
             <label for="" class="form-label">Número:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <input type="" id="door_number" name="" class="form-control" required>
           </div>
           <div class="col-4">
             <label for="" class="form-label">Piso / Apartamento / Urbanización: (opcional)</label>
-            <input type="" id="" name="" class="form-control" required>
+            <input type="" id="address_ext" name="" class="form-control" required>
           </div>
           <div class="col-2">
             <label for="" class="form-label">Código Postal:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <input type="" id="zip_code" name="" class="form-control" required>
           </div>
         </div>
         <div class="row">
           <div class="col-3">
             <label for="" class="form-label">País:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <select type="" id="country" name="" class="form-select" required>
+              <option value="null">Seleccionar</option>
+            </select>
           </div>
           <div class="col-3">
             <label for="" class="form-label">Departamento:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <select type="" id="state" name="" class="form-select" required disabled>
+          </select>
           </div>
           <div class="col-3">
             <label for="" class="form-label">Provincia:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <select type="" id="city" name="" class="form-select" required disabled>
+          </select>
           </div>
           <div class="col-3">
             <label for="" class="form-label">Distrito:</label>
-            <input type="" id="" name="" class="form-control" required>
+            <select type="" id="district" name="" class="form-select" required disabled>
+          </select>
           </div>
         </div>
       </div>
@@ -86,26 +91,41 @@
           <div class="col-6">
             <div class="input-group">
               <div class="col-2">
-                <select name="" id="" class="form-select">
-                  <option value="PE">+51</option>
+                <select name="" id="prefix" class="form-select">
+                  <option value="null">...</option>
                 </select>
               </div>
               <div class="col-10">
-                <input inputmode="numeric" id="" name="" class="form-control" required>
+                <input inputmode="numeric" id="phone_number" name="" class="form-control" required>
               </div>
             </div>
           </div>
           <div class="col-6 form-check">
-            <input type="checkbox" id="isFixed" name="" class="form-check-input" required>
-            <label class="form-check" for="isFixed">Es un Teléfono Fijo</label>
+            <input type="checkbox" id="is_fixed" name="" class="form-check-input">
+            <label class="form-check" for="is_fixed">Es un Teléfono Fijo</label>
           </div>
         </div>
       </div>
       <div class="mb-3">
         <label for="" class="form-label">Seleccione sus métodos de pago preferidos</label>
-        <select name="" id="" class="form-select">
-
-        </select>
+        <div class="row">
+          <div class="col-3 form-check">
+            <input type="checkbox" id="yapePlin" name="" class="form-check-input">
+            <label class="form-check" for="yapePlin">Yape / Plin</label>
+          </div>
+            <div class="col-3 form-check">
+              <input type="checkbox" id="transfer" name="" class="form-check-input">
+              <label class="form-check" for="transfer">Transferencia</label>
+            </div>
+            <div class="col-3 form-check">
+              <input type="checkbox" id="cash" name="" class="form-check-input">
+              <label class="form-check" for="cash">Efectivo</label>
+            </div>
+            <div class="col-3 form-check">
+              <input type="checkbox" id="paypal" name="" class="form-check-input">
+              <label class="form-check" for="paypal">PayPal</label>
+            </div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-success">Guardar cambios</button>
