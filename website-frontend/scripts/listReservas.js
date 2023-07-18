@@ -1,3 +1,26 @@
+const form = document.getElementById("reservation-form");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let idCancha = await fetch('http://localhost:3001/api/cancha/getid', {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+
+    let cancha = await fetch('http://localhost:3001/api/cancha/getinfo', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(idCancha)
+    })
+    document.getElementById("nombre_local").value = cancha.address;
+    document.getElementById("direccion").value = cancha.name;
+    document.getElementById("precio").value = cancha.price;
+},
 // Función para obtener datos de la base de datos
 async function fetchDataFromDatabase() {
     try {
@@ -8,7 +31,7 @@ async function fetchDataFromDatabase() {
         console.error('Error al obtener los datos de la base de datos:', error);
         return [];
     }
-}
+},
 
 // Cancelar una reserva
 async function removeReserva(event) {
@@ -31,7 +54,7 @@ async function removeReserva(event) {
     } catch (error) {
         console.error("Error en la solicitud para cancelar la reserva:", error);
     }
-}
+},
 
 // Generar filas de la lista reservas
 async function generateReservasList() {
@@ -89,4 +112,4 @@ async function generateReservasList() {
         li.appendChild(divEliminar);
         resultsList.appendChild(li);
     }
-}
+})
