@@ -16,7 +16,7 @@ form.addEventListener("submit", async (event) => {
     const codpostal = document.getElementById("codpostal").value;
     const numero = document.getElementById("numero").value;
 
-    let req_direc = await fetch("http://localhost:3001/api/direccion/register", {
+    let req_direc = await fetch("http://localhost:3001/api/direccion/create", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -34,7 +34,7 @@ form.addEventListener("submit", async (event) => {
 
     const res_direc = await req_direc.json()
 
-    let upload = await fetch("http://localhost:3001/api/cancha/register", {
+    let upload = await fetch("http://localhost:3001/api/cancha/create", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
