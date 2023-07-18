@@ -7,7 +7,7 @@ form.addEventListener("submit", async (event) => {
     const codigoPostal = codigoPostalInput.value;
 
     const mensaje = { msg: codigoPostal };
-    let response = await fetch('http://localhost:3001/api/buscar_canchas', {
+    let response = await fetch('http://localhost:3001/api/cancha/buscar/codpostal', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
